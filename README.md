@@ -47,6 +47,7 @@ install.packages(system.file("extdata", "qiimer_0.9.4.tar.gz", package="microeco
 otu_file_path <- system.file("extdata", "otu_table_raw.txt", package="file2meco")
 sample_file_path <- system.file("extdata", "sample_info.csv", package="file2meco")
 phylo_file_path <- system.file("extdata", "rep_phylo.tre", package="file2meco")
+# if you want to use Tax4Fun2 approach, you need read the representative sequences and add it to the microtable object.
 rep_fasta_path <- system.file("extdata", "rep.fna", package="file2meco")
 # contruct microtable object
 qiime1meco(otu_table = otu_file_path, commented = FALSE, sample_data = sample_file_path)
@@ -111,4 +112,4 @@ Any idea/suggestion will be considered. We also appreciate that anyone can join 
 ## References
   - Chi Liu, Yaoming Cui, Xiangzhen Li, Minjie Yao, microeco: an R package for data mining in microbial community ecology, FEMS Microbiology Ecology, Volume 97, Issue 2, February 2021, fiaa255.
   - McMurdie PJ, Holmes S (2013) phyloseq: An R Package for Reproducible Interactive Analysis and Graphics of Microbiome Census Data. PLOS ONE 8(4): e61217. 
-
+  - Bolyen, E., Rideout, J.R., Dillon, M.R. et al. Reproducible, interactive, scalable and extensible microbiome data science using QIIME 2. Nat Biotechnol 37, 852–857 (2019).
