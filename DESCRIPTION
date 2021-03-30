@@ -1,0 +1,18 @@
+Package: file2meco
+Type: Package
+Title: Tranform files to the microtable object in microeco package.
+Version: 0.1.0
+Authors@R: c(person("Chi", "Liu", role = c("aut", "cre"), email = "liuchi0426@126.com"))
+Author: Chi Liu [aut, cre]
+Maintainer: Chi Liu <liuchi0426@126.com>
+Description: Tranform files to the microtable object in microeco package.
+Depends: R (>= 3.5.0)
+Imports: R6, microeco, ape, magrittr
+Suggests: phyloseq
+License: GPL-3
+Encoding: UTF-8
+NeedsCompilation: no
+Packaged: 2021-03-30
+Repository: github
+Date/Publication: 2021-03-30
+RoxygenNote: 7.1.1
