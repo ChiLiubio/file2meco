@@ -1,5 +1,5 @@
 # file2meco
-Conversion between files from some tools and microtable.
+Conversion between files from some tools and microtable object in microeco.
 
 
 ## Install file2meco
@@ -9,13 +9,13 @@ Install file2meco from github.
 ```r
 # If devtools package is not installed, first install it
 install.packages("devtools")
-# then install microeco
+# then install microeco; https://github.com/ChiLiubio/microeco
 devtools::install_github("ChiLiubio/microeco")
 # then install file2meco
 devtools::install_github("ChiLiubio/file2meco")
 ```
 
-If the installation from github is failed because of the bad internet, download the packages first, then install it locally.
+If the installation from github is failed because of the bad internet, download the packages first, then install them locally.
 
 ```r
 devtools::install_local("microeco-master.zip")
@@ -66,7 +66,7 @@ You need first install the required qiime2R package from github, see https://git
 # see the help document
 ?qiime2meco
 # Let's run the examples
-# The data files is downloaded from https://docs.qiime2.org/2020.8/tutorials/pd-mice/ and stored inside the package.
+# use data files inside the package which were downloaded from (https://docs.qiime2.org/2020.8/tutorials/pd-mice/).
 abund_file_path <- system.file("extdata", "dada2_table.qza", package="file2meco")
 sample_file_path <- system.file("extdata", "sample-metadata.tsv", package="file2meco")
 taxonomy_file_path <- system.file("extdata", "taxonomy.qza", package="file2meco")
@@ -102,9 +102,13 @@ meco_dataset <- phyloseq2meco(GlobalPatterns)
 meco_dataset
 ```
 
+# Other tools
+
+This package will be updated continuously......  
+Any idea/suggestion will be considered. We also appreciate that anyone can join us to make the package better.
+
+
 ## References
   - Chi Liu, Yaoming Cui, Xiangzhen Li, Minjie Yao, microeco: an R package for data mining in microbial community ecology, FEMS Microbiology Ecology, Volume 97, Issue 2, February 2021, fiaa255.
   - McMurdie PJ, Holmes S (2013) phyloseq: An R Package for Reproducible Interactive Analysis and Graphics of Microbiome Census Data. PLOS ONE 8(4): e61217. 
-
-
 
