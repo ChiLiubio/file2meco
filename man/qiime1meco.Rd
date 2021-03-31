@@ -7,7 +7,7 @@
 qiime1meco(
   otu_table,
   commented = TRUE,
-  sample_data,
+  sample_data = NULL,
   phylo_tree = NULL,
   rep_fasta = NULL
 )
@@ -17,7 +17,7 @@ qiime1meco(
 
 \item{commented}{default TRUE; whether there is a commented first line in the otu_table. see also read_qiime_otu_table() function in qiimer package.}
 
-\item{sample_data}{must be tab or comma seperated file, generally, a file with suffix "tsv" or "csv".}
+\item{sample_data}{default NULL; If provided, must be tab or comma seperated file, generally, a file with suffix "tsv" or "csv".}
 
 \item{phylo_tree}{default NULL; the phylogenetic tree; generally, a file with suffix "tre".}
 

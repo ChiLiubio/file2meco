@@ -50,6 +50,7 @@ phylo_file_path <- system.file("extdata", "rep_phylo.tre", package="file2meco")
 # if you want to use Tax4Fun2 approach, you need read the representative sequences and add it to the microtable object.
 rep_fasta_path <- system.file("extdata", "rep.fna", package="file2meco")
 # contruct microtable object
+qiime1meco(otu_table = otu_file_path, commented = FALSE)
 qiime1meco(otu_table = otu_file_path, commented = FALSE, sample_data = sample_file_path)
 qiime1meco(otu_table = otu_file_path, commented = FALSE, sample_data = sample_file_path, phylo_tree = phylo_file_path)
 qiime1meco(otu_table = otu_file_path, commented = FALSE, sample_data = sample_file_path, phylo_tree = phylo_file_path, rep_fasta = rep_fasta_path)
@@ -74,6 +75,7 @@ taxonomy_file_path <- system.file("extdata", "taxonomy.qza", package="file2meco"
 phylo_file_path <- system.file("extdata", "tree.qza", package="file2meco")
 rep_fasta_path <- system.file("extdata", "dada2_rep_set.qza", package="file2meco")
 # contruct microtable object
+qiime2meco(ASV_data = abund_file_path)
 qiime2meco(ASV_data = abund_file_path, sample_data = sample_file_path, taxonomy_data = taxonomy_file_path)
 qiime2meco(ASV_data = abund_file_path, sample_data = sample_file_path, taxonomy_data = taxonomy_file_path, phylo_tree = phylo_file_path, rep_fasta = rep_fasta_path)
 ```
@@ -104,7 +106,7 @@ meco_dataset
 ```
 
 
-## HUMAnN output files to microtable
+## HUMAnN metagenomic results to microtable
 
 The humann2meco() function can be used to construct the microtable object using metagenomic analysis files from HUMAnN2 and HUMAnN3.
 Currently, it only support the KEGG pathway abundance file input. More input format will be supported.

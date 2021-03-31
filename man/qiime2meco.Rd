@@ -6,8 +6,8 @@
 \usage{
 qiime2meco(
   ASV_data,
-  sample_data,
-  taxonomy_data,
+  sample_data = NULL,
+  taxonomy_data = NULL,
   phylo_tree = NULL,
   rep_fasta = NULL
 )
@@ -15,9 +15,9 @@ qiime2meco(
 \arguments{
 \item{ASV_data}{the ASV data, such as the data2_table.qza.}
 
-\item{sample_data}{the sample metadata table, such as the sample-metadata.tsv.}
+\item{sample_data}{default NULL; the sample metadata table, such as the sample-metadata.tsv.}
 
-\item{taxonomy_data}{the taxonomy data, such as the taxonomy.qza.}
+\item{taxonomy_data}{default NULL; the taxonomy data, such as the taxonomy.qza.}
 
 \item{phylo_tree}{default NULL; the phylogenetic tree, such as the tree.qza.}
 
@@ -37,7 +37,10 @@ sample_file_path <- system.file("extdata", "sample-metadata.tsv", package="file2
 taxonomy_file_path <- system.file("extdata", "taxonomy.qza", package="file2meco")
 phylo_file_path <- system.file("extdata", "tree.qza", package="file2meco")
 rep_fasta_path <- system.file("extdata", "dada2_rep_set.qza", package="file2meco")
+qiime2meco(ASV_data = abund_file_path)
+qiime2meco(ASV_data = abund_file_path, sample_data = sample_file_path)
 qiime2meco(ASV_data = abund_file_path, sample_data = sample_file_path, taxonomy_data = taxonomy_file_path)
+qiime2meco(ASV_data = abund_file_path, sample_data = sample_file_path, taxonomy_data = taxonomy_file_path, phylo_tree = phylo_file_path)
 qiime2meco(ASV_data = abund_file_path, sample_data = sample_file_path, taxonomy_data = taxonomy_file_path, phylo_tree = phylo_file_path, rep_fasta = rep_fasta_path)
 }
 }
