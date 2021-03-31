@@ -103,6 +103,48 @@ meco_dataset <- phyloseq2meco(GlobalPatterns)
 meco_dataset
 ```
 
+
+## HUMAnN output files to microtable
+
+The humann2meco() function can be used to construct the microtable object using metagenomic analysis files from HUMAnN2 and HUMAnN3.
+Currently, it only support the KEGG pathway abundance file input. More input format will be supported.
+
+```r
+?humann2meco
+# use the raw data files stored inside the package
+abund_file_path <- system.file("extdata", "example_HUMAnN_KEGG_abund.tsv", package="file2meco")
+sample_file_path <- system.file("extdata", "example_HUMAnN_sample_info.tsv", package="file2meco")
+match_file_path <- system.file("extdata", "example_HUMAnN_match_table.tsv", package="file2meco")
+humann2meco(abund_table = abund_file_path)
+humann2meco(abund_table = abund_file_path, sample_data = sample_file_path, match_table = match_file_path)
+```
+
+```r
+# Let's try more interesting usages with microeco
+library(file2meco)
+library(microeco)
+library(magrittr)
+test <- humann2meco(abund_table = abund_file_path, sample_data = sample_file_path, match_table = match_file_path)
+test$tax_table %<>% subset(level1 != "unclassified")
+test$tidy_dataset()
+# rel = FALSE donot use relative abundance
+test$cal_abund(select_cols = 1:3, rel = FALSE)
+test1 <- trans_abund$new(test, taxrank = "level2", ntaxa = 10)
+test1$plot_bar(facet = "Group", ylab_title = "Abundance (RPK)")
+# select both function and taxa
+test$cal_abund(select_cols = c("level1", "Phylum", "Genus"), rel = TRUE)
+test1 <- trans_abund$new(test, taxrank = "Phylum", ntaxa = 10, delete_part_prefix = T)
+test1$plot_bar(facet = "Group")
+# functional biomarker
+test$cal_abund(select_cols = 1:3, rel = TRUE)
+test1 <- trans_diff$new(test, method = "lefse", group = "Group")
+test1$plot_lefse_bar(LDA_score = 3)
+# taxa biomarker
+test$cal_abund(select_cols = 4:9, rel = TRUE)
+test1 <- trans_diff$new(test, method = "lefse", group = "Group")
+test1$plot_lefse_bar(LDA_score = 2)
+```
+
 # Other tools
 
 This package will be updated continuously......  
