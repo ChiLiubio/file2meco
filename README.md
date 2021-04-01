@@ -82,7 +82,7 @@ qiime2meco(ASV_data = abund_file_path, sample_data = sample_file_path, taxonomy_
 
 
 ## Conversion between phyloseq and microtable
-We provide two functions meco2phyloseq() and phyloseq2meco() for the conversion between microtable object and phyloseq object in phyloseq package.
+Two functions meco2phyloseq() and phyloseq2meco() were provided for the conversion between microtable object and phyloseq object in phyloseq package.
 
 ```r
 # Please first install phyloseq
@@ -108,7 +108,7 @@ meco_dataset
 
 ## HUMAnN metagenomic results to microtable
 
-The humann2meco() function can be used to construct the microtable object using metagenomic analysis files from HUMAnN2 and HUMAnN3.
+The humann2meco() function can be used to construct the microtable object using metagenomic analysis files from HUMAnN2 and HUMAnN3 (https://huttenhower.sph.harvard.edu/humann).
 Currently, it only support the KEGG pathway abundance file input. More input format will be supported.
 
 ```r
