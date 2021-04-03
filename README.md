@@ -81,31 +81,6 @@ qiime2meco(ASV_data = abund_file_path, sample_data = sample_file_path, taxonomy_
 ```
 
 
-## Conversion between phyloseq and microtable
-Two functions meco2phyloseq() and phyloseq2meco() were provided for the conversion between microtable object and phyloseq object in phyloseq package.
-
-```r
-# Please first install phyloseq
-if (!requireNamespace("BiocManager", quietly = TRUE)) install.packages("BiocManager")
-BiocManager::install("phyloseq")
-library(phyloseq)
-```
-
-```r
-# from microtable to phyloseq object
-data("dataset")
-physeq <- meco2phyloseq(dataset)
-physeq
-```
-
-```r
-# from phyloseq to microtable object
-data("GlobalPatterns")
-meco_dataset <- phyloseq2meco(GlobalPatterns)
-meco_dataset
-```
-
-
 ## HUMAnN metagenomic results to microtable
 
 The humann2meco() function can be used to construct the microtable object using metagenomic analysis files from HUMAnN2 and HUMAnN3 (https://huttenhower.sph.harvard.edu/humann).
@@ -146,6 +121,32 @@ test$cal_abund(select_cols = 4:9, rel = TRUE)
 test1 <- trans_diff$new(test, method = "lefse", group = "Group")
 test1$plot_lefse_bar(LDA_score = 2)
 ```
+
+
+## Conversion between phyloseq and microtable
+Two functions meco2phyloseq() and phyloseq2meco() were provided for the conversion between microtable object and phyloseq object in phyloseq package.
+
+```r
+# Please first install phyloseq
+if (!requireNamespace("BiocManager", quietly = TRUE)) install.packages("BiocManager")
+BiocManager::install("phyloseq")
+library(phyloseq)
+```
+
+```r
+# from microtable to phyloseq object
+data("dataset")
+physeq <- meco2phyloseq(dataset)
+physeq
+```
+
+```r
+# from phyloseq to microtable object
+data("GlobalPatterns")
+meco_dataset <- phyloseq2meco(GlobalPatterns)
+meco_dataset
+```
+
 
 # Other tools
 
