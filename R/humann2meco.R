@@ -1,7 +1,7 @@
 #' Transform HUMAnN metagenomic results to microtable object.
 #'
 #' @description
-#' Transform HUMAnN metagenomic results to microtable object.
+#' Transform HUMAnN metagenomic results to microtable object, reference: Franzosa et al. (2018) <doi:10.1038/s41592-018-0176-y>.
 #' @param abund_table HUMAnN output abundance table, see the example.
 #' @param sample_data default NULL; the sample metadata table, must be tab or comma seperated file, generally, a file with suffix "tsv" or "csv"..
 #' @param match_table default NULL; a two column table used to replace the sample names in HUMAnN abundance result; Remember just two columns with no column names;
@@ -11,10 +11,31 @@
 #' \donttest{
 #' # use the raw data files stored inside the package
 #' abund_file_path <- system.file("extdata", "example_HUMAnN_KEGG_abund.tsv", package="file2meco")
-#' sample_file_path <- system.file("extdata", "example_HUMAnN_sample_info.tsv", package="file2meco")
-#' match_file_path <- system.file("extdata", "example_HUMAnN_match_table.tsv", package="file2meco")
+#' sample_file_path <- system.file("extdata", "example_metagenome_sample_info.tsv", package="file2meco")
+#' match_file_path <- system.file("extdata", "example_metagenome_match_table.tsv", package="file2meco")
+#' library(file2meco)
+#' library(microeco)
+#' library(magrittr)
 #' humann2meco(abund_table = abund_file_path)
-#' humann2meco(abund_table = abund_file_path, sample_data = sample_file_path, match_table = match_file_path)
+#' test <- humann2meco(abund_table = abund_file_path, sample_data = sample_file_path, match_table = match_file_path)
+#' test$tax_table %<>% subset(level1 != "unclassified")
+#' test$tidy_dataset()
+#' # rel = FALSE donot use relative abundance
+#' test$cal_abund(select_cols = 1:3, rel = FALSE)
+#' test1 <- trans_abund$new(test, taxrank = "level2", ntaxa = 10)
+#' test1$plot_bar(facet = "Group", ylab_title = "Abundance (RPK)")
+#' # select both function and taxa
+#' test$cal_abund(select_cols = c("level1", "Phylum", "Genus"), rel = TRUE)
+#' test1 <- trans_abund$new(test, taxrank = "Phylum", ntaxa = 10, delete_part_prefix = T)
+#' test1$plot_bar(facet = "Group")
+#' # functional biomarker
+#' test$cal_abund(select_cols = 1:3, rel = TRUE)
+#' test1 <- trans_diff$new(test, method = "lefse", group = "Group")
+#' test1$plot_lefse_bar(LDA_score = 3)
+#' # taxa biomarker
+#' test$cal_abund(select_cols = 4:9, rel = TRUE)
+#' test1 <- trans_diff$new(test, method = "lefse", group = "Group")
+#' test1$plot_lefse_bar(LDA_score = 2)
 #' }
 #' @export
 humann2meco <- function(abund_table, sample_data = NULL, match_table = NULL){

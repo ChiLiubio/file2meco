@@ -2,6 +2,7 @@
 
 export(humann2meco)
 export(meco2phyloseq)
+export(ncyc2meco)
 export(phyloseq2meco)
 export(qiime1meco)
 export(qiime2meco)

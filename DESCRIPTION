@@ -12,7 +12,7 @@ Suggests: phyloseq
 License: GPL-3
 Encoding: UTF-8
 NeedsCompilation: no
-Packaged: 2021-03-30
+Packaged: 2021-04-06
 Repository: github
-Date/Publication: 2021-03-30
+Date/Publication: 2021-04-06
 RoxygenNote: 7.1.1

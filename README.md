@@ -1,6 +1,7 @@
 # file2meco
 Conversion between files from some tools and microtable object in microeco.
 
+![](https://img.shields.io/badge/Test-Ver0.1.0-red.svg)
 
 ## Install file2meco
 
@@ -83,15 +84,16 @@ qiime2meco(ASV_data = abund_file_path, sample_data = sample_file_path, taxonomy_
 
 ## HUMAnN metagenomic results to microtable
 
-The humann2meco() function can be used to construct the microtable object using metagenomic analysis files from HUMAnN2 and HUMAnN3 (https://huttenhower.sph.harvard.edu/humann).
+HUMAnN is an excellent tool for functional profiling analysis of metagenomes and metatranscriptomes at species-level (https://doi.org/10.1038/s41592-018-0176-y).
+The humann2meco() function can be used to creat the microtable object using metagenomic analysis files from HUMAnN2 and HUMAnN3 (https://huttenhower.sph.harvard.edu/humann).
 Currently, it only support the KEGG pathway abundance file input. More input format will be supported.
 
 ```r
 ?humann2meco
 # use the raw data files stored inside the package
 abund_file_path <- system.file("extdata", "example_HUMAnN_KEGG_abund.tsv", package="file2meco")
-sample_file_path <- system.file("extdata", "example_HUMAnN_sample_info.tsv", package="file2meco")
-match_file_path <- system.file("extdata", "example_HUMAnN_match_table.tsv", package="file2meco")
+sample_file_path <- system.file("extdata", "example_metagenome_sample_info.tsv", package="file2meco")
+match_file_path <- system.file("extdata", "example_metagenome_match_table.tsv", package="file2meco")
 humann2meco(abund_table = abund_file_path)
 humann2meco(abund_table = abund_file_path, sample_data = sample_file_path, match_table = match_file_path)
 ```
@@ -122,6 +124,40 @@ test1 <- trans_diff$new(test, method = "lefse", group = "Group")
 test1$plot_lefse_bar(LDA_score = 2)
 ```
 
+## Ncyc metagenomic results to microtable
+
+Ncyc database is a curated integrative database for fast and accurate metagenomic profiling of nitrogen cycling genes (https://doi.org/10.1093/bioinformatics/bty741).
+The ncyc2meco() function is designed for construct the microtable object using gene abundance files from Ncyc (https://github.com/qichao1984/NCyc).
+
+
+```r
+?ncyc2meco
+# use the raw data files stored inside the package
+abund_file_path <- system.file("extdata", "example_Ncyc_table.tsv", package="file2meco")
+sample_file_path <- system.file("extdata", "example_metagenome_sample_info.tsv", package="file2meco")
+match_file_path <- system.file("extdata", "example_metagenome_match_table.tsv", package="file2meco")
+ncyc2meco(abund_table = abund_file_path)
+ncyc2meco(abund_table = abund_file_path, sample_data = sample_file_path, match_table = match_file_path)
+```
+
+```r
+# Let's try more interesting usages with microeco
+library(file2meco)
+library(microeco)
+library(magrittr)
+test <- ncyc2meco(abund_table = abund_file_path, sample_data = sample_file_path, match_table = match_file_path)
+test$tidy_dataset()
+# use split_group = TRUE to calculate the pathway abundance with multipe map correspondance
+test$cal_abund(select_cols = 1:2, rel = TRUE, split_group = TRUE, split_column = "Pathway")
+test$taxa_abund$Pathway %<>% .[!grepl("unclass", rownames(.)), ]
+test1 <- trans_abund$new(test, taxrank = "Pathway")
+test1$plot_bar(bar_type = "notfull")
+# for gene abundance, no splitting on the pathways
+test$cal_abund(select_cols = 1:2, rel = TRUE, split_group = FALSE)
+test$taxa_abund$Gene %<>% .[!grepl("unclass", rownames(.)), ]
+test1 <- trans_abund$new(test, taxrank = "Gene")
+test1$plot_bar(bar_type = "notfull")
+```
 
 ## Conversion between phyloseq and microtable
 Two functions meco2phyloseq() and phyloseq2meco() were provided for the conversion between microtable object and phyloseq object in phyloseq package.
