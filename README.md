@@ -86,24 +86,52 @@ qiime2meco(ASV_data = abund_file_path, sample_data = sample_file_path, taxonomy_
 
 HUMAnN is an excellent tool for functional profiling analysis of metagenomes and metatranscriptomes at species-level (https://doi.org/10.1038/s41592-018-0176-y).
 The humann2meco() function can be used to creat the microtable object using metagenomic analysis files from HUMAnN2 and HUMAnN3 (https://huttenhower.sph.harvard.edu/humann).
-Currently, it only support the KEGG pathway abundance file input. More input format will be supported.
+Currently, it supports both the MetaCyc and KEGG pathway abundance file input.
+
 
 ```r
-?humann2meco
-# use the raw data files stored inside the package
-abund_file_path <- system.file("extdata", "example_HUMAnN_KEGG_abund.tsv", package="file2meco")
-sample_file_path <- system.file("extdata", "example_metagenome_sample_info.tsv", package="file2meco")
-match_file_path <- system.file("extdata", "example_metagenome_match_table.tsv", package="file2meco")
-humann2meco(abund_table = abund_file_path)
-humann2meco(abund_table = abund_file_path, sample_data = sample_file_path, match_table = match_file_path)
-```
-
-```r
-# Let's try more interesting usages with microeco
 library(file2meco)
 library(microeco)
 library(magrittr)
-test <- humann2meco(abund_table = abund_file_path, sample_data = sample_file_path, match_table = match_file_path)
+?humann2meco
+sample_file_path <- system.file("extdata", "example_metagenome_sample_info.tsv", package="file2meco")
+match_file_path <- system.file("extdata", "example_metagenome_match_table.tsv", package="file2meco")
+
+# MetaCyc pathway database based analysis
+# use the raw data files stored inside the package for MetaCyc pathway database based analysis
+abund_file_path <- system.file("extdata", "example_HUMAnN_MetaCyc_abund.tsv", package="file2meco")
+# the default db is "MetaCyc"
+humann2meco(abund_table = abund_file_path, db = "MetaCyc")
+humann2meco(abund_table = abund_file_path, db = "MetaCyc", sample_data = sample_file_path, match_table = match_file_path)
+# Let's try more interesting usages with microeco
+test <- humann2meco(abund_table = abund_file_path, db = "MetaCyc", sample_data = sample_file_path, match_table = match_file_path)
+test$tidy_dataset()
+# rel = FALSE donot use relative abundance
+test$cal_abund(select_cols = 1:3, rel = FALSE)
+test$taxa_abund$Superclass1 %<>% .[!grepl("unclass", rownames(.)), ]
+test1 <- trans_abund$new(test, taxrank = "Superclass1", ntaxa = 10)
+test1$plot_bar(facet = "Group", ylab_title = "Abundance (RPK)")
+# select both function and taxa
+test$cal_abund(select_cols = c("Superclass1", "Phylum", "Genus"), rel = TRUE)
+test1 <- trans_abund$new(test, taxrank = "Phylum", ntaxa = 10, delete_part_prefix = T)
+test1$plot_bar(facet = "Group")
+# functional biomarker
+test$cal_abund(select_cols = 1:3, rel = TRUE)
+test$taxa_abund$Superclass1 %<>% .[!grepl("unclass", rownames(.)), ]
+test1 <- trans_diff$new(test, method = "lefse", group = "Group")
+test1$plot_lefse_bar(use_number = 1:20)
+# taxa biomarker
+test$cal_abund(select_cols = 4:9, rel = TRUE)
+test$taxa_abund$Phylum %<>% .[!grepl("unclass", rownames(.)), ]
+test1 <- trans_diff$new(test, method = "lefse", group = "Group")
+test1$plot_lefse_bar(LDA_score = 2)
+```
+
+
+```r
+# use KEGG pathway based HUMAnN result
+abund_file_path <- system.file("extdata", "example_HUMAnN_KEGG_abund.tsv", package="file2meco")
+test <- humann2meco(abund_table = abund_file_path, db = "KEGG", sample_data = sample_file_path, match_table = match_file_path)
 test$tax_table %<>% subset(level1 != "unclassified")
 test$tidy_dataset()
 # rel = FALSE donot use relative abundance
@@ -112,16 +140,14 @@ test1 <- trans_abund$new(test, taxrank = "level2", ntaxa = 10)
 test1$plot_bar(facet = "Group", ylab_title = "Abundance (RPK)")
 # select both function and taxa
 test$cal_abund(select_cols = c("level1", "Phylum", "Genus"), rel = TRUE)
+test$taxa_abund$level1 %<>% .[!grepl("unclass", rownames(.)), ]
+test$taxa_abund$Phylum %<>% .[!grepl("unclass", rownames(.)), ]
 test1 <- trans_abund$new(test, taxrank = "Phylum", ntaxa = 10, delete_part_prefix = T)
 test1$plot_bar(facet = "Group")
 # functional biomarker
 test$cal_abund(select_cols = 1:3, rel = TRUE)
 test1 <- trans_diff$new(test, method = "lefse", group = "Group")
 test1$plot_lefse_bar(LDA_score = 3)
-# taxa biomarker
-test$cal_abund(select_cols = 4:9, rel = TRUE)
-test1 <- trans_diff$new(test, method = "lefse", group = "Group")
-test1$plot_lefse_bar(LDA_score = 2)
 ```
 
 ## Ncyc metagenomic results to microtable
@@ -192,6 +218,7 @@ Any idea/suggestion will be considered. We also appreciate that anyone can join 
 
 ## References
   - Chi Liu, Yaoming Cui, Xiangzhen Li, Minjie Yao, microeco: an R package for data mining in microbial community ecology, FEMS Microbiology Ecology, Volume 97, Issue 2, February 2021, fiaa255.
-  - McMurdie PJ, Holmes S (2013) phyloseq: An R Package for Reproducible Interactive Analysis and Graphics of Microbiome Census Data. PLOS ONE 8(4): e61217. 
   - Bolyen, E., Rideout, J.R., Dillon, M.R. et al. Reproducible, interactive, scalable and extensible microbiome data science using QIIME 2. Nat Biotechnol 37, 852–857 (2019).
   - Franzosa EA, McIver LJ, Rahnavard G, Thompson LR, Schirmer M, Weingart G, Schwarzberg Lipson K, Knight R, Caporaso JG, Segata N, Huttenhower C. Species-level functional profiling of metagenomes and metatranscriptomes. Nat Methods 15: 962-968 (2018).
+  - McMurdie PJ, Holmes S (2013) phyloseq: An R Package for Reproducible Interactive Analysis and Graphics of Microbiome Census Data. PLOS ONE 8(4): e61217. 
+  - Qichao Tu, Lu Lin, Lei Cheng, Ye Deng, Zhili He, NCycDB: a curated integrative database for fast and accurate metagenomic profiling of nitrogen cycling genes, Bioinformatics, Volume 35, Issue 6, 15 March 2019, 1040–1048
