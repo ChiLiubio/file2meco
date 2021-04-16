@@ -84,7 +84,7 @@ qiime1meco <- function(otu_table, commented = TRUE, sample_data = NULL, phylo_tr
 		stop("qiimer package not installed!")
 	}
 	# read and parse otu_table
-	otu_raw_table <- read_qiime_otu_table(otu_table, commented = FALSE)
+	otu_raw_table <- read_qiime_otu_table(otu_table, commented = commented)
 	# obtain the otu table data.frame
 	otu_table_1 <- as.data.frame(otu_raw_table[[3]])
 	colnames(otu_table_1) <- unlist(otu_raw_table[[1]])
