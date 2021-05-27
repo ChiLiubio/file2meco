@@ -1,7 +1,7 @@
 Package: file2meco
 Type: Package
 Title: Tranform files to the microtable object in microeco package.
-Version: 0.1.0
+Version: 0.1.1
 Authors@R: c(person("Chi", "Liu", role = c("aut", "cre"), email = "liuchi0426@126.com"))
 Author: Chi Liu [aut, cre]
 Maintainer: Chi Liu <liuchi0426@126.com>
@@ -12,7 +12,7 @@ Suggests: phyloseq
 License: GPL-3
 Encoding: UTF-8
 NeedsCompilation: no
-Packaged: 2021-04-06
+Packaged: 2021-05-27
 Repository: github
-Date/Publication: 2021-04-06
+Date/Publication: 2021-05-27
 RoxygenNote: 7.1.1

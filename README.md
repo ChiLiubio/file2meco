@@ -1,7 +1,7 @@
 # file2meco
 Conversion between files from some tools and microtable object in microeco.
 
-![](https://img.shields.io/badge/Test-Ver0.1.0-red.svg)
+![](https://img.shields.io/badge/Release-Ver0.1.0-blue.svg) ![](https://img.shields.io/badge/Test-Ver0.1.1-red.svg)
 
 ## Install file2meco
 
@@ -222,3 +222,6 @@ Any idea/suggestion will be considered. We also appreciate that anyone can join 
   - Franzosa EA, McIver LJ, Rahnavard G, Thompson LR, Schirmer M, Weingart G, Schwarzberg Lipson K, Knight R, Caporaso JG, Segata N, Huttenhower C. Species-level functional profiling of metagenomes and metatranscriptomes. Nat Methods 15: 962-968 (2018).
   - McMurdie PJ, Holmes S (2013) phyloseq: An R Package for Reproducible Interactive Analysis and Graphics of Microbiome Census Data. PLOS ONE 8(4): e61217. 
   - Qichao Tu, Lu Lin, Lei Cheng, Ye Deng, Zhili He, NCycDB: a curated integrative database for fast and accurate metagenomic profiling of nitrogen cycling genes, Bioinformatics, Volume 35, Issue 6, 15 March 2019, 1040–1048
+  - Caspi et al 2020, "The MetaCyc database of metabolic pathways and enzymes - a 2019 update", Nucleic Acids Research 48(D1):D445-D453
+  - Segata, N., Izard, J., Waldron, L., Gevers, D., Miropolsky, L., Garrett, W. S., & Huttenhower, C. (2011). Metagenomic biomarker discovery and explanation. Genome Biology, 12(6), R60.
+  - https://www.genome.jp/kegg/
