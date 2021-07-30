@@ -75,7 +75,7 @@ sample_file_path <- system.file("extdata", "sample-metadata.tsv", package="file2
 taxonomy_file_path <- system.file("extdata", "taxonomy.qza", package="file2meco")
 phylo_file_path <- system.file("extdata", "tree.qza", package="file2meco")
 rep_fasta_path <- system.file("extdata", "dada2_rep_set.qza", package="file2meco")
-# contruct microtable object
+# construct microtable object
 qiime2meco(ASV_data = abund_file_path)
 qiime2meco(ASV_data = abund_file_path, sample_data = sample_file_path, taxonomy_data = taxonomy_file_path)
 qiime2meco(ASV_data = abund_file_path, sample_data = sample_file_path, taxonomy_data = taxonomy_file_path, phylo_tree = phylo_file_path, rep_fasta = rep_fasta_path)
@@ -212,8 +212,14 @@ meco_dataset
 
 # Other tools
 
-This package will be updated continuously......  
-Any idea/suggestion will be considered. We also appreciate that anyone can join us to make the package better.
+Other converting methods will be developed continuously......  
+
+## Contributing
+
+We welcome any contribution \! 
+Any idea/suggestion will be considered.
+By participating in this project you agree to abide by the terms outlined in the [Contributor Code of Conduct](CONDUCT.md).
+
 
 
 ## References
