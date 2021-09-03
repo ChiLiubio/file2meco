@@ -11,13 +11,15 @@
 #' \donttest{
 #' # use the raw data files stored inside the package
 #' abund_file_path <- system.file("extdata", "example_Ncyc_table.tsv", package="file2meco")
-#' sample_file_path <- system.file("extdata", "example_metagenome_sample_info.tsv", package="file2meco")
+#' sample_file_path <- system.file("extdata", "example_metagenome_sample_info.tsv", 
+#'   package="file2meco")
 #' match_file_path <- system.file("extdata", "example_metagenome_match_table.tsv", package="file2meco")
 #' library(microeco)
 #' library(file2meco)
 #' library(magrittr)
 #' ncyc2meco(abund_table = abund_file_path)
-#' test <- ncyc2meco(abund_table = abund_file_path, sample_data = sample_file_path, match_table = match_file_path)
+#' test <- ncyc2meco(abund_table = abund_file_path, sample_data = sample_file_path, 
+#'   match_table = match_file_path)
 #' test$tidy_dataset()
 #' # use split_group = TRUE to calculate the pathway abundance with multipe map correspondance
 #' test$cal_abund(select_cols = 1:2, rel = TRUE, split_group = TRUE, split_column = "Pathway")

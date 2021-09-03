@@ -32,15 +32,18 @@ Transform HUMAnN metagenomic results to microtable object, reference: Franzosa e
 library(file2meco)
 library(microeco)
 library(magrittr)
-sample_file_path <- system.file("extdata", "example_metagenome_sample_info.tsv", package="file2meco")
+sample_file_path <- system.file("extdata", "example_metagenome_sample_info.tsv", 
+  package="file2meco")
 match_file_path <- system.file("extdata", "example_metagenome_match_table.tsv", package="file2meco")
 # MetaCyc pathway examples
 # use the raw data files stored inside the package for MetaCyc pathway database based analysis
 abund_file_path <- system.file("extdata", "example_HUMAnN_MetaCyc_abund.tsv", package="file2meco")
 # the default db is "MetaCyc"
 humann2meco(abund_table = abund_file_path, db = "MetaCyc")
-humann2meco(abund_table = abund_file_path, db = "MetaCyc", sample_data = sample_file_path, match_table = match_file_path)
-test <- humann2meco(abund_table = abund_file_path, db = "MetaCyc", sample_data = sample_file_path, match_table = match_file_path)
+humann2meco(abund_table = abund_file_path, db = "MetaCyc", sample_data = sample_file_path, 
+  match_table = match_file_path)
+test <- humann2meco(abund_table = abund_file_path, db = "MetaCyc", sample_data = sample_file_path, 
+  match_table = match_file_path)
 test$tidy_dataset()
 # rel = FALSE donot use relative abundance
 test$cal_abund(select_cols = 1:3, rel = FALSE)
@@ -49,10 +52,10 @@ test1 <- trans_abund$new(test, taxrank = "Superclass1", ntaxa = 10)
 test1$plot_bar(facet = "Group", ylab_title = "Abundance (RPK)")
 # select both function and taxa
 test$cal_abund(select_cols = c("Superclass1", "Phylum", "Genus"), rel = TRUE)
-test1 <- trans_abund$new(test, taxrank = "Phylum", ntaxa = 10, delete_part_prefix = T)
+test1 <- trans_abund$new(test, taxrank = "Phylum", ntaxa = 10, delete_part_prefix = TRUE)
 test1$plot_bar(facet = "Group")
 test$taxa_abund$Phylum \%<>\% .[!grepl("unclass", rownames(.)), ]
-test1 <- trans_abund$new(test, taxrank = "Phylum", ntaxa = 10, delete_part_prefix = T)
+test1 <- trans_abund$new(test, taxrank = "Phylum", ntaxa = 10, delete_part_prefix = TRUE)
 test1$plot_bar(facet = "Group")
 # functional biomarker
 test$cal_abund(select_cols = 1:3, rel = TRUE)
@@ -70,7 +73,8 @@ test1$plot_lefse_bar(LDA_score = 2)
 # KEGG pathway examples
 abund_file_path <- system.file("extdata", "example_HUMAnN_KEGG_abund.tsv", package="file2meco")
 humann2meco(abund_table = abund_file_path, db = "KEGG")
-test <- humann2meco(abund_table = abund_file_path, db = "KEGG", sample_data = sample_file_path, match_table = match_file_path)
+test <- humann2meco(abund_table = abund_file_path, db = "KEGG", 
+  sample_data = sample_file_path, match_table = match_file_path)
 test$tax_table \%<>\% subset(level1 != "unclassified")
 test$tidy_dataset()
 # rel = FALSE donot use relative abundance
@@ -79,7 +83,7 @@ test1 <- trans_abund$new(test, taxrank = "level2", ntaxa = 10)
 test1$plot_bar(facet = "Group", ylab_title = "Abundance (RPK)")
 # select both function and taxa
 test$cal_abund(select_cols = c("level1", "Phylum", "Genus"), rel = TRUE)
-test1 <- trans_abund$new(test, taxrank = "Phylum", ntaxa = 10, delete_part_prefix = T)
+test1 <- trans_abund$new(test, taxrank = "Phylum", ntaxa = 10, delete_part_prefix = TRUE)
 test1$plot_bar(facet = "Group")
 # functional biomarker
 test$cal_abund(select_cols = 1:3, rel = TRUE)

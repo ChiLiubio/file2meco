@@ -30,14 +30,16 @@ microtable object.
 Transform QIIME results to microtable object. Please first install the necessary qiimer package.
 }
 \examples{
-\donttest{
+\dontrun{
 # use the raw data files stored inside the package
 otu_file_path <- system.file("extdata", "otu_table_raw.txt", package="file2meco")
 sample_file_path <- system.file("extdata", "sample_info.csv", package="file2meco")
 phylo_file_path <- system.file("extdata", "rep_phylo.tre", package="file2meco")
 rep_fasta_path <- system.file("extdata", "rep.fna", package="file2meco")
 qiime1meco(otu_table = otu_file_path, commented = FALSE, sample_data = sample_file_path)
-qiime1meco(otu_table = otu_file_path, commented = FALSE, sample_data = sample_file_path, phylo_tree = phylo_file_path)
-qiime1meco(otu_table = otu_file_path, commented = FALSE, sample_data = sample_file_path, phylo_tree = phylo_file_path, rep_fasta = rep_fasta_path)
+qiime1meco(otu_table = otu_file_path, commented = FALSE, sample_data = sample_file_path, 
+  phylo_tree = phylo_file_path)
+qiime1meco(otu_table = otu_file_path, commented = FALSE, sample_data = sample_file_path, 
+  phylo_tree = phylo_file_path, rep_fasta = rep_fasta_path)
 }
 }

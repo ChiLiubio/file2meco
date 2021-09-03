@@ -38,11 +38,6 @@ library(file2meco)
 
 The qiime1meco() function can be used to construct the microtable object using the raw OTU file from QIIME.
 
-```r
-# First install the dependence -- package qiimer
-install.packages(system.file("extdata", "biom_0.3.12.tar.gz", package="microeco"), repos = NULL, type = "source")
-install.packages(system.file("extdata", "qiimer_0.9.4.tar.gz", package="microeco"), repos = NULL, type = "source")
-```
 
 ```r
 # see the help document

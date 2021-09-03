@@ -17,6 +17,7 @@ Transform microtable object in microeco package to the phyloseq object in phylos
 }
 \examples{
 \donttest{
+library(microeco)
 data("dataset")
 meco2phyloseq(dataset)
 }

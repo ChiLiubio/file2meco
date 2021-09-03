@@ -4,6 +4,7 @@
 #' @return phyloseq object.
 #' @examples
 #' \donttest{
+#' library(microeco)
 #' data("dataset")
 #' meco2phyloseq(dataset)
 #' }

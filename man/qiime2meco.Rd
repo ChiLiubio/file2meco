@@ -30,8 +30,9 @@ microtable object.
 Transform QIIME2 results to microtable object. Please first install the necessary qiime2R package from github  (https://github.com/jbisanz/qiime2R).
 }
 \examples{
-\donttest{
-# The data files is downloaded from https://docs.qiime2.org/2020.8/tutorials/pd-mice/ and stored inside the package.
+\dontrun{
+# The data files is downloaded from https://docs.qiime2.org/2020.8/tutorials/pd-mice/ 
+#   and stored inside the package.
 abund_file_path <- system.file("extdata", "dada2_table.qza", package="file2meco")
 sample_file_path <- system.file("extdata", "sample-metadata.tsv", package="file2meco")
 taxonomy_file_path <- system.file("extdata", "taxonomy.qza", package="file2meco")
@@ -39,8 +40,11 @@ phylo_file_path <- system.file("extdata", "tree.qza", package="file2meco")
 rep_fasta_path <- system.file("extdata", "dada2_rep_set.qza", package="file2meco")
 qiime2meco(ASV_data = abund_file_path)
 qiime2meco(ASV_data = abund_file_path, sample_data = sample_file_path)
-qiime2meco(ASV_data = abund_file_path, sample_data = sample_file_path, taxonomy_data = taxonomy_file_path)
-qiime2meco(ASV_data = abund_file_path, sample_data = sample_file_path, taxonomy_data = taxonomy_file_path, phylo_tree = phylo_file_path)
-qiime2meco(ASV_data = abund_file_path, sample_data = sample_file_path, taxonomy_data = taxonomy_file_path, phylo_tree = phylo_file_path, rep_fasta = rep_fasta_path)
+qiime2meco(ASV_data = abund_file_path, sample_data = sample_file_path, 
+  taxonomy_data = taxonomy_file_path)
+qiime2meco(ASV_data = abund_file_path, sample_data = sample_file_path, 
+  taxonomy_data = taxonomy_file_path, phylo_tree = phylo_file_path)
+qiime2meco(ASV_data = abund_file_path, sample_data = sample_file_path, taxonomy_data = 
+  taxonomy_file_path, phylo_tree = phylo_file_path, rep_fasta = rep_fasta_path)
 }
 }

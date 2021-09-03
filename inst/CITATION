@@ -1,4 +1,4 @@
-citHeader("To cite microeco in publications use:")
+citHeader("To cite file2meco or microeco in publications use:")
 
 citEntry(entry="article",
          title = "microeco: An R package for data mining in microbial community ecology",

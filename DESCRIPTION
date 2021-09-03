@@ -1,18 +1,18 @@
 Package: file2meco
 Type: Package
-Title: Tranform files to the microtable object in microeco package.
+Title: Transform Files to the Microtable Object with 'microeco' Package
 Version: 0.1.1
 Authors@R: c(person("Chi", "Liu", role = c("aut", "cre"), email = "liuchi0426@126.com"))
 Author: Chi Liu [aut, cre]
 Maintainer: Chi Liu <liuchi0426@126.com>
-Description: Tranform files to the microtable object in microeco package.
+Description: Transform output files of some tools to the microtable object of microtable class in microeco package. The microtable class is the basic class in microeco package and is necessary for the downstream microbial community data analysis.
 Depends: R (>= 3.5.0)
 Imports: R6, microeco, ape, magrittr
-Suggests: phyloseq
+Suggests: Biostrings, dplyr, seqinr, tidyr, phyloseq, qiime2R
 License: GPL-3
 Encoding: UTF-8
 NeedsCompilation: no
-Packaged: 2021-05-27
+Packaged: 2021-09-02
 Repository: github
-Date/Publication: 2021-05-27
+Date/Publication: 2021-09-02
 RoxygenNote: 7.1.1
