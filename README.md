@@ -3,8 +3,10 @@
 
 Conversion between files from some tools and microtable object in microeco.
 
-![](https://img.shields.io/badge/Release-Ver0.1.0-blue.svg) ![](https://img.shields.io/badge/Test-Ver0.1.1-red.svg)
 
+[![CRAN](https://www.r-pkg.org/badges/version/file2meco)](https://cran.r-project.org/web/packages/file2meco/index.html)
+[![CRAN](https://cranlogs.r-pkg.org/badges/grand-total/file2meco)](https://cran.r-project.org/web/packages/file2meco/index.html)
+![](https://img.shields.io/badge/Release-v0.1.0-blue.svg) ![](https://img.shields.io/badge/Test-v0.1.1-red.svg)
 
 
 ## Install file2meco
