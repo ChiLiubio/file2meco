@@ -11,22 +11,18 @@ Conversion between files from some tools and microtable object in microeco.
 
 ## Install file2meco
 
-Install file2meco from github.
+Install file2meco package from CRAN directly.
+
+```r
+install.packages("file2meco")
+```
+
+Or install the latest development version from github.
 
 ```r
 # If devtools package is not installed, first install it
 install.packages("devtools")
-# then install microeco; https://github.com/ChiLiubio/microeco
-devtools::install_github("ChiLiubio/microeco")
-# then install file2meco
 devtools::install_github("ChiLiubio/file2meco")
-```
-
-If the installation from github is failed because of the bad internet, download the packages first, then install them locally.
-
-```r
-devtools::install_local("microeco-master.zip")
-devtools::install_local("file2meco-master.zip")
 ```
 
 # Let's begin
