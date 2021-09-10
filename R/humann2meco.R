@@ -1,11 +1,11 @@
-#' Transform HUMAnN metagenomic results to microtable object.
+#' Transform 'HUMAnN' metagenomic results to 'microtable' object.
 #'
 #' @description
-#' Transform HUMAnN metagenomic results to microtable object, reference: Franzosa et al. (2018) <doi:10.1038/s41592-018-0176-y>.
-#' @param abund_table HUMAnN output abundance table, see the example.
+#' Transform 'HUMAnN' metagenomic results to microtable object, reference: Franzosa et al. (2018) <doi:10.1038/s41592-018-0176-y>.
+#' @param abund_table 'HUMAnN' output abundance table, see the example.
 #' @param db default "MetaCyc"; either "MetaCyc" or "KEGG"; the pathway database used in the abund_table file generation.
 #' @param sample_data default NULL; the sample metadata table, must be tab or comma seperated file, generally, a file with suffix "tsv" or "csv"..
-#' @param match_table default NULL; a two column table used to replace the sample names in HUMAnN abundance result; Remember just two columns with no column names;
+#' @param match_table default NULL; a two column table used to replace the sample names in 'HUMAnN abundance result; Remember just two columns with no column names;
 #'    The first column must be sample names used in abund_table, the second column is the new sample names, e.g. the rownames in sample_table. See the example files.
 #' @return microtable object.
 #' @examples

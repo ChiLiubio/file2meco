@@ -59,7 +59,6 @@ qiime1meco(otu_table = otu_file_path, commented = FALSE, sample_data = sample_fi
 ## QIIME2 files to microtable
 
 The qiime2meco() function can be used to construct the microtable object using files from QIIME2.
-You need first install the required qiime2R package from github, see https://github.com/jbisanz/qiime2R
 
 
 ```r

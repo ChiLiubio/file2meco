@@ -1,4 +1,4 @@
-#' Get the website for a MetaCyc pathway name
+#' Get the website for a 'MetaCyc' pathway name
 #'
 #' @param pathway default NULL; character vector; one or more MetaCyc pathway names.
 #' @return character vector.

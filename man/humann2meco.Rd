@@ -2,7 +2,7 @@
 % Please edit documentation in R/humann2meco.R
 \name{humann2meco}
 \alias{humann2meco}
-\title{Transform HUMAnN metagenomic results to microtable object.}
+\title{Transform 'HUMAnN' metagenomic results to 'microtable' object.}
 \usage{
 humann2meco(
   abund_table,
@@ -12,20 +12,20 @@ humann2meco(
 )
 }
 \arguments{
-\item{abund_table}{HUMAnN output abundance table, see the example.}
+\item{abund_table}{'HUMAnN' output abundance table, see the example.}
 
 \item{db}{default "MetaCyc"; either "MetaCyc" or "KEGG"; the pathway database used in the abund_table file generation.}
 
 \item{sample_data}{default NULL; the sample metadata table, must be tab or comma seperated file, generally, a file with suffix "tsv" or "csv"..}
 
-\item{match_table}{default NULL; a two column table used to replace the sample names in HUMAnN abundance result; Remember just two columns with no column names;
+\item{match_table}{default NULL; a two column table used to replace the sample names in 'HUMAnN abundance result; Remember just two columns with no column names;
 The first column must be sample names used in abund_table, the second column is the new sample names, e.g. the rownames in sample_table. See the example files.}
 }
 \value{
 microtable object.
 }
 \description{
-Transform HUMAnN metagenomic results to microtable object, reference: Franzosa et al. (2018) <doi:10.1038/s41592-018-0176-y>.
+Transform 'HUMAnN' metagenomic results to microtable object, reference: Franzosa et al. (2018) <doi:10.1038/s41592-018-0176-y>.
 }
 \examples{
 \donttest{

@@ -8,8 +8,8 @@
 data(MetaCyc_pathway_map)
 }
 \description{
-The MetaCyc_pathway_map data is a manually curated MetaCyc pathway hierarchical structure data. 
-It is used for the parsing the HUMAaN metagenomic abundance table associated with MetaCyc database.
+The MetaCyc_pathway_map data is a manually curated 'MetaCyc' pathway hierarchical structure data. 
+It is used for the parsing the 'HUMAaN' metagenomic abundance table associated with 'MetaCyc' database.
 Currently, only superclass 1, 2 and the pathway are used in this data.
 }
 \keyword{data.frame}

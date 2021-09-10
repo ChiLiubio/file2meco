@@ -2,12 +2,12 @@
 % Please edit documentation in R/ncyc2meco.R
 \name{ncyc2meco}
 \alias{ncyc2meco}
-\title{Transform Ncyc metagenomic abundance to microtable object.}
+\title{Transform 'Ncyc' metagenomic abundance to 'microtable' object.}
 \usage{
 ncyc2meco(abund_table, sample_data = NULL, match_table = NULL)
 }
 \arguments{
-\item{abund_table}{Ncyc output abundance table, see the example file.}
+\item{abund_table}{'Ncyc' software output abundance table, see the example file.}
 
 \item{sample_data}{default NULL; the sample metadata table, must be tab or comma seperated file, generally, a file with suffix "tsv" or "csv"..}
 
@@ -18,7 +18,7 @@ The first column must be sample names used in abund_table, the second column is 
 microtable object.
 }
 \description{
-Transform Ncyc metagenomic abundance to microtable object. Reference: Qichao et al. (2019) <doi: 10.1093/bioinformatics/bty741>.
+Transform 'Ncyc' metagenomic abundance to microtable object. Reference: Qichao et al. (2019) <doi: 10.1093/bioinformatics/bty741>.
 }
 \examples{
 \donttest{

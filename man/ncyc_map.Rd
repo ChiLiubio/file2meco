@@ -8,6 +8,6 @@
 data(ncyc_map)
 }
 \description{
-The ncyc_map data is used for the parsing the Ncyc metagenomic results and add the N cycle pathway information to the tax_table.
+The ncyc_map data is used for the parsing the 'Ncyc' metagenomic results and add the N cycle pathway information to the 'tax_table' of 'microtable' object.
 }
 \keyword{data.frame}

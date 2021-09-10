@@ -2,7 +2,7 @@
 % Please edit documentation in R/utility.R
 \name{metacyc_pathway_website}
 \alias{metacyc_pathway_website}
-\title{Get the website for a MetaCyc pathway name}
+\title{Get the website for a 'MetaCyc' pathway name}
 \usage{
 metacyc_pathway_website(pathway = NULL)
 }
@@ -13,7 +13,7 @@ metacyc_pathway_website(pathway = NULL)
 character vector.
 }
 \description{
-Get the website for a MetaCyc pathway name
+Get the website for a 'MetaCyc' pathway name
 }
 \examples{
 metacyc_pathway_website("FOLSYN-PWY")

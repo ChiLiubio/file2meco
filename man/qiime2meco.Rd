@@ -2,7 +2,7 @@
 % Please edit documentation in R/qiime2meco.R
 \name{qiime2meco}
 \alias{qiime2meco}
-\title{Transform QIIME2 results to microtable object.}
+\title{Transform 'QIIME2' results to 'microtable' object.}
 \usage{
 qiime2meco(
   ASV_data,
@@ -27,7 +27,7 @@ qiime2meco(
 microtable object.
 }
 \description{
-Transform QIIME2 results to microtable object. Please first install the necessary qiime2R package from github  (https://github.com/jbisanz/qiime2R).
+Transform 'QIIME2' qza results to microtable object.
 }
 \examples{
 \dontrun{

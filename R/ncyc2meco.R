@@ -1,8 +1,8 @@
-#' Transform Ncyc metagenomic abundance to microtable object.
+#' Transform 'Ncyc' metagenomic abundance to 'microtable' object.
 #'
 #' @description
-#' Transform Ncyc metagenomic abundance to microtable object. Reference: Qichao et al. (2019) <doi: 10.1093/bioinformatics/bty741>.
-#' @param abund_table Ncyc output abundance table, see the example file.
+#' Transform 'Ncyc' metagenomic abundance to microtable object. Reference: Qichao et al. (2019) <doi: 10.1093/bioinformatics/bty741>.
+#' @param abund_table 'Ncyc' software output abundance table, see the example file.
 #' @param sample_data default NULL; the sample metadata table, must be tab or comma seperated file, generally, a file with suffix "tsv" or "csv"..
 #' @param match_table default NULL; a two column table used to replace the sample names in HUMAnN abundance result; Remember just two columns with no column names;
 #'    The first column must be sample names used in abund_table, the second column is the new sample names, e.g. the rownames in sample_table. See the example files.

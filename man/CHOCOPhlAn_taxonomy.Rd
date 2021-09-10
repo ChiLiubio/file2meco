@@ -8,6 +8,6 @@
 data(CHOCOPhlAn_taxonomy)
 }
 \description{
-The CHOCOPhlAn_taxonomy data is used for the parsing the HUMAaN metagenomic results and add the taxonomy hierarchical information to the tax_table.
+The CHOCOPhlAn_taxonomy data is used for the parsing the 'HUMAaN' metagenomic results and add the taxonomy hierarchical information to the 'tax_table'.
 }
 \keyword{data.frame}
