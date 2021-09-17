@@ -161,7 +161,7 @@ humann2meco <- function(abund_table, db = c("MetaCyc", "KEGG")[1], sample_data =
 		}
 		if(!is.null(match_table)){
 			if(grepl("csv", match_table)){
-				match_table <- read.csv(sample_data, stringsAsFactors = FALSE, header = FALSE)
+				match_table <- read.csv(match_table, stringsAsFactors = FALSE, header = FALSE)
 			}else{
 				match_table <- read.table(match_table, stringsAsFactors = FALSE, sep = "\t")
 			}
