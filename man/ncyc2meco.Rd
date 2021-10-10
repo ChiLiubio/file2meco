@@ -9,10 +9,13 @@ ncyc2meco(abund_table, sample_data = NULL, match_table = NULL)
 \arguments{
 \item{abund_table}{'Ncyc' software output abundance table, see the example file.}
 
-\item{sample_data}{default NULL; the sample metadata table, must be tab or comma seperated file, generally, a file with suffix "tsv" or "csv"..}
+\item{sample_data}{default NULL; the sample metadata table; data.frame or character for the path; 
+A file path must be tab or comma seperated file, generally, a file with suffix "tsv" or "csv".}
 
-\item{match_table}{default NULL; a two column table used to replace the sample names in HUMAnN abundance result; Remember just two columns with no column names;
-The first column must be sample names used in abund_table, the second column is the new sample names, e.g. the rownames in sample_table. See the example files.}
+\item{match_table}{default NULL; data.frame or character for the path; should be two column table used to replace the sample names in abundance result; 
+Remember just two columns with no column names;
+The first column must be sample names used in abund_table, the second column is the new sample names, e.g. the rownames in sample_table. See the example files;
+A file path must be tab or comma seperated file, e.g. a file with suffix "tsv" or "csv".}
 }
 \value{
 microtable object.

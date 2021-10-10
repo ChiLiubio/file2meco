@@ -3,9 +3,12 @@
 #' @description
 #' Transform 'Ncyc' metagenomic abundance to microtable object. Reference: Qichao et al. (2019) <doi: 10.1093/bioinformatics/bty741>.
 #' @param abund_table 'Ncyc' software output abundance table, see the example file.
-#' @param sample_data default NULL; the sample metadata table, must be tab or comma seperated file, generally, a file with suffix "tsv" or "csv"..
-#' @param match_table default NULL; a two column table used to replace the sample names in HUMAnN abundance result; Remember just two columns with no column names;
-#'    The first column must be sample names used in abund_table, the second column is the new sample names, e.g. the rownames in sample_table. See the example files.
+#' @param sample_data default NULL; the sample metadata table; data.frame or character for the path; 
+#' A file path must be tab or comma seperated file, generally, a file with suffix "tsv" or "csv".
+#' @param match_table default NULL; data.frame or character for the path; should be two column table used to replace the sample names in abundance result; 
+#' Remember just two columns with no column names;
+#' The first column must be sample names used in abund_table, the second column is the new sample names, e.g. the rownames in sample_table. See the example files;
+#' A file path must be tab or comma seperated file, e.g. a file with suffix "tsv" or "csv".
 #' @return microtable object.
 #' @examples
 #' \donttest{
@@ -43,25 +46,16 @@ ncyc2meco <- function(abund_table, sample_data = NULL, match_table = NULL){
 	# recalculate the abundance for unclassified
 	unclassified <- seq_num - apply(abund_raw, 2, sum)
 	abund_new <- rbind.data.frame(abund_raw, unclassified = unclassified)
-	
-	# read sample metadata table, data.frame, row.names = 1 set rownames
-	if(!is.null(sample_data)){
-		if(grepl("csv", sample_data)){
-			sample_data <- read.csv(sample_data, row.names = 1, stringsAsFactors = FALSE)
-		}else{
-			sample_data <- read.delim(sample_data, row.names = 1, stringsAsFactors = FALSE)
-		}
-		if(!is.null(match_table)){
-			if(grepl("csv", match_table)){
-				match_table <- read.csv(sample_data, stringsAsFactors = FALSE, header = FALSE)
-			}else{
-				match_table <- read.table(match_table, stringsAsFactors = FALSE, sep = "\t")
-			}
-			rownames(match_table) <- match_table[, 1]
-			abund_new %<>% .[, rownames(match_table), drop = FALSE]
-			colnames(abund_new) <- match_table[, 2]
-		}
+
+	# first check the match_table
+	if(!is.null(match_table)){
+		abund_new <- check_match_table(match_table = match_table, abund_new = abund_new)
 	}
+	# read sample metadata table
+	if(!is.null(sample_data)){
+		sample_data <- check_sample_table(sample_data = sample_data)
+	}
+	
 	data("ncyc_map", envir=environment())
 	dataset <- microtable$new(otu_table = abund_new, tax_table = ncyc_map, sample_table = sample_data)
 	dataset

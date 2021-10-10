@@ -34,13 +34,9 @@ qiime1meco <- function(otu_table, commented = TRUE, sample_data = NULL, phylo_tr
 	taxonomy_table_1 %<>% tidy_taxonomy
 	# read sample metadata table, data.frame, row.names = 1 set rownames
 	if(!is.null(sample_data)){
-		if(grepl("csv", sample_data)){
-			sample_data <- read.csv(sample_data, row.names = 1, stringsAsFactors = FALSE)
-		}else{
-			sample_data <- read.delim(sample_data, row.names = 1, stringsAsFactors = FALSE)
-		}
+		sample_data <- check_sample_table(sample_data = sample_data)
 	}
-
+	
 	# read the phylogenetic tree
 	if(!is.null(phylo_tree)){
 		phylo_tree <- read.tree(phylo_tree)

@@ -152,23 +152,13 @@ humann2meco <- function(abund_table, db = c("MetaCyc", "KEGG")[1], sample_data =
 	}
 	tax_table[is.na(tax_table)] <- "unclassified"
 	
-	# read sample metadata table, data.frame, row.names = 1 set rownames
+	# first check the match_table
+	if(!is.null(match_table)){
+		abund_new <- check_match_table(match_table = match_table, abund_new = abund_new)
+	}
+	# read sample metadata table
 	if(!is.null(sample_data)){
-		if(grepl("csv", sample_data)){
-			sample_data <- read.csv(sample_data, row.names = 1, stringsAsFactors = FALSE)
-		}else{
-			sample_data <- read.delim(sample_data, row.names = 1, stringsAsFactors = FALSE)
-		}
-		if(!is.null(match_table)){
-			if(grepl("csv", match_table)){
-				match_table <- read.csv(match_table, stringsAsFactors = FALSE, header = FALSE)
-			}else{
-				match_table <- read.table(match_table, stringsAsFactors = FALSE, sep = "\t")
-			}
-			rownames(match_table) <- match_table[, 1]
-			abund_new %<>% .[, rownames(match_table), drop = FALSE]
-			colnames(abund_new) <- match_table[, 2]
-		}
+		sample_data <- check_sample_table(sample_data = sample_data)
 	}
 
 	dataset <- microtable$new(otu_table = abund_new, sample_table = sample_data, tax_table = tax_table)
