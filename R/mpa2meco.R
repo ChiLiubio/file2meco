@@ -23,6 +23,8 @@
 #' mpa2meco(abund_table = abund_file_path)
 #' test <- mpa2meco(abund_table = abund_file_path, sample_data = sample_file_path, 
 #'   match_table = match_file_path)
+#' # make the taxonomy standard for the following analysis
+#' test$tax_table %<>% tidy_taxonomy
 #' test$tidy_dataset()
 #' }
 #' @export
