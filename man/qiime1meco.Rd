@@ -4,18 +4,10 @@
 \alias{qiime1meco}
 \title{Transform 'QIIME' results to 'microtable' object.}
 \usage{
-qiime1meco(
-  otu_table,
-  commented = TRUE,
-  sample_data = NULL,
-  phylo_tree = NULL,
-  rep_fasta = NULL
-)
+qiime1meco(otu_table, sample_data = NULL, phylo_tree = NULL, rep_fasta = NULL)
 }
 \arguments{
 \item{otu_table}{the otu table generated from 'QIIME'. Taxonomic information should be in the end of the file.}
-
-\item{commented}{default TRUE; whether there is a commented first line in the otu_table.}
 
 \item{sample_data}{default NULL; If provided, must be tab or comma seperated file, generally, a file with suffix "tsv" or "csv".}
 
@@ -36,10 +28,10 @@ otu_file_path <- system.file("extdata", "otu_table_raw.txt", package="file2meco"
 sample_file_path <- system.file("extdata", "sample_info.csv", package="file2meco")
 phylo_file_path <- system.file("extdata", "rep_phylo.tre", package="file2meco")
 rep_fasta_path <- system.file("extdata", "rep.fna", package="file2meco")
-qiime1meco(otu_table = otu_file_path, commented = FALSE, sample_data = sample_file_path)
-qiime1meco(otu_table = otu_file_path, commented = FALSE, sample_data = sample_file_path, 
+qiime1meco(otu_table = otu_file_path, sample_data = sample_file_path)
+qiime1meco(otu_table = otu_file_path, sample_data = sample_file_path, 
   phylo_tree = phylo_file_path)
-qiime1meco(otu_table = otu_file_path, commented = FALSE, sample_data = sample_file_path, 
+qiime1meco(otu_table = otu_file_path, sample_data = sample_file_path, 
   phylo_tree = phylo_file_path, rep_fasta = rep_fasta_path)
 }
 }

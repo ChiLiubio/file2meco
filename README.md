@@ -1,12 +1,12 @@
 
 # file2meco <a href="https://chiliubio.github.io/microeco_tutorial/"><img src="https://user-images.githubusercontent.com/20815519/128602544-78d53642-b445-4686-a22a-1ef3c0726ce7.png" width=150 align="right" ></a>
 
-Convert files of some tools to microtable object of microeco package
+Convert files of some tools directly to microtable object of microeco package
 
 
 [![CRAN](https://www.r-pkg.org/badges/version/file2meco)](https://cran.r-project.org/web/packages/file2meco/index.html)
 [![CRAN](https://cranlogs.r-pkg.org/badges/grand-total/file2meco)](https://cran.r-project.org/web/packages/file2meco/index.html)
-![](https://img.shields.io/badge/Release-v0.2.0-blue.svg) ![](https://img.shields.io/badge/Test-v0.2.1-red.svg)
+![](https://img.shields.io/badge/Release-v0.2.1-blue.svg) ![](https://img.shields.io/badge/Test-v0.2.2-red.svg)
 
 
 ## Install file2meco
@@ -48,10 +48,10 @@ phylo_file_path <- system.file("extdata", "rep_phylo.tre", package="file2meco")
 # if you want to use Tax4Fun2 approach, you need read the representative sequences and add it to the microtable object.
 rep_fasta_path <- system.file("extdata", "rep.fna", package="file2meco")
 # contruct microtable object
-qiime1meco(otu_table = otu_file_path, commented = FALSE)
-qiime1meco(otu_table = otu_file_path, commented = FALSE, sample_data = sample_file_path)
-qiime1meco(otu_table = otu_file_path, commented = FALSE, sample_data = sample_file_path, phylo_tree = phylo_file_path)
-qiime1meco(otu_table = otu_file_path, commented = FALSE, sample_data = sample_file_path, phylo_tree = phylo_file_path, rep_fasta = rep_fasta_path)
+qiime1meco(otu_table = otu_file_path)
+qiime1meco(otu_table = otu_file_path, sample_data = sample_file_path)
+qiime1meco(otu_table = otu_file_path, sample_data = sample_file_path, phylo_tree = phylo_file_path)
+qiime1meco(otu_table = otu_file_path, sample_data = sample_file_path, phylo_tree = phylo_file_path, rep_fasta = rep_fasta_path)
 ```
 
 

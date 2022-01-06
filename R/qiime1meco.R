@@ -3,7 +3,6 @@
 #' @description
 #' Transform 'QIIME' results to microtable object.
 #' @param otu_table the otu table generated from 'QIIME'. Taxonomic information should be in the end of the file.
-#' @param commented default TRUE; whether there is a commented first line in the otu_table.
 #' @param sample_data default NULL; If provided, must be tab or comma seperated file, generally, a file with suffix "tsv" or "csv".
 #' @param phylo_tree default NULL; the phylogenetic tree; generally, a file with suffix "tre".
 #' @param rep_fasta default NULL; the representative sequences; a fasta file, generally with suffix "fasta" or "fna" or "fa".
@@ -15,14 +14,19 @@
 #' sample_file_path <- system.file("extdata", "sample_info.csv", package="file2meco")
 #' phylo_file_path <- system.file("extdata", "rep_phylo.tre", package="file2meco")
 #' rep_fasta_path <- system.file("extdata", "rep.fna", package="file2meco")
-#' qiime1meco(otu_table = otu_file_path, commented = FALSE, sample_data = sample_file_path)
-#' qiime1meco(otu_table = otu_file_path, commented = FALSE, sample_data = sample_file_path, 
+#' qiime1meco(otu_table = otu_file_path, sample_data = sample_file_path)
+#' qiime1meco(otu_table = otu_file_path, sample_data = sample_file_path, 
 #'   phylo_tree = phylo_file_path)
-#' qiime1meco(otu_table = otu_file_path, commented = FALSE, sample_data = sample_file_path, 
+#' qiime1meco(otu_table = otu_file_path, sample_data = sample_file_path, 
 #'   phylo_tree = phylo_file_path, rep_fasta = rep_fasta_path)
 #' }
 #' @export
-qiime1meco <- function(otu_table, commented = TRUE, sample_data = NULL, phylo_tree = NULL, rep_fasta = NULL){
+qiime1meco <- function(otu_table, sample_data = NULL, phylo_tree = NULL, rep_fasta = NULL){
+	# check whether there is a commented line
+	tryread <- readLines(otu_table)
+	comlines <- sum(grepl("^#", tryread))
+	commented <- ifelse(comlines > 1, TRUE, FALSE)
+	
 	# read and parse otu_table
 	otu_raw_table <- read_qiime_otu_table(otu_table, commented = commented)
 	# obtain the otu table data.frame
