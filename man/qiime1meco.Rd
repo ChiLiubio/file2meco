@@ -4,7 +4,13 @@
 \alias{qiime1meco}
 \title{Transform 'QIIME' results to 'microtable' object.}
 \usage{
-qiime1meco(otu_table, sample_data = NULL, phylo_tree = NULL, rep_fasta = NULL)
+qiime1meco(
+  otu_table,
+  sample_data = NULL,
+  phylo_tree = NULL,
+  rep_fasta = NULL,
+  ...
+)
 }
 \arguments{
 \item{otu_table}{the otu table generated from 'QIIME'. Taxonomic information should be in the end of the file.}
@@ -14,6 +20,8 @@ qiime1meco(otu_table, sample_data = NULL, phylo_tree = NULL, rep_fasta = NULL)
 \item{phylo_tree}{default NULL; the phylogenetic tree; generally, a file with suffix "tre".}
 
 \item{rep_fasta}{default NULL; the representative sequences; a fasta file, generally with suffix "fasta" or "fna" or "fa".}
+
+\item{...}{parameter passed to microtable$new function of microeco package, such as auto_tidy parameter.}
 }
 \value{
 microtable object.

@@ -6,7 +6,7 @@ Convert files of some tools to microtable object of microeco package
 
 [![CRAN](https://www.r-pkg.org/badges/version/file2meco)](https://cran.r-project.org/web/packages/file2meco/index.html)
 [![CRAN](https://cranlogs.r-pkg.org/badges/grand-total/file2meco)](https://cran.r-project.org/web/packages/file2meco/index.html)
-![](https://img.shields.io/badge/Release-v0.2.0-blue.svg) ![](https://img.shields.io/badge/Test-v0.2.2-red.svg)
+![](https://img.shields.io/badge/Release-v0.2.2-blue.svg) ![](https://img.shields.io/badge/Test-v0.2.5-red.svg)
 
 
 ## Install file2meco
@@ -24,6 +24,16 @@ Or install the latest development version from github.
 install.packages("devtools")
 devtools::install_github("ChiLiubio/file2meco")
 ```
+
+If there is a warning in install.packages: no 'rhdf5' in the dependency,
+please install rhdf5 package from Bioconductor.
+
+```r
+if (!require("BiocManager", quietly = TRUE)) install.packages("BiocManager")
+BiocManager::install("rhdf5")
+```
+
+
 
 ## Tutorial
 

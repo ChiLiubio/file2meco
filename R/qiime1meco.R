@@ -6,6 +6,7 @@
 #' @param sample_data default NULL; If provided, must be tab or comma seperated file, generally, a file with suffix "tsv" or "csv".
 #' @param phylo_tree default NULL; the phylogenetic tree; generally, a file with suffix "tre".
 #' @param rep_fasta default NULL; the representative sequences; a fasta file, generally with suffix "fasta" or "fna" or "fa".
+#' @param ... parameter passed to microtable$new function of microeco package, such as auto_tidy parameter.
 #' @return microtable object.
 #' @examples
 #' \dontrun{
@@ -21,7 +22,7 @@
 #'   phylo_tree = phylo_file_path, rep_fasta = rep_fasta_path)
 #' }
 #' @export
-qiime1meco <- function(otu_table, sample_data = NULL, phylo_tree = NULL, rep_fasta = NULL){
+qiime1meco <- function(otu_table, sample_data = NULL, phylo_tree = NULL, rep_fasta = NULL, ...){
 	# check whether there is a commented line
 	tryread <- readLines(otu_table)
 	comlines <- sum(grepl("^#", tryread))
@@ -49,7 +50,7 @@ qiime1meco <- function(otu_table, sample_data = NULL, phylo_tree = NULL, rep_fas
 		rep_fasta <- seqinr::read.fasta(rep_fasta)
 	}
 	# create a microtable object
-	dataset <- microtable$new(sample_table = sample_data, otu_table = otu_table_1, tax_table = taxonomy_table_1, phylo_tree = phylo_tree, rep_fasta = rep_fasta)
+	dataset <- microtable$new(sample_table = sample_data, otu_table = otu_table_1, tax_table = taxonomy_table_1, phylo_tree = phylo_tree, rep_fasta = rep_fasta, ...)
 	dataset
 }
 

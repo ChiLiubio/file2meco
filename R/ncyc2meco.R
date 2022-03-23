@@ -9,6 +9,7 @@
 #' Remember just two columns with no column names;
 #' The first column must be sample names used in abund_table, the second column is the new sample names, e.g. the rownames in sample_table. See the example files;
 #' A file path must be tab or comma seperated file, e.g. a file with suffix "tsv" or "csv".
+#' @param ... parameter passed to microtable$new function of microeco package, such as auto_tidy parameter.
 #' @return microtable object.
 #' @examples
 #' \donttest{
@@ -36,7 +37,7 @@
 #' test1$plot_bar(bar_type = "notfull")
 #' }
 #' @export
-ncyc2meco <- function(abund_table, sample_data = NULL, match_table = NULL){
+ncyc2meco <- function(abund_table, sample_data = NULL, match_table = NULL, ...){
 	# first check func_data file format.
 	abund_raw <- read.delim(abund_table, row.names = 1, comment.char = "#", stringsAsFactors = FALSE)
 
@@ -57,6 +58,6 @@ ncyc2meco <- function(abund_table, sample_data = NULL, match_table = NULL){
 	}
 	
 	data("ncyc_map", envir=environment())
-	dataset <- microtable$new(otu_table = abund_new, tax_table = ncyc_map, sample_table = sample_data)
+	dataset <- microtable$new(otu_table = abund_new, tax_table = ncyc_map, sample_table = sample_data, ...)
 	dataset
 }

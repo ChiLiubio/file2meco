@@ -4,7 +4,7 @@
 \alias{ncyc2meco}
 \title{Transform 'Ncyc' metagenomic abundance to 'microtable' object.}
 \usage{
-ncyc2meco(abund_table, sample_data = NULL, match_table = NULL)
+ncyc2meco(abund_table, sample_data = NULL, match_table = NULL, ...)
 }
 \arguments{
 \item{abund_table}{'Ncyc' software output abundance table, see the example file.}
@@ -16,6 +16,8 @@ A file path must be tab or comma seperated file, generally, a file with suffix "
 Remember just two columns with no column names;
 The first column must be sample names used in abund_table, the second column is the new sample names, e.g. the rownames in sample_table. See the example files;
 A file path must be tab or comma seperated file, e.g. a file with suffix "tsv" or "csv".}
+
+\item{...}{parameter passed to microtable$new function of microeco package, such as auto_tidy parameter.}
 }
 \value{
 microtable object.

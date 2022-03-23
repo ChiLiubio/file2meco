@@ -7,6 +7,7 @@
 #' @param taxonomy_data default NULL; the taxonomy data, such as the taxonomy.qza.
 #' @param phylo_tree default NULL; the phylogenetic tree, such as the tree.qza.
 #' @param rep_fasta default NULL; the representative sequences, such as the dada2_rep_set.qza.
+#' @param ... parameter passed to microtable$new function of microeco package, such as auto_tidy parameter.
 #' @return microtable object.
 #' @examples
 #' \dontrun{
@@ -15,19 +16,13 @@
 #' abund_file_path <- system.file("extdata", "dada2_table.qza", package="file2meco")
 #' sample_file_path <- system.file("extdata", "sample-metadata.tsv", package="file2meco")
 #' taxonomy_file_path <- system.file("extdata", "taxonomy.qza", package="file2meco")
-#' phylo_file_path <- system.file("extdata", "tree.qza", package="file2meco")
-#' rep_fasta_path <- system.file("extdata", "dada2_rep_set.qza", package="file2meco")
 #' qiime2meco(ASV_data = abund_file_path)
 #' qiime2meco(ASV_data = abund_file_path, sample_data = sample_file_path)
 #' qiime2meco(ASV_data = abund_file_path, sample_data = sample_file_path, 
 #'   taxonomy_data = taxonomy_file_path)
-#' qiime2meco(ASV_data = abund_file_path, sample_data = sample_file_path, 
-#'   taxonomy_data = taxonomy_file_path, phylo_tree = phylo_file_path)
-#' qiime2meco(ASV_data = abund_file_path, sample_data = sample_file_path, taxonomy_data = 
-#'   taxonomy_file_path, phylo_tree = phylo_file_path, rep_fasta = rep_fasta_path)
 #' }
 #' @export
-qiime2meco <- function(ASV_data, sample_data = NULL, taxonomy_data = NULL, phylo_tree = NULL, rep_fasta = NULL){
+qiime2meco <- function(ASV_data, sample_data = NULL, taxonomy_data = NULL, phylo_tree = NULL, rep_fasta = NULL, ...){
 	# if(!require(qiime2R)){
 		# stop("qiime2R package not installed!")
 	# }
@@ -57,7 +52,7 @@ qiime2meco <- function(ASV_data, sample_data = NULL, taxonomy_data = NULL, phylo
 		rep_fasta <- seqinr::read.fasta(file_path)
 		unlink(file_path)
 	}
-	dataset <- microtable$new(sample_table = sample_data, tax_table = taxonomy_data, otu_table = ASV, phylo_tree = phylo_tree, rep_fasta = rep_fasta)
+	dataset <- microtable$new(sample_table = sample_data, tax_table = taxonomy_data, otu_table = ASV, phylo_tree = phylo_tree, rep_fasta = rep_fasta, ...)
 	dataset
 }
 

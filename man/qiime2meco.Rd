@@ -9,7 +9,8 @@ qiime2meco(
   sample_data = NULL,
   taxonomy_data = NULL,
   phylo_tree = NULL,
-  rep_fasta = NULL
+  rep_fasta = NULL,
+  ...
 )
 }
 \arguments{
@@ -22,6 +23,8 @@ qiime2meco(
 \item{phylo_tree}{default NULL; the phylogenetic tree, such as the tree.qza.}
 
 \item{rep_fasta}{default NULL; the representative sequences, such as the dada2_rep_set.qza.}
+
+\item{...}{parameter passed to microtable$new function of microeco package, such as auto_tidy parameter.}
 }
 \value{
 microtable object.
@@ -36,15 +39,9 @@ Transform 'QIIME2' qza results to microtable object.
 abund_file_path <- system.file("extdata", "dada2_table.qza", package="file2meco")
 sample_file_path <- system.file("extdata", "sample-metadata.tsv", package="file2meco")
 taxonomy_file_path <- system.file("extdata", "taxonomy.qza", package="file2meco")
-phylo_file_path <- system.file("extdata", "tree.qza", package="file2meco")
-rep_fasta_path <- system.file("extdata", "dada2_rep_set.qza", package="file2meco")
 qiime2meco(ASV_data = abund_file_path)
 qiime2meco(ASV_data = abund_file_path, sample_data = sample_file_path)
 qiime2meco(ASV_data = abund_file_path, sample_data = sample_file_path, 
   taxonomy_data = taxonomy_file_path)
-qiime2meco(ASV_data = abund_file_path, sample_data = sample_file_path, 
-  taxonomy_data = taxonomy_file_path, phylo_tree = phylo_file_path)
-qiime2meco(ASV_data = abund_file_path, sample_data = sample_file_path, taxonomy_data = 
-  taxonomy_file_path, phylo_tree = phylo_file_path, rep_fasta = rep_fasta_path)
 }
 }

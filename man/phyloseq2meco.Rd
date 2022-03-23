@@ -4,10 +4,12 @@
 \alias{phyloseq2meco}
 \title{Transform the 'phyloseq' object of 'phyloseq' package to 'microtable' object of 'microeco' package.}
 \usage{
-phyloseq2meco(physeq)
+phyloseq2meco(physeq, ...)
 }
 \arguments{
 \item{physeq}{a phyloseq object.}
+
+\item{...}{parameter passed to microtable$new function of microeco package, such as auto_tidy parameter.}
 }
 \value{
 microtable object.

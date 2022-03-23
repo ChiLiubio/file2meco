@@ -8,7 +8,8 @@ humann2meco(
   abund_table,
   db = c("MetaCyc", "KEGG")[1],
   sample_data = NULL,
-  match_table = NULL
+  match_table = NULL,
+  ...
 )
 }
 \arguments{
@@ -16,10 +17,12 @@ humann2meco(
 
 \item{db}{default "MetaCyc"; either "MetaCyc" or "KEGG"; the pathway database used in the abund_table file generation.}
 
-\item{sample_data}{default NULL; the sample metadata table, must be tab or comma seperated file, generally, a file with suffix "tsv" or "csv"..}
+\item{sample_data}{default NULL; the sample metadata table, must be tab or comma seperated file, generally, a file with suffix "tsv" or "csv".}
 
 \item{match_table}{default NULL; a two column table used to replace the sample names in 'HUMAnN abundance result; Remember just two columns with no column names;
 The first column must be sample names used in abund_table, the second column is the new sample names, e.g. the rownames in sample_table. See the example files.}
+
+\item{...}{parameter passed to microtable$new function of microeco package, such as auto_tidy parameter.}
 }
 \value{
 microtable object.
@@ -75,14 +78,14 @@ abund_file_path <- system.file("extdata", "example_HUMAnN_KEGG_abund.tsv", packa
 humann2meco(abund_table = abund_file_path, db = "KEGG")
 test <- humann2meco(abund_table = abund_file_path, db = "KEGG", 
   sample_data = sample_file_path, match_table = match_file_path)
-test$tax_table \%<>\% subset(level1 != "unclassified")
+test$tax_table \%<>\% subset(Level.1 != "unclassified")
 test$tidy_dataset()
 # rel = FALSE donot use relative abundance
 test$cal_abund(select_cols = 1:3, rel = FALSE)
-test1 <- trans_abund$new(test, taxrank = "level2", ntaxa = 10)
+test1 <- trans_abund$new(test, taxrank = "Level.2", ntaxa = 10)
 test1$plot_bar(facet = "Group", ylab_title = "Abundance (RPK)")
 # select both function and taxa
-test$cal_abund(select_cols = c("level1", "Phylum", "Genus"), rel = TRUE)
+test$cal_abund(select_cols = c("Level.1", "Phylum", "Genus"), rel = TRUE)
 test1 <- trans_abund$new(test, taxrank = "Phylum", ntaxa = 10, delete_part_prefix = TRUE)
 test1$plot_bar(facet = "Group")
 # functional biomarker

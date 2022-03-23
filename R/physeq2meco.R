@@ -30,6 +30,7 @@ meco2phyloseq <- function(dataset){
 #' Transform the 'phyloseq' object of 'phyloseq' package to 'microtable' object of 'microeco' package.
 #'
 #' @param physeq a phyloseq object.
+#' @param ... parameter passed to microtable$new function of microeco package, such as auto_tidy parameter.
 #' @return microtable object.
 #' @examples
 #' \donttest{
@@ -38,7 +39,7 @@ meco2phyloseq <- function(dataset){
 #' phyloseq2meco(GlobalPatterns)
 #' }
 #' @export
-phyloseq2meco <- function(physeq){
+phyloseq2meco <- function(physeq, ...){
 	if(physeq@otu_table@taxa_are_rows){
 		otu_table_trans <- as.data.frame(physeq@otu_table@.Data, check.names = FALSE, stringsAsFactors = FALSE)
 	}else{
@@ -49,6 +50,6 @@ phyloseq2meco <- function(physeq){
 	tax_table_trans %<>% tidy_taxonomy
 	phylo_tree_trans <- physeq@phy_tree
 	
-	dataset <- microtable$new(sample_table = sample_table_trans, otu_table = otu_table_trans, tax_table = tax_table_trans, phylo_tree = phylo_tree_trans)
+	dataset <- microtable$new(sample_table = sample_table_trans, otu_table = otu_table_trans, tax_table = tax_table_trans, phylo_tree = phylo_tree_trans, ...)
 	dataset
 }

@@ -9,6 +9,7 @@
 #' @param sample_data default NULL; the sample metadata table, must be tab or comma seperated file, generally, a file with suffix "tsv" or "csv"..
 #' @param match_table default NULL; a two column table used to replace the sample names in 'HUMAnN abundance result; Remember just two columns with no column names;
 #'    The first column must be sample names used in abund_table, the second column is the new sample names, e.g. the rownames in sample_table. See the example files.
+#' @param ... parameter passed to microtable$new function of microeco package, such as auto_tidy parameter.
 #' @return microtable object.
 #' @examples
 #' \donttest{
@@ -28,7 +29,7 @@
 #' test$tidy_dataset()
 #' }
 #' @export
-mpa2meco <- function(abund_table, sample_data = NULL, match_table = NULL){
+mpa2meco <- function(abund_table, sample_data = NULL, match_table = NULL, ...){
 	# first check func_data file format.
 	abund_raw <- read.delim(abund_table, check.names = FALSE, row.names = 1, stringsAsFactors = FALSE)
 	# extract species data
@@ -69,6 +70,6 @@ mpa2meco <- function(abund_table, sample_data = NULL, match_table = NULL){
 		sample_data <- check_sample_table(sample_data = sample_data)
 	}
 
-	dataset <- microtable$new(otu_table = abund_new, sample_table = sample_data, tax_table = tax_table)
+	dataset <- microtable$new(otu_table = abund_new, sample_table = sample_data, tax_table = tax_table, ...)
 	dataset
 }
