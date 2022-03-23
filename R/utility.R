@@ -5,14 +5,14 @@
 #' @return new abundance table.
 check_match_table <- function(match_table = NULL, abund_new = NULL){
 	# read according to the input class
-	if(class(match_table) == "character"){
+	if(inherits(match_table, "character")){
 		if(grepl("csv", match_table)){
 			match_table <- read.csv(match_table, stringsAsFactors = FALSE, header = FALSE)
 		}else{
 			match_table <- read.table(match_table, stringsAsFactors = FALSE, sep = "\t")
 		}
 	}else{
-		if(class(match_table) != "data.frame"){
+		if(! inherits(match_table, "data.frame")){
 			stop("The input match_table is not data.frame class!")
 		}
 	}
@@ -29,14 +29,14 @@ check_match_table <- function(match_table = NULL, abund_new = NULL){
 #' @return sample information table.
 check_sample_table <- function(sample_data = NULL){
 		# read according to the input class
-		if(class(sample_data) == "character"){
+		if(inherits(sample_data, "character")){
 			if(grepl("csv", sample_data)){
 				sample_data <- read.csv(sample_data, row.names = 1, stringsAsFactors = FALSE)
 			}else{
 				sample_data <- read.delim(sample_data, row.names = 1, stringsAsFactors = FALSE)
 			}			
 		}else{
-			if(class(sample_data) != "data.frame"){
+			if(! inherits(sample_data, "data.frame")){
 				stop("The input sample_data is not data.frame class!")
 			}
 		}
