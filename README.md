@@ -33,6 +33,10 @@ if (!require("BiocManager", quietly = TRUE)) install.packages("BiocManager")
 BiocManager::install("rhdf5")
 ```
 
+## Citation
+Liu, C., Li, X., Mansoldo, F.R.P., An, J., Kou, Y., Zhang, X., Wang, J., Zeng, J., Vermelho, A.B., Yao, M., 2022. 
+Microbial habitat specificity largely affects microbial co-occurrence patterns and functional profiles in wetland soils. 
+Geoderma 418, 115866. https://doi.org/10.1016/j.geoderma.2022.115866
 
 
 ## Tutorial
