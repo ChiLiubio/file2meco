@@ -18,7 +18,7 @@ microtable object.
 Transform the 'phyloseq' object of 'phyloseq' package to 'microtable' object of 'microeco' package.
 }
 \examples{
-\donttest{
+\dontrun{
 library(phyloseq)
 data("GlobalPatterns")
 phyloseq2meco(GlobalPatterns)

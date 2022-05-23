@@ -3,7 +3,7 @@
 #' @param dataset a microtable object.
 #' @return phyloseq object.
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' library(microeco)
 #' data("dataset")
 #' meco2phyloseq(dataset)
@@ -33,7 +33,7 @@ meco2phyloseq <- function(dataset){
 #' @param ... parameter passed to microtable$new function of microeco package, such as auto_tidy parameter.
 #' @return microtable object.
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' library(phyloseq)
 #' data("GlobalPatterns")
 #' phyloseq2meco(GlobalPatterns)

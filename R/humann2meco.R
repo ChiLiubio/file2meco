@@ -5,8 +5,8 @@
 #' @param abund_table 'HUMAnN' output abundance table, see the example.
 #' @param db default "MetaCyc"; either "MetaCyc" or "KEGG"; the pathway database used in the abund_table file generation.
 #' @param sample_data default NULL; the sample metadata table, must be tab or comma seperated file, generally, a file with suffix "tsv" or "csv".
-#' @param match_table default NULL; a two column table used to replace the sample names in 'HUMAnN abundance result; Remember just two columns with no column names;
-#'    The first column must be sample names used in abund_table, the second column is the new sample names, e.g. the rownames in sample_table. See the example files.
+#' @param match_table default NULL; a two column table used to replace the sample names in HUMAnN abundance result; Must be two columns with no column names;
+#'    The first column must be sample names same with those in abund_table, the second column is the new sample names, e.g., the rownames in sample_table. See the example files.
 #' @param ... parameter passed to microtable$new function of microeco package, such as auto_tidy parameter.
 #' @return microtable object.
 #' @examples
@@ -45,12 +45,12 @@
 #' test$taxa_abund$Superclass2 %<>% .[!grepl("unclass", rownames(.)), ]
 #' test$taxa_abund$pathway %<>% .[!grepl("unclass", rownames(.)), ]
 #' test1 <- trans_diff$new(test, method = "lefse", group = "Group")
-#' test1$plot_lefse_bar(use_number = 1:20)
+#' test1$plot_diff_bar(use_number = 1:20)
 #' # taxa biomarker
 #' test$cal_abund(select_cols = 4:9, rel = TRUE)
 #' test$taxa_abund$Phylum %<>% .[!grepl("unclass", rownames(.)), ]
-#' test1 <- trans_diff$new(test, method = "lefse", group = "Group")
-#' test1$plot_lefse_bar(LDA_score = 2)
+#' test1 <- trans_diff$new(test, method = "lefse", group = "Group", p_adjust_method = NULL)
+#' test1$plot_diff_bar(threshold = 2)
 #' #############################################################
 #' # KEGG pathway examples
 #' abund_file_path <- system.file("extdata", "example_HUMAnN_KEGG_abund.tsv", package="file2meco")
@@ -70,11 +70,11 @@
 #' # functional biomarker
 #' test$cal_abund(select_cols = 1:3, rel = TRUE)
 #' test1 <- trans_diff$new(test, method = "lefse", group = "Group")
-#' test1$plot_lefse_bar(LDA_score = 3)
+#' test1$plot_diff_bar(threshold = 3)
 #' # taxa biomarker
 #' test$cal_abund(select_cols = 4:9, rel = TRUE)
-#' test1 <- trans_diff$new(test, method = "lefse", group = "Group")
-#' test1$plot_lefse_bar(LDA_score = 2)
+#' test1 <- trans_diff$new(test, method = "lefse", group = "Group", p_adjust_method = NULL)
+#' test1$plot_diff_bar(threshold = 2)
 #' }
 #' @export
 humann2meco <- function(abund_table, db = c("MetaCyc", "KEGG")[1], sample_data = NULL, match_table = NULL, ...){

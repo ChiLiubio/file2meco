@@ -46,11 +46,7 @@ qiime2meco <- function(ASV_data, sample_data = NULL, taxonomy_data = NULL, phylo
 		phylo_tree <- read_qza(phylo_tree)$data
 	}
 	if(!is.null(rep_fasta)){
-		rep_fasta_raw <- read_qza(rep_fasta)$data
-		file_path <- "rep_fasta.tmp"
-		Biostrings::writeXStringSet(rep_fasta_raw, filepath = file_path)
-		rep_fasta <- seqinr::read.fasta(file_path)
-		unlink(file_path)
+		rep_fasta <- read_qza(rep_fasta)$data
 	}
 	dataset <- microtable$new(sample_table = sample_data, tax_table = taxonomy_data, otu_table = ASV, phylo_tree = phylo_tree, rep_fasta = rep_fasta, ...)
 	dataset
