@@ -37,7 +37,7 @@ check_sample_table <- function(sample_data = NULL){
 			}			
 		}else{
 			if(! inherits(sample_data, "data.frame")){
-				stop("The input sample_data is not data.frame class!")
+				stop("The input sample_data has unknown format! Must be character or data.frame format!")
 			}
 		}
 	# output new abundance table

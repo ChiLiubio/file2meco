@@ -2,11 +2,14 @@
 #'
 #' @description
 #' Transform 'QIIME2' qza results to microtable object.
-#' @param ASV_data the ASV data, such as the data2_table.qza.
-#' @param sample_data default NULL; the sample metadata table, such as the sample-metadata.tsv.
-#' @param taxonomy_data default NULL; the taxonomy data, such as the taxonomy.qza.
-#' @param phylo_tree default NULL; the phylogenetic tree, such as the tree.qza.
-#' @param rep_fasta default NULL; the representative sequences, such as the dada2_rep_set.qza.
+#' @param ASV_data the ASV data, such as the 'data2_table.qza'.
+#' @param sample_data default NULL; the sample metadata table; three formats are available: 
+#'   One format is q2-type tab seperated file path, such as the 'sample-metadata.tsv' in the example;
+#'   The second format is generaly used comma seperated file path with the suffix csv or tab seperated file with suffix tsv/txt;
+#'   The third format is data.frame.
+#' @param taxonomy_data default NULL; the taxonomy data, such as the 'taxonomy.qza'.
+#' @param phylo_tree default NULL; the phylogenetic tree, such as the 'tree.qza'.
+#' @param rep_fasta default NULL; the representative sequences, such as the 'dada2_rep_set.qza'.
 #' @param ... parameter passed to microtable$new function of microeco package, such as auto_tidy parameter.
 #' @return microtable object.
 #' @examples
@@ -30,8 +33,12 @@ qiime2meco <- function(ASV_data, sample_data = NULL, taxonomy_data = NULL, phylo
 	ASV <- as.data.frame(read_qza(ASV_data)$data)
 	#  Read metadata
 	if(!is.null(sample_data)){
-		sample_data <- read_q2metadata(sample_data)
-		rownames(sample_data) <- as.character(sample_data[, 1])
+		if(is_q2metadata(sample_data)){
+			sample_data <- read_q2metadata(sample_data)
+			rownames(sample_data) <- as.character(sample_data[, 1])
+		}else{
+			sample_data <- check_sample_table(sample_data = sample_data)
+		}
 	}
 	# Read taxonomy table
 	if(!is.null(taxonomy_data)){
@@ -69,9 +76,6 @@ qiime2meco <- function(ASV_data, sample_data = NULL, taxonomy_data = NULL, phylo
 
 # return a data.frame wherein the first column is SampleID
 read_q2metadata <- function(file) {
-  if(missing(file)){stop("Path to metadata file not found")}
-  if(!is_q2metadata(file)){stop("Metadata does not define types (ie second line does not start with #q2:types)")}
-  
   defline<-suppressWarnings(readLines(file)[2])
   defline<-strsplit(defline, split="\t")[[1]]
   
