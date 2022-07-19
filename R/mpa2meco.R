@@ -9,6 +9,7 @@
 #' @param sample_data default NULL; the sample metadata table, must be tab or comma seperated file, generally, a file with suffix "tsv" or "csv"..
 #' @param match_table default NULL; a two column table used to replace the sample names in 'HUMAnN abundance result; Remember just two columns with no column names;
 #'    The first column must be sample names used in abund_table, the second column is the new sample names, e.g. the rownames in sample_table. See the example files.
+#' @param use_level default "s__"; the prefix parsed for the otu_table and tax_table; must be one of 'd__', 'k__', 'p__', 'c__', 'o__', 'f__', 'g__' and 's__'.
 #' @param ... parameter passed to microtable$new function of microeco package, such as auto_tidy parameter.
 #' @return microtable object.
 #' @examples
@@ -29,47 +30,75 @@
 #' test$tidy_dataset()
 #' }
 #' @export
-mpa2meco <- function(abund_table, sample_data = NULL, match_table = NULL, ...){
-	# first check func_data file format.
-	abund_raw <- read.delim(abund_table, check.names = FALSE, row.names = 1, stringsAsFactors = FALSE)
-	# extract species data
-	abund_new <- abund_raw[grepl("s__", rownames(abund_raw)), ]
+mpa2meco <- function(abund_table, sample_data = NULL, match_table = NULL, use_level = "s__", ...){
+	# read abund data
+	abund_raw <- readLines(abund_table)
+	header_line <- unlist(strsplit(abund_raw[1], "\t"))
+	total_abund <- sapply(abund_raw[-1], function(x){unlist(strsplit(x, "\t"))}) %>% 
+		t %>% 
+		as.data.frame %>%
+		`colnames<-`(header_line) %>%
+		`row.names<-`(.[, 1]) %>%
+		.[, -1] %>%
+		microeco::dropallfactors(char2num = TRUE)
 
+	if(! use_level %in% c('d__', 'k__', 'p__', 'c__', 'o__', 'f__', 'g__', 's__')){
+		stop("use_level must be one of 'd__', 'k__', 'p__', 'c__', 'o__', 'f__', 'g__' and 's__'!")
+	}
+	# Because parts of taxonomy are missing, we extract for each taxonomy
+	# determine the prefix of Bacteria, Archaea or Fungi
+	if(any(grepl("d__Bacteria|d__Archaea|d__Fungi", rownames(total_abund)))){
+		replace_level <- c('d__', 'p__', 'c__', 'o__', 'f__', 'g__', 's__')
+		if(use_level == "k__"){
+			use_level = "d__"
+		}
+	}else{
+		replace_level <- c('k__', 'p__', 'c__', 'o__', 'f__', 'g__', 's__')
+		if(use_level == "d__"){
+			use_level = "k__"
+		}
+	}
+	all_taxonomic_levels <- c("Kingdom","Phylum","Class","Order","Family","Genus","Species")
+	# extract species data to create microtable object
+	abund_table_taxa <- total_abund[grepl(paste0(use_level, "(?!.*\\|).*"), rownames(total_abund), perl = TRUE), ]
 	# generate the taxonomic table
-	raw_taxonomy <- rownames(abund_new)
-	# colnames(taxonomy)[1] <- "Taxon"
-	# Because of parts of taxonomy are missing, we use extracting for each taxonomy
-	taxonomy <- matrix(nrow = nrow(abund_new), ncol = 7)
-	colnames(taxonomy) <- c("Kingdom","Phylum","Class","Order","Family","Genus","Species")
-	rownames(taxonomy) <- raw_taxonomy
-	taxonomy[, 1] <- gsub("((d|k)__.*?)\\|.*", "\\1", raw_taxonomy, ignore.case = TRUE)
-	taxonomy[, 1][!grepl("(d|k)__", taxonomy[, 1])] <- ""
-	taxonomy[, 2] <- gsub(".*(p__.*?)\\|.*", "\\1", raw_taxonomy, ignore.case = TRUE)
-	taxonomy[, 2][!grepl("p__", taxonomy[, 2])] <- ""
-	taxonomy[, 3] <- gsub(".*(c__.*?)\\|.*", "\\1", raw_taxonomy, ignore.case = TRUE)
-	taxonomy[, 3][!grepl("c__", taxonomy[, 3])] <- ""
-	taxonomy[, 4] <- gsub(".*(o__.*?)\\|.*", "\\1", raw_taxonomy, ignore.case = TRUE)
-	taxonomy[, 4][!grepl("o__", taxonomy[, 4])] <- ""
-	taxonomy[, 5] <- gsub(".*(f__.*?)\\|.*", "\\1", raw_taxonomy, ignore.case = TRUE)
-	taxonomy[, 5][!grepl("f__", taxonomy[, 5])] <- ""
-	taxonomy[, 6] <- gsub(".*(g__.*?)\\|.*", "\\1", raw_taxonomy, ignore.case = TRUE)
-	taxonomy[, 6][!grepl("g__", taxonomy[, 6])] <- ""
-	taxonomy[, 7] <- gsub(".*(s__.*?)", "\\1", raw_taxonomy, ignore.case = TRUE)
-	taxonomy[, 7][!grepl("s__", taxonomy[, 7])] <- ""
+	raw_taxonomy <- rownames(abund_table_taxa)
 
-	taxonomy %<>% as.data.frame(stringsAsFactors = FALSE)
-	# taxonomy <- suppressWarnings(taxonomy %>% tidyr::separate(Taxon, c("Kingdom","Phylum","Class","Order","Family","Genus","Species"), sep = tax_sep))
+	col_number <- which(replace_level %in% use_level)
+	message("Generate otu_table at ", all_taxonomic_levels[col_number], " level ...")
+
+	taxonomy <- matrix(nrow = nrow(abund_table_taxa), ncol = col_number)
+	colnames(taxonomy) <- all_taxonomic_levels[1:col_number]
+	rownames(taxonomy) <- raw_taxonomy
+	for(i in 1:col_number){
+		tmp <- replace_level[i]
+		taxonomy[, i] <- gsub(paste0(".*(", tmp, ".*?)(\\|.*|$)"), "\\1", raw_taxonomy, ignore.case = TRUE)
+		taxonomy[, i][!grepl(tmp, taxonomy[, i])] <- ""
+	}
+	taxonomy %<>% as.data.frame(stringsAsFactors = FALSE) %>% microeco::tidy_taxonomy()
 	tax_table <- taxonomy
+	message("Generate tax_table ...")
 
 	# first check the match_table
 	if(!is.null(match_table)){
-		abund_new <- check_match_table(match_table = match_table, abund_new = abund_new)
+		abund_table_taxa <- check_match_table(match_table = match_table, abund_new = abund_table_taxa)
 	}
 	# read sample metadata table
 	if(!is.null(sample_data)){
 		sample_data <- check_sample_table(sample_data = sample_data)
 	}
-
-	dataset <- microtable$new(otu_table = abund_new, sample_table = sample_data, tax_table = tax_table, ...)
+	# create microtable object
+	dataset <- microtable$new(otu_table = abund_table_taxa, sample_table = sample_data, tax_table = tax_table, ...)
+	message("Create the microtable object ...")
+	# generate taxa_abund from raw data
+	taxa_abund <- list()
+	for(i in 1:col_number){
+		tmp <- replace_level[i]
+		taxa_abund[[all_taxonomic_levels[i]]] <- total_abund[grepl(paste0(tmp, "(?!.*\\|).*"), rownames(total_abund), perl = TRUE), ]
+	}
+	dataset$taxa_abund <- taxa_abund
+	message("Generate taxa_abund list stored in the object ...")
+	
 	dataset
 }
+

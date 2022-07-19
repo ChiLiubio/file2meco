@@ -4,7 +4,13 @@
 \alias{mpa2meco}
 \title{Transform metagenomic classification results of 'mpa' format to 'microtable' object.}
 \usage{
-mpa2meco(abund_table, sample_data = NULL, match_table = NULL, ...)
+mpa2meco(
+  abund_table,
+  sample_data = NULL,
+  match_table = NULL,
+  use_level = "s__",
+  ...
+)
 }
 \arguments{
 \item{abund_table}{'mpa' format abundance table, see the example.}
@@ -13,6 +19,8 @@ mpa2meco(abund_table, sample_data = NULL, match_table = NULL, ...)
 
 \item{match_table}{default NULL; a two column table used to replace the sample names in 'HUMAnN abundance result; Remember just two columns with no column names;
 The first column must be sample names used in abund_table, the second column is the new sample names, e.g. the rownames in sample_table. See the example files.}
+
+\item{use_level}{default "s__"; the prefix parsed for the otu_table and tax_table; must be one of 'd__', 'k__', 'p__', 'c__', 'o__', 'f__', 'g__' and 's__'.}
 
 \item{...}{parameter passed to microtable$new function of microeco package, such as auto_tidy parameter.}
 }
