@@ -40,7 +40,7 @@ mpa2meco <- function(abund_table, sample_data = NULL, match_table = NULL, use_le
 		`colnames<-`(header_line) %>%
 		`row.names<-`(.[, 1]) %>%
 		.[, -1] %>%
-		microeco::dropallfactors(char2num = TRUE)
+		microeco::dropallfactors(unfac2num = TRUE)
 
 	if(! use_level %in% c('d__', 'k__', 'p__', 'c__', 'o__', 'f__', 'g__', 's__')){
 		stop("use_level must be one of 'd__', 'k__', 'p__', 'c__', 'o__', 'f__', 'g__' and 's__'!")
