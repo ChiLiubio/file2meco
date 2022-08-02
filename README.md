@@ -6,7 +6,7 @@ Convert files of some tools to microtable object of microeco package
 
 [![CRAN](https://www.r-pkg.org/badges/version/file2meco)](https://cran.r-project.org/web/packages/file2meco/index.html)
 [![CRAN](https://cranlogs.r-pkg.org/badges/grand-total/file2meco)](https://cran.r-project.org/web/packages/file2meco/index.html)
-![](https://img.shields.io/badge/Release-v0.3.0-blue.svg) ![](https://img.shields.io/badge/Test-v0.3.1-red.svg)
+![](https://img.shields.io/badge/Release-v0.3.0-blue.svg) ![](https://img.shields.io/badge/Test-v0.4.0-red.svg)
 
 
 ## Install file2meco

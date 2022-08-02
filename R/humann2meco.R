@@ -116,7 +116,7 @@ humann2meco <- function(abund_table, db = c("MetaCyc", "KEGG")[1], sample_data =
 		tidyr::separate(col = "raw", into = c("Func", "Tax"), sep = "\\|") %>%
 		tidyr::separate(col = "Tax", into = c("Genus", "Species"), sep = "\\.", fill = "right")
 		
-	# get the function and taxonomy leneage
+	# get the function and taxonomy lineage
 	if(grepl("MetaCyc", db, ignore.case = TRUE)){
 		data("MetaCyc_pathway_map", envir=environment())
 		MetaCyc_pathway_map_use <- cbind.data.frame(rowname = rownames(MetaCyc_pathway_map), MetaCyc_pathway_map, stringsAsFactors = FALSE)

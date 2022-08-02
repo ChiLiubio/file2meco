@@ -4,6 +4,11 @@
 #' Transform the classification results of mpa (MetaPhlAn) format to microtable object,
 #' such as MetaPhlAn and Kraken2 results. Kraken2 results can be obtained by merge_metaphlan_tables.py from MetaPhlAn or 
 #' combine_mpa.py from KrakenTools (https://ccb.jhu.edu/software/krakentools/).
+#' The algorithm of Kraken2 determines that the abundance of a taxon is not equal to the sum of abundances of taxa in its subordinate lineage.
+#' So the default tables in taxa_abund of return microtable object are extracted from the abundances of raw file. 
+#' It is totally different with the return taxa_abund of cal_abund function, 
+#' which sums the abundances of taxa at different taxonomic levels based on the taxonomic table and the otu_table 
+#' (i.e., taxa abundance table at a specified level, e.g., 's__').
 #' 
 #' @param abund_table 'mpa' format abundance table, see the example.
 #' @param sample_data default NULL; the sample metadata table, must be tab or comma seperated file, generally, a file with suffix "tsv" or "csv"..
@@ -14,20 +19,29 @@
 #' @return microtable object.
 #' @examples
 #' \donttest{
-#' # use the raw data files stored inside the package
-#' abund_file_path <- system.file("extdata", "example_kraken2_merge.txt", package="file2meco")
-#' sample_file_path <- system.file("extdata", "example_metagenome_sample_info.tsv", 
-#'   package="file2meco")
-#' match_file_path <- system.file("extdata", "example_metagenome_match_table.tsv", package="file2meco")
 #' library(microeco)
 #' library(file2meco)
 #' library(magrittr)
+#' # use Kraken2 file stored inside the package
+#' abund_file_path <- system.file("extdata", "example_kraken2_merge.txt", package="file2meco")
 #' mpa2meco(abund_table = abund_file_path)
+#' # add sample information table
+#' sample_file_path <- system.file("extdata", "example_metagenome_sample_info.tsv", 
+#'   package="file2meco")
+#' # sample names are different between abund_file_path and sample_file_path; 
+#' # use a matching table to adjust them
+#' match_file_path <- system.file("extdata", "example_metagenome_match_table.tsv", package="file2meco")
 #' test <- mpa2meco(abund_table = abund_file_path, sample_data = sample_file_path, 
-#'   match_table = match_file_path)
+#'   match_table = match_file_path, use_level = "s__")
 #' # make the taxonomy standard for the following analysis
 #' test$tax_table %<>% tidy_taxonomy
 #' test$tidy_dataset()
+#' # convert the data of default taxa_abund to relative abundance
+#' test$taxa_abund %<>% lapply(function(x){apply(x, 2, function(y){y/sum(y)})})
+#' # calculate taxa_abund with specified level instead of raw kraken results
+#' test1 <- clone(test)
+#' test1$cal_abund()
+#' identical(test$taxa_abund$Kingdom, test1$taxa_abund$Kingdom)
 #' }
 #' @export
 mpa2meco <- function(abund_table, sample_data = NULL, match_table = NULL, use_level = "s__", ...){
@@ -61,7 +75,7 @@ mpa2meco <- function(abund_table, sample_data = NULL, match_table = NULL, use_le
 	all_taxonomic_levels <- c("Kingdom","Phylum","Class","Order","Family","Genus","Species")
 	# extract species data to create microtable object
 	abund_table_taxa <- total_abund[grepl(paste0(use_level, "(?!.*\\|).*"), rownames(total_abund), perl = TRUE), ]
-	# generate the taxonomic table
+	# generate taxonomic table
 	raw_taxonomy <- rownames(abund_table_taxa)
 
 	col_number <- which(replace_level %in% use_level)
@@ -78,10 +92,19 @@ mpa2meco <- function(abund_table, sample_data = NULL, match_table = NULL, use_le
 	taxonomy %<>% as.data.frame(stringsAsFactors = FALSE) %>% microeco::tidy_taxonomy()
 	tax_table <- taxonomy
 	message("Generate tax_table ...")
-
+	# generate taxa_abund from raw data
+	taxa_abund <- list()
+	for(i in 1:col_number){
+		tmp <- replace_level[i]
+		taxa_abund[[all_taxonomic_levels[i]]] <- total_abund[grepl(paste0(tmp, "(?!.*\\|).*"), rownames(total_abund), perl = TRUE), ]
+	}
+	
 	# first check the match_table
 	if(!is.null(match_table)){
 		abund_table_taxa <- check_match_table(match_table = match_table, abund_new = abund_table_taxa)
+		for(i in names(taxa_abund)){
+			taxa_abund[[i]] <- check_match_table(match_table = match_table, abund_new = taxa_abund[[i]])
+		}
 	}
 	# read sample metadata table
 	if(!is.null(sample_data)){
@@ -90,14 +113,9 @@ mpa2meco <- function(abund_table, sample_data = NULL, match_table = NULL, use_le
 	# create microtable object
 	dataset <- microtable$new(otu_table = abund_table_taxa, sample_table = sample_data, tax_table = tax_table, ...)
 	message("Create the microtable object ...")
-	# generate taxa_abund from raw data
-	taxa_abund <- list()
-	for(i in 1:col_number){
-		tmp <- replace_level[i]
-		taxa_abund[[all_taxonomic_levels[i]]] <- total_abund[grepl(paste0(tmp, "(?!.*\\|).*"), rownames(total_abund), perl = TRUE), ]
-	}
+
 	dataset$taxa_abund <- taxa_abund
-	message("Generate taxa_abund list stored in the object ...")
+	message("Generate taxa_abund list using raw taxonomic abundance of the input file ...")
 	
 	dataset
 }

@@ -31,22 +31,36 @@ microtable object.
 Transform the classification results of mpa (MetaPhlAn) format to microtable object,
 such as MetaPhlAn and Kraken2 results. Kraken2 results can be obtained by merge_metaphlan_tables.py from MetaPhlAn or 
 combine_mpa.py from KrakenTools (https://ccb.jhu.edu/software/krakentools/).
+The algorithm of Kraken2 determines that the abundance of a taxon is not equal to the sum of abundances of taxa in its subordinate lineage.
+So the default tables in taxa_abund of return microtable object are extracted from the abundances of raw file. 
+It is totally different with the return taxa_abund of cal_abund function, 
+which sums the abundances of taxa at different taxonomic levels based on the taxonomic table and the otu_table 
+(i.e., taxa abundance table at a specified level, e.g., 's__').
 }
 \examples{
 \donttest{
-# use the raw data files stored inside the package
-abund_file_path <- system.file("extdata", "example_kraken2_merge.txt", package="file2meco")
-sample_file_path <- system.file("extdata", "example_metagenome_sample_info.tsv", 
-  package="file2meco")
-match_file_path <- system.file("extdata", "example_metagenome_match_table.tsv", package="file2meco")
 library(microeco)
 library(file2meco)
 library(magrittr)
+# use Kraken2 file stored inside the package
+abund_file_path <- system.file("extdata", "example_kraken2_merge.txt", package="file2meco")
 mpa2meco(abund_table = abund_file_path)
+# add sample information table
+sample_file_path <- system.file("extdata", "example_metagenome_sample_info.tsv", 
+  package="file2meco")
+# sample names are different between abund_file_path and sample_file_path; 
+# use a matching table to adjust them
+match_file_path <- system.file("extdata", "example_metagenome_match_table.tsv", package="file2meco")
 test <- mpa2meco(abund_table = abund_file_path, sample_data = sample_file_path, 
-  match_table = match_file_path)
+  match_table = match_file_path, use_level = "s__")
 # make the taxonomy standard for the following analysis
 test$tax_table \%<>\% tidy_taxonomy
 test$tidy_dataset()
+# convert the data of default taxa_abund to relative abundance
+test$taxa_abund \%<>\% lapply(function(x){apply(x, 2, function(y){y/sum(y)})})
+# calculate taxa_abund with specified level instead of raw kraken results
+test1 <- clone(test)
+test1$cal_abund()
+identical(test$taxa_abund$Kingdom, test1$taxa_abund$Kingdom)
 }
 }
