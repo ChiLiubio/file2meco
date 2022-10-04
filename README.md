@@ -11,26 +11,11 @@ Convert files of some tools to microtable object of microeco package
 
 ## Install file2meco
 
-Install file2meco package from CRAN directly.
+Install file2meco package from CRAN.
 
 ```r
-install.packages("file2meco")
-```
-
-Or install the latest development version from github.
-
-```r
-# If devtools package is not installed, first install it
-install.packages("devtools")
-devtools::install_github("ChiLiubio/file2meco")
-```
-
-If there is a warning in install.packages: no 'rhdf5' in the dependency,
-please install rhdf5 package from Bioconductor.
-
-```r
-if (!require("BiocManager", quietly = TRUE)) install.packages("BiocManager")
-BiocManager::install("rhdf5")
+if(!require("BiocManager", quietly = TRUE)) install.packages("BiocManager")
+install.packages("file2meco", repos = BiocManager::repositories())
 ```
 
 ## Citation
