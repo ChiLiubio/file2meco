@@ -1,7 +1,7 @@
 Package: file2meco
 Type: Package
 Title: Transform Files to 'microtable' Object with 'microeco' Package
-Version: 0.4.1
+Version: 0.5.0
 Authors@R: c(person("Chi", "Liu", role = c("aut", "cre"), email = "liuchi0426@126.com"))
 Author: Chi Liu [aut, cre]
 Maintainer: Chi Liu <liuchi0426@126.com>
@@ -9,12 +9,12 @@ Description: Transform output files of some tools to the 'microtable' object of 
 URL: https://github.com/ChiLiubio/file2meco
 Depends: R (>= 3.5.0)
 Imports: microeco, ape, magrittr, dplyr, tidyr, yaml, rhdf5, Matrix
-Suggests: Biostrings, seqinr, phyloseq
+Suggests: Biostrings, seqinr, phyloseq, readxl
 License: GPL-3
 LazyData: true
 Encoding: UTF-8
 NeedsCompilation: no
-Packaged: 2022-08-07
+Packaged: 2022-11-09
 Repository: CRAN
-Date/Publication: 2022-08-07
-RoxygenNote: 7.1.2
+Date/Publication: 2022-08-09
+RoxygenNote: 7.2.1
