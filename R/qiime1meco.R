@@ -1,13 +1,18 @@
 #' Transform 'QIIME' results to 'microtable' object.
 #'
 #' @description
-#' Transform 'QIIME' results to microtable object.
+#' Transform 'QIIME' results to microtable object. 
+#' The QIIME results refer in particular to the files of qiime1 software.
+#' 
 #' @param otu_table the otu table generated from 'QIIME'. Taxonomic information should be in the end of the file.
-#' @param sample_data default NULL; If provided, must be tab or comma seperated file, generally, a file with suffix "tsv" or "csv".
+#' @param sample_data default NULL; sample metadata table; If provided, must be one of the several types of formats: 
+#'   1) comma seperated file with the suffix csv or tab seperated file with suffix tsv/txt; 
+#'   2) Excel type file with the suffix xlsx or xls; require \code{readxl} package to be installed; 
+#'   3) \code{data.frame} object from R.
 #' @param phylo_tree default NULL; the phylogenetic tree; generally, a file with suffix "tre".
 #' @param rep_fasta default NULL; the representative sequences; a fasta file, generally with suffix "fasta" or "fna" or "fa".
-#' @param ... parameter passed to microtable$new function of microeco package, such as auto_tidy parameter.
-#' @return microtable object.
+#' @param ... parameter passed to microtable$new function of microeco package, such as \code{auto_tidy} parameter.
+#' @return \code{microtable} object.
 #' @examples
 #' \dontrun{
 #' # use the raw data files stored inside the package

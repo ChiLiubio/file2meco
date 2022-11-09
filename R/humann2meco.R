@@ -4,7 +4,10 @@
 #' Transform 'HUMAnN' metagenomic results to microtable object, reference: Franzosa et al. (2018) <doi:10.1038/s41592-018-0176-y>.
 #' @param abund_table 'HUMAnN' output abundance table, see the example.
 #' @param db default "MetaCyc"; either "MetaCyc" or "KEGG"; the pathway database used in the abund_table file generation.
-#' @param sample_data default NULL; the sample metadata table, must be tab or comma seperated file, generally, a file with suffix "tsv" or "csv".
+#' @param sample_data default NULL; sample metadata table; If provided, must be one of the several types of formats: 
+#'   1) comma seperated file with the suffix csv or tab seperated file with suffix tsv/txt; 
+#'   2) Excel type file with the suffix xlsx or xls; require \code{readxl} package to be installed; 
+#'   3) \code{data.frame} object from R.
 #' @param match_table default NULL; a two column table used to replace the sample names in HUMAnN abundance result; Must be two columns with no column names;
 #'    The first column must be sample names same with those in abund_table, the second column is the new sample names, e.g., the rownames in sample_table. See the example files.
 #' @param ... parameter passed to microtable$new function of microeco package, such as auto_tidy parameter.

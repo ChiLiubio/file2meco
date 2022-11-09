@@ -30,11 +30,18 @@ check_match_table <- function(match_table = NULL, abund_new = NULL){
 check_sample_table <- function(sample_data = NULL){
 		# read according to the input class
 		if(inherits(sample_data, "character")){
-			if(grepl("csv", sample_data)){
-				sample_data <- read.csv(sample_data, row.names = 1, stringsAsFactors = FALSE)
+			if(grepl("xlsx$|xls$", sample_data)){
+				sample_data <- readxl::read_excel(sample_data, col_names = TRUE) %>%
+					as.data.frame(stringsAsFactors = FALSE) %>%
+					`row.names<-`(.[,1]) %>%
+					.[,-1, drop = FALSE]
 			}else{
-				sample_data <- read.delim(sample_data, row.names = 1, stringsAsFactors = FALSE)
-			}			
+				if(grepl("csv$", sample_data)){
+					sample_data <- read.csv(sample_data, row.names = 1, stringsAsFactors = FALSE)
+				}else{
+					sample_data <- read.delim(sample_data, row.names = 1, stringsAsFactors = FALSE)
+				}
+			}
 		}else{
 			if(! inherits(sample_data, "data.frame")){
 				stop("The input sample_data has unknown format! Must be character or data.frame format!")

@@ -9,7 +9,10 @@ ncyc2meco(abund_table, sample_data = NULL, match_table = NULL, ...)
 \arguments{
 \item{abund_table}{'Ncyc' software output abundance table, see the example file.}
 
-\item{sample_data}{default NULL; the sample metadata table; data.frame or character for the path; 
+\item{sample_data}{default NULL; sample metadata table; If provided, must be one of the several types of formats: 
+  1) comma seperated file with the suffix csv or tab seperated file with suffix tsv/txt; 
+  2) Excel type file with the suffix xlsx or xls; require \code{readxl} package to be installed; 
+  3) \code{data.frame} object from R.
 A file path must be tab or comma seperated file, generally, a file with suffix "tsv" or "csv".}
 
 \item{match_table}{default NULL; data.frame or character for the path; should be two column table used to replace the sample names in abundance result; 

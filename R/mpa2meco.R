@@ -11,7 +11,10 @@
 #' (i.e., taxa abundance table at a specified level, e.g., 's__').
 #' 
 #' @param abund_table 'mpa' format abundance table, see the example.
-#' @param sample_data default NULL; the sample metadata table, must be tab or comma seperated file, generally, a file with suffix "tsv" or "csv"..
+#' @param sample_data default NULL; sample metadata table; If provided, must be one of the several types of formats: 
+#'   1) comma seperated file with the suffix csv or tab seperated file with suffix tsv/txt; 
+#'   2) Excel type file with the suffix xlsx or xls; require \code{readxl} package to be installed; 
+#'   3) \code{data.frame} object from R.
 #' @param match_table default NULL; a two column table used to replace the sample names in 'HUMAnN abundance result; Remember just two columns with no column names;
 #'    The first column must be sample names used in abund_table, the second column is the new sample names, e.g. the rownames in sample_table. See the example files.
 #' @param use_level default "s__"; the prefix parsed for the otu_table and tax_table; must be one of 'd__', 'k__', 'p__', 'c__', 'o__', 'f__', 'g__' and 's__'.

@@ -2,16 +2,17 @@
 #'
 #' @description
 #' Transform 'QIIME2' qza results to microtable object.
-#' @param ASV_data the ASV data, such as the 'data2_table.qza'.
-#' @param sample_data default NULL; the sample metadata table; three formats are available: 
-#'   One format is q2-type tab seperated file path, such as the 'sample-metadata.tsv' in the example;
-#'   The second format is generaly used comma seperated file path with the suffix csv or tab seperated file with suffix tsv/txt;
-#'   The third format is data.frame.
-#' @param taxonomy_data default NULL; the taxonomy data, such as the 'taxonomy.qza'.
-#' @param phylo_tree default NULL; the phylogenetic tree, such as the 'tree.qza'.
-#' @param rep_fasta default NULL; the representative sequences, such as the 'dada2_rep_set.qza'.
-#' @param ... parameter passed to microtable$new function of microeco package, such as auto_tidy parameter.
-#' @return microtable object.
+#' @param ASV_data the ASV data, such as the \code{'data2_table.qza'}.
+#' @param sample_data default NULL; the sample metadata table; four types of formats are available: 
+#'   1) q2-type tab seperated file of QIIME2, such as the \code{'sample-metadata.tsv'} in the example;
+#'   2) comma seperated file with the suffix csv or tab seperated file with suffix tsv/txt;
+#'   3) Excel type file with the suffix xlsx or xls; require \code{readxl} package to be installed;
+#'   4) \code{data.frame} object from R.
+#' @param taxonomy_data default NULL; the taxonomy data, such as the \code{'taxonomy.qza'}.
+#' @param phylo_tree default NULL; the phylogenetic tree, such as the \code{'tree.qza'}.
+#' @param rep_fasta default NULL; the representative sequences, such as the \code{'dada2_rep_set.qza'}.
+#' @param ... parameter passed to \code{microtable$new} function of \code{microeco} package, such as \code{auto_tidy} parameter.
+#' @return \code{microtable} object.
 #' @examples
 #' \dontrun{
 #' # The data files is downloaded from https://docs.qiime2.org/2020.8/tutorials/pd-mice/ 
