@@ -6,10 +6,15 @@
 check_match_table <- function(match_table = NULL, abund_new = NULL){
 	# read according to the input class
 	if(inherits(match_table, "character")){
-		if(grepl("csv", match_table)){
-			match_table <- read.csv(match_table, stringsAsFactors = FALSE, header = FALSE)
+		if(grepl("xlsx$|xls$", match_table)){
+			match_table <- readxl::read_excel(match_table, col_names = FALSE) %>%
+				as.data.frame(stringsAsFactors = FALSE)
 		}else{
-			match_table <- read.table(match_table, stringsAsFactors = FALSE, sep = "\t")
+			if(grepl("csv$", match_table)){
+				match_table <- read.csv(match_table, stringsAsFactors = FALSE, header = FALSE)
+			}else{
+				match_table <- read.table(match_table, stringsAsFactors = FALSE, sep = "\t")
+			}
 		}
 	}else{
 		if(! inherits(match_table, "data.frame")){
@@ -17,6 +22,9 @@ check_match_table <- function(match_table = NULL, abund_new = NULL){
 		}
 	}
 	rownames(match_table) <- match_table[, 1]
+	if(!all(rownames(match_table) %in% colnames(abund_new))){
+		stop("Part of sample names in match_table are not found in feature table!")
+	}
 	abund_new %<>% .[, rownames(match_table), drop = FALSE]
 	colnames(abund_new) <- match_table[, 2]
 	# output new abundance table
@@ -25,30 +33,30 @@ check_match_table <- function(match_table = NULL, abund_new = NULL){
 
 #' Read sample table
 #'
-#' @param sample_data default NULL; character or data.frame; matching table used.
+#' @param sample_table default NULL; character or data.frame; matching table used.
 #' @return sample information table.
-check_sample_table <- function(sample_data = NULL){
-		# read according to the input class
-		if(inherits(sample_data, "character")){
-			if(grepl("xlsx$|xls$", sample_data)){
-				sample_data <- readxl::read_excel(sample_data, col_names = TRUE) %>%
-					as.data.frame(stringsAsFactors = FALSE) %>%
-					`row.names<-`(.[,1]) %>%
-					.[,-1, drop = FALSE]
-			}else{
-				if(grepl("csv$", sample_data)){
-					sample_data <- read.csv(sample_data, row.names = 1, stringsAsFactors = FALSE)
-				}else{
-					sample_data <- read.delim(sample_data, row.names = 1, stringsAsFactors = FALSE)
-				}
-			}
+check_sample_table <- function(sample_table = NULL){
+	# read according to the input class
+	if(inherits(sample_table, "character")){
+		if(grepl("xlsx$|xls$", sample_table)){
+			sample_table <- readxl::read_excel(sample_table, col_names = TRUE) %>%
+				as.data.frame(stringsAsFactors = FALSE) %>%
+				`row.names<-`(.[,1]) %>%
+				.[,-1, drop = FALSE]
 		}else{
-			if(! inherits(sample_data, "data.frame")){
-				stop("The input sample_data has unknown format! Must be character or data.frame format!")
+			if(grepl("csv$", sample_table)){
+				sample_table <- read.csv(sample_table, row.names = 1, stringsAsFactors = FALSE)
+			}else{
+				sample_table <- read.delim(sample_table, row.names = 1, stringsAsFactors = FALSE)
 			}
 		}
+	}else{
+		if(! inherits(sample_table, "data.frame")){
+			stop("The input sample_table has unknown format! Must be character or data.frame format!")
+		}
+	}
 	# output new abundance table
-	sample_data
+	sample_table
 }
 
 #' Get the website for a 'MetaCyc' pathway name

@@ -4,20 +4,20 @@
 \alias{ncyc2meco}
 \title{Transform 'Ncyc' metagenomic abundance to 'microtable' object.}
 \usage{
-ncyc2meco(abund_table, sample_data = NULL, match_table = NULL, ...)
+ncyc2meco(feature_table, sample_table = NULL, match_table = NULL, ...)
 }
 \arguments{
-\item{abund_table}{'Ncyc' software output abundance table, see the example file.}
+\item{feature_table}{'Ncyc' software output abundance table, see the example file.}
 
-\item{sample_data}{default NULL; sample metadata table; If provided, must be one of the several types of formats: 
+\item{sample_table}{default NULL; sample metadata table; If provided, must be one of the several types of formats: 
   1) comma seperated file with the suffix csv or tab seperated file with suffix tsv/txt; 
   2) Excel type file with the suffix xlsx or xls; require \code{readxl} package to be installed; 
   3) \code{data.frame} object from R.
 A file path must be tab or comma seperated file, generally, a file with suffix "tsv" or "csv".}
 
-\item{match_table}{default NULL; data.frame or character for the path; should be two column table used to replace the sample names in abundance result; 
-Remember just two columns with no column names;
-The first column must be sample names used in abund_table, the second column is the new sample names, e.g. the rownames in sample_table. See the example files;
+\item{match_table}{default NULL; a two column table used to replace the sample names in abundance table; Must be two columns without column names;
+   The first column must be raw sample names same with those in feature table, 
+   the second column must be new sample names same with the rownames in sample_table; Please also see the example files.
 A file path must be tab or comma seperated file, e.g. a file with suffix "tsv" or "csv".}
 
 \item{...}{parameter passed to microtable$new function of microeco package, such as auto_tidy parameter.}
@@ -38,8 +38,8 @@ match_file_path <- system.file("extdata", "example_metagenome_match_table.tsv", 
 library(microeco)
 library(file2meco)
 library(magrittr)
-ncyc2meco(abund_table = abund_file_path)
-test <- ncyc2meco(abund_table = abund_file_path, sample_data = sample_file_path, 
+ncyc2meco(abund_file_path)
+test <- ncyc2meco(abund_file_path, sample_table = sample_file_path, 
   match_table = match_file_path)
 test$tidy_dataset()
 # use split_group = TRUE to calculate the pathway abundance with multipe map correspondance

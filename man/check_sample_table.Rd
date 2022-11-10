@@ -4,10 +4,10 @@
 \alias{check_sample_table}
 \title{Read sample table}
 \usage{
-check_sample_table(sample_data = NULL)
+check_sample_table(sample_table = NULL)
 }
 \arguments{
-\item{sample_data}{default NULL; character or data.frame; matching table used.}
+\item{sample_table}{default NULL; character or data.frame; matching table used.}
 }
 \value{
 sample information table.

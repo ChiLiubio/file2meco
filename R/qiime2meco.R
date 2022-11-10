@@ -2,13 +2,16 @@
 #'
 #' @description
 #' Transform 'QIIME2' qza results to microtable object.
-#' @param ASV_data the ASV data, such as the \code{'data2_table.qza'}.
-#' @param sample_data default NULL; the sample metadata table; four types of formats are available: 
+#' @param feature_table the ASV data, such as the \code{'data2_table.qza'}.
+#' @param sample_table default NULL; the sample metadata table; four types of formats are available: 
 #'   1) q2-type tab seperated file of QIIME2, such as the \code{'sample-metadata.tsv'} in the example;
 #'   2) comma seperated file with the suffix csv or tab seperated file with suffix tsv/txt;
 #'   3) Excel type file with the suffix xlsx or xls; require \code{readxl} package to be installed;
 #'   4) \code{data.frame} object from R.
-#' @param taxonomy_data default NULL; the taxonomy data, such as the \code{'taxonomy.qza'}.
+#' @param match_table default NULL; a two column table used to replace the sample names in abundance table; Must be two columns without column names;
+#'    The first column must be raw sample names same with those in feature table, 
+#'    the second column must be new sample names same with the rownames in sample_table; Please also see the example files.
+#' @param taxonomy_table default NULL; the taxonomy data, such as the \code{'taxonomy.qza'}.
 #' @param phylo_tree default NULL; the phylogenetic tree, such as the \code{'tree.qza'}.
 #' @param rep_fasta default NULL; the representative sequences, such as the \code{'dada2_rep_set.qza'}.
 #' @param ... parameter passed to \code{microtable$new} function of \code{microeco} package, such as \code{auto_tidy} parameter.
@@ -20,33 +23,37 @@
 #' abund_file_path <- system.file("extdata", "dada2_table.qza", package="file2meco")
 #' sample_file_path <- system.file("extdata", "sample-metadata.tsv", package="file2meco")
 #' taxonomy_file_path <- system.file("extdata", "taxonomy.qza", package="file2meco")
-#' qiime2meco(ASV_data = abund_file_path)
-#' qiime2meco(ASV_data = abund_file_path, sample_data = sample_file_path)
-#' qiime2meco(ASV_data = abund_file_path, sample_data = sample_file_path, 
-#'   taxonomy_data = taxonomy_file_path)
+#' qiime2meco(abund_file_path)
+#' qiime2meco(abund_file_path, sample_table = sample_file_path)
+#' qiime2meco(abund_file_path, sample_table = sample_file_path, 
+#'   taxonomy_table = taxonomy_file_path)
 #' }
 #' @export
-qiime2meco <- function(ASV_data, sample_data = NULL, taxonomy_data = NULL, phylo_tree = NULL, rep_fasta = NULL, ...){
+qiime2meco <- function(feature_table, sample_table = NULL, match_table = NULL, taxonomy_table = NULL, phylo_tree = NULL, rep_fasta = NULL, ...){
 	# if(!require(qiime2R)){
 		# stop("qiime2R package not installed!")
 	# }
 	# Read ASV data
-	ASV <- as.data.frame(read_qza(ASV_data)$data)
+	feature_table <- as.data.frame(read_qza(feature_table)$data)
+	# first check the match_table
+	if(!is.null(match_table)){
+		feature_table <- check_match_table(match_table = match_table, abund_new = feature_table)
+	}
 	#  Read metadata
-	if(!is.null(sample_data)){
-		if(is_q2metadata(sample_data)){
-			sample_data <- read_q2metadata(sample_data)
-			rownames(sample_data) <- as.character(sample_data[, 1])
+	if(!is.null(sample_table)){
+		if(is_q2metadata(sample_table)){
+			sample_table <- read_q2metadata(sample_table)
+			rownames(sample_table) <- as.character(sample_table[, 1])
 		}else{
-			sample_data <- check_sample_table(sample_data = sample_data)
+			sample_table <- check_sample_table(sample_table = sample_table)
 		}
 	}
 	# Read taxonomy table
-	if(!is.null(taxonomy_data)){
-		taxonomy_data <- read_qza(taxonomy_data)
-		taxonomy_data <- q2_parse_taxonomy(taxonomy_data$data)
+	if(!is.null(taxonomy_table)){
+		taxonomy_table <- read_qza(taxonomy_table)
+		taxonomy_table <- q2_parse_taxonomy(taxonomy_table$data)
 		# Make the taxonomic table clean, this is very important.
-		taxonomy_data %<>% tidy_taxonomy
+		taxonomy_table %<>% tidy_taxonomy
 	}
 
 	# Read phylo tree
@@ -56,7 +63,7 @@ qiime2meco <- function(ASV_data, sample_data = NULL, taxonomy_data = NULL, phylo
 	if(!is.null(rep_fasta)){
 		rep_fasta <- read_qza(rep_fasta)$data
 	}
-	dataset <- microtable$new(sample_table = sample_data, tax_table = taxonomy_data, otu_table = ASV, phylo_tree = phylo_tree, rep_fasta = rep_fasta, ...)
+	dataset <- microtable$new(sample_table = sample_table, tax_table = taxonomy_table, otu_table = feature_table, phylo_tree = phylo_tree, rep_fasta = rep_fasta, ...)
 	dataset
 }
 

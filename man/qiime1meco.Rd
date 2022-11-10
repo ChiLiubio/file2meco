@@ -5,19 +5,28 @@
 \title{Transform 'QIIME' results to 'microtable' object.}
 \usage{
 qiime1meco(
-  otu_table,
-  sample_data = NULL,
+  feature_table,
+  sample_table = NULL,
+  match_table = NULL,
   phylo_tree = NULL,
   rep_fasta = NULL,
   ...
 )
 }
 \arguments{
-\item{otu_table}{the otu table generated from 'QIIME'. Taxonomic information should be in the end of the file.}
+\item{feature_table}{the otu table generated from 'QIIME'. Taxonomic information should be in the end of the file.}
 
-\item{sample_data}{default NULL; sample metadata table; If provided, must be one of the several types of formats: 
+\item{sample_table}{default NULL; sample metadata table; If provided, must be one of the several types of formats: 
 1) comma seperated file with the suffix csv or tab seperated file with suffix tsv/txt; 
 2) Excel type file with the suffix xlsx or xls; require \code{readxl} package to be installed; 
+3) \code{data.frame} object from R.}
+
+\item{match_table}{default NULL; a two column table used to replace the sample names in feature table; Must be two columns without column names;
+The first column must be raw sample names same with those in feature table, 
+the second column must be new sample names same with the rownames in sample_table; Please also see the example files.
+If provided, must be one of the several types of formats: \cr
+1) comma seperated file with the suffix csv or tab seperated file with suffix tsv/txt; \cr
+2) Excel type file with the suffix xlsx or xls; require \code{readxl} package to be installed; \cr
 3) \code{data.frame} object from R.}
 
 \item{phylo_tree}{default NULL; the phylogenetic tree; generally, a file with suffix "tre".}
@@ -40,10 +49,10 @@ otu_file_path <- system.file("extdata", "otu_table_raw.txt", package="file2meco"
 sample_file_path <- system.file("extdata", "sample_info.csv", package="file2meco")
 phylo_file_path <- system.file("extdata", "rep_phylo.tre", package="file2meco")
 rep_fasta_path <- system.file("extdata", "rep.fna", package="file2meco")
-qiime1meco(otu_table = otu_file_path, sample_data = sample_file_path)
-qiime1meco(otu_table = otu_file_path, sample_data = sample_file_path, 
+qiime1meco(otu_file_path, sample_table = sample_file_path)
+qiime1meco(otu_file_path, sample_table = sample_file_path, 
   phylo_tree = phylo_file_path)
-qiime1meco(otu_table = otu_file_path, sample_data = sample_file_path, 
+qiime1meco(otu_file_path, sample_table = sample_file_path, 
   phylo_tree = phylo_file_path, rep_fasta = rep_fasta_path)
 }
 }

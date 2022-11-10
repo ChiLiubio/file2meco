@@ -10,13 +10,14 @@
 #' which sums the abundances of taxa at different taxonomic levels based on the taxonomic table and the otu_table 
 #' (i.e., taxa abundance table at a specified level, e.g., 's__').
 #' 
-#' @param abund_table 'mpa' format abundance table, see the example.
-#' @param sample_data default NULL; sample metadata table; If provided, must be one of the several types of formats: 
+#' @param feature_table 'mpa' format abundance table, see the example.
+#' @param sample_table default NULL; sample metadata table; If provided, must be one of the several types of formats: 
 #'   1) comma seperated file with the suffix csv or tab seperated file with suffix tsv/txt; 
 #'   2) Excel type file with the suffix xlsx or xls; require \code{readxl} package to be installed; 
 #'   3) \code{data.frame} object from R.
-#' @param match_table default NULL; a two column table used to replace the sample names in 'HUMAnN abundance result; Remember just two columns with no column names;
-#'    The first column must be sample names used in abund_table, the second column is the new sample names, e.g. the rownames in sample_table. See the example files.
+#' @param match_table default NULL; a two column table used to replace the sample names in abundance table; Must be two columns without column names;
+#'    The first column must be raw sample names same with those in feature table, 
+#'    the second column must be new sample names same with the rownames in sample_table; Please also see the example files.
 #' @param use_level default "s__"; the prefix parsed for the otu_table and tax_table; must be one of 'd__', 'k__', 'p__', 'c__', 'o__', 'f__', 'g__' and 's__'.
 #' @param ... parameter passed to microtable$new function of microeco package, such as auto_tidy parameter.
 #' @return microtable object.
@@ -27,14 +28,14 @@
 #' library(magrittr)
 #' # use Kraken2 file stored inside the package
 #' abund_file_path <- system.file("extdata", "example_kraken2_merge.txt", package="file2meco")
-#' mpa2meco(abund_table = abund_file_path)
+#' mpa2meco(abund_file_path)
 #' # add sample information table
 #' sample_file_path <- system.file("extdata", "example_metagenome_sample_info.tsv", 
 #'   package="file2meco")
 #' # sample names are different between abund_file_path and sample_file_path; 
 #' # use a matching table to adjust them
 #' match_file_path <- system.file("extdata", "example_metagenome_match_table.tsv", package="file2meco")
-#' test <- mpa2meco(abund_table = abund_file_path, sample_data = sample_file_path, 
+#' test <- mpa2meco(abund_file_path, sample_table = sample_file_path, 
 #'   match_table = match_file_path, use_level = "s__")
 #' # make the taxonomy standard for the following analysis
 #' test$tax_table %<>% tidy_taxonomy
@@ -47,9 +48,9 @@
 #' identical(test$taxa_abund$Kingdom, test1$taxa_abund$Kingdom)
 #' }
 #' @export
-mpa2meco <- function(abund_table, sample_data = NULL, match_table = NULL, use_level = "s__", ...){
+mpa2meco <- function(feature_table, sample_table = NULL, match_table = NULL, use_level = "s__", ...){
 	# read abund data
-	abund_raw <- readLines(abund_table)
+	abund_raw <- readLines(feature_table)
 	header_line <- unlist(strsplit(abund_raw[1], "\t"))
 	total_abund <- sapply(abund_raw[-1], function(x){unlist(strsplit(x, "\t"))}) %>% 
 		t %>% 
@@ -110,11 +111,11 @@ mpa2meco <- function(abund_table, sample_data = NULL, match_table = NULL, use_le
 		}
 	}
 	# read sample metadata table
-	if(!is.null(sample_data)){
-		sample_data <- check_sample_table(sample_data = sample_data)
+	if(!is.null(sample_table)){
+		sample_table <- check_sample_table(sample_table = sample_table)
 	}
 	# create microtable object
-	dataset <- microtable$new(otu_table = abund_table_taxa, sample_table = sample_data, tax_table = tax_table, ...)
+	dataset <- microtable$new(otu_table = abund_table_taxa, sample_table = sample_table, tax_table = tax_table, ...)
 	message("Create the microtable object ...")
 
 	dataset$taxa_abund <- taxa_abund

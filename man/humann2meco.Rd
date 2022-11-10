@@ -5,30 +5,35 @@
 \title{Transform 'HUMAnN' metagenomic results to 'microtable' object.}
 \usage{
 humann2meco(
-  abund_table,
+  feature_table,
   db = c("MetaCyc", "KEGG")[1],
-  sample_data = NULL,
+  sample_table = NULL,
   match_table = NULL,
   ...
 )
 }
 \arguments{
-\item{abund_table}{'HUMAnN' output abundance table, see the example.}
+\item{feature_table}{file path of 'HUMAnN' output abundance table; Please see the example.}
 
-\item{db}{default "MetaCyc"; either "MetaCyc" or "KEGG"; the pathway database used in the abund_table file generation.}
+\item{db}{default "MetaCyc"; either "MetaCyc" or "KEGG"; the pathway database used in the feature_table file generation.}
 
-\item{sample_data}{default NULL; sample metadata table; If provided, must be one of the several types of formats: 
-1) comma seperated file with the suffix csv or tab seperated file with suffix tsv/txt; 
-2) Excel type file with the suffix xlsx or xls; require \code{readxl} package to be installed; 
+\item{sample_table}{default NULL; sample metadata table; If provided, must be one of the several types of formats: \cr
+1) comma seperated file with the suffix csv or tab seperated file with suffix tsv or txt; \cr
+2) Excel type file with the suffix xlsx or xls; require \code{readxl} package to be installed; \cr
 3) \code{data.frame} object from R.}
 
-\item{match_table}{default NULL; a two column table used to replace the sample names in HUMAnN abundance result; Must be two columns with no column names;
-The first column must be sample names same with those in abund_table, the second column is the new sample names, e.g., the rownames in sample_table. See the example files.}
+\item{match_table}{default NULL; a two column table used to replace the sample names in feature table; Must be two columns without column names;
+The first column must be raw sample names same with those in feature table, 
+the second column must be new sample names same with the rownames in sample_table; Please also see the example files.
+If provided, must be one of the several types of formats: \cr
+1) comma seperated file with the suffix csv or tab seperated file with suffix tsv/txt; \cr
+2) Excel type file with the suffix xlsx or xls; require \code{readxl} package to be installed; \cr
+3) \code{data.frame} object from R.}
 
-\item{...}{parameter passed to microtable$new function of microeco package, such as auto_tidy parameter.}
+\item{...}{parameter passed to \code{microtable$new} function of \code{microeco} package, such as \code{auto_tidy} parameter.}
 }
 \value{
-microtable object.
+\code{microtable} object.
 }
 \description{
 Transform 'HUMAnN' metagenomic results to microtable object, reference: Franzosa et al. (2018) <doi:10.1038/s41592-018-0176-y>.
@@ -45,10 +50,10 @@ match_file_path <- system.file("extdata", "example_metagenome_match_table.tsv", 
 # use the raw data files stored inside the package for MetaCyc pathway database based analysis
 abund_file_path <- system.file("extdata", "example_HUMAnN_MetaCyc_abund.tsv", package="file2meco")
 # the default db is "MetaCyc"
-humann2meco(abund_table = abund_file_path, db = "MetaCyc")
-humann2meco(abund_table = abund_file_path, db = "MetaCyc", sample_data = sample_file_path, 
+humann2meco(abund_file_path, db = "MetaCyc")
+humann2meco(abund_file_path, db = "MetaCyc", sample_table = sample_file_path, 
   match_table = match_file_path)
-test <- humann2meco(abund_table = abund_file_path, db = "MetaCyc", sample_data = sample_file_path, 
+test <- humann2meco(abund_file_path, db = "MetaCyc", sample_table = sample_file_path, 
   match_table = match_file_path)
 test$tidy_dataset()
 # rel = FALSE donot use relative abundance
@@ -78,9 +83,9 @@ test1$plot_diff_bar(threshold = 2)
 #############################################################
 # KEGG pathway examples
 abund_file_path <- system.file("extdata", "example_HUMAnN_KEGG_abund.tsv", package="file2meco")
-humann2meco(abund_table = abund_file_path, db = "KEGG")
-test <- humann2meco(abund_table = abund_file_path, db = "KEGG", 
-  sample_data = sample_file_path, match_table = match_file_path)
+humann2meco(abund_file_path, db = "KEGG")
+test <- humann2meco(abund_file_path, db = "KEGG", 
+  sample_table = sample_file_path, match_table = match_file_path)
 test$tax_table \%<>\% subset(Level.1 != "unclassified")
 test$tidy_dataset()
 # rel = FALSE donot use relative abundance
