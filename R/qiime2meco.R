@@ -30,12 +30,13 @@
 #' }
 #' @export
 qiime2meco <- function(feature_table, sample_table = NULL, match_table = NULL, taxonomy_table = NULL, phylo_tree = NULL, rep_fasta = NULL, ...){
-	# if(!require(qiime2R)){
-		# stop("qiime2R package not installed!")
-	# }
 	# Read ASV data
-	feature_table <- as.data.frame(read_qza(feature_table)$data)
-	# first check the match_table
+	if(missing(feature_table)){
+		stop("The feature_table parameter must be provided! Please check the input!")
+	}else{
+		feature_table <- as.data.frame(read_qza(feature_table)$data)
+	}
+	# check the match_table
 	if(!is.null(match_table)){
 		feature_table <- check_match_table(match_table = match_table, abund_new = feature_table)
 	}
