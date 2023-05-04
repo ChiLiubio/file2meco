@@ -35,11 +35,15 @@
 #' test <- humann2meco(abund_file_path, db = "MetaCyc", sample_table = sample_file_path, 
 #'   match_table = match_file_path)
 #' test$tidy_dataset()
-#' # rel = FALSE donot use relative abundance
+#' # rel = FALSE sum original abundance instead of relative abundance
 #' test$cal_abund(select_cols = 1:3, rel = FALSE)
 #' test$taxa_abund$Superclass1 %<>% .[!grepl("unclass", rownames(.)), ]
-#' test1 <- trans_abund$new(test, taxrank = "Superclass1", ntaxa = 10)
-#' test1$plot_bar(facet = "Group", ylab_title = "Abundance (RPK)")
+#' # use_percentage = FALSE disable percentage for relative abundance
+#' test1 <- trans_abund$new(test, taxrank = "Superclass1", ntaxa = 10, use_percentage = FALSE)
+#' # reassign ylab title instead of default 'Relative Abundance'
+#' test1$ylabname <- "Abundance (RPK)"
+#' # bar_type = "notfull" show original abundance instead of normalized 0-1
+#' test1$plot_bar(facet = "Group", bar_type = "notfull")
 #' # select both function and taxa
 #' test$cal_abund(select_cols = c("Superclass1", "Phylum", "Genus"), rel = TRUE)
 #' test1 <- trans_abund$new(test, taxrank = "Phylum", ntaxa = 10, delete_part_prefix = TRUE)
@@ -57,7 +61,7 @@
 #' # taxa biomarker
 #' test$cal_abund(select_cols = 4:9, rel = TRUE)
 #' test$taxa_abund$Phylum %<>% .[!grepl("unclass", rownames(.)), ]
-#' test1 <- trans_diff$new(test, method = "lefse", group = "Group", p_adjust_method = NULL)
+#' test1 <- trans_diff$new(test, method = "lefse", group = "Group", p_adjust_method = "none")
 #' test1$plot_diff_bar(threshold = 2)
 #' #############################################################
 #' # KEGG pathway examples
@@ -67,10 +71,12 @@
 #'   sample_table = sample_file_path, match_table = match_file_path)
 #' test$tax_table %<>% subset(Level.1 != "unclassified")
 #' test$tidy_dataset()
-#' # rel = FALSE donot use relative abundance
 #' test$cal_abund(select_cols = 1:3, rel = FALSE)
-#' test1 <- trans_abund$new(test, taxrank = "Level.2", ntaxa = 10)
-#' test1$plot_bar(facet = "Group", ylab_title = "Abundance (RPK)")
+#' # use_percentage = FALSE disable percentage for relative abundance
+#' test1 <- trans_abund$new(test, taxrank = "Level.2", ntaxa = 10, use_percentage = FALSE)
+#' # or use ggplot2::ylab to change ylab title
+#' test1$ylabname <- "Abundance (RPK)"
+#' test1$plot_bar(facet = "Group", bar_type = "notfull")
 #' # select both function and taxa
 #' test$cal_abund(select_cols = c("Level.1", "Phylum", "Genus"), rel = TRUE)
 #' test1 <- trans_abund$new(test, taxrank = "Phylum", ntaxa = 10, delete_part_prefix = TRUE)
@@ -81,7 +87,7 @@
 #' test1$plot_diff_bar(threshold = 3)
 #' # taxa biomarker
 #' test$cal_abund(select_cols = 4:9, rel = TRUE)
-#' test1 <- trans_diff$new(test, method = "lefse", group = "Group", p_adjust_method = NULL)
+#' test1 <- trans_diff$new(test, method = "lefse", group = "Group", p_adjust_method = "none")
 #' test1$plot_diff_bar(threshold = 2)
 #' }
 #' @export

@@ -1,0 +1,316 @@
+""
+"Circoviridae;Unclassified;Circoviridae 4 LDMD-2013- NC_025709.1"	1
+"Unclassified;Unclassified;HCBI8.215 virus- NC_024689.1"	1
+"Phycodnaviridae;Chlorovirus;Acanthocystis turfacea Chlorella virus 1- NC_008724.1"	37
+"Phycodnaviridae;Unclassified;Aureococcus anophagefferens virus- NC_024697.1"	103
+"Phycodnaviridae;Prasinovirus;Bathycoccus sp. RCC1105 virus BpV- NC_014765.1"	26
+"Unclassified;Unclassified;Dunaliella viridis virus SI2- NC_023841.1"	1
+"Phycodnaviridae;Phaeovirus;Ectocarpus siliculosus virus 1- NC_002687.1"	200
+"Phycodnaviridae;Coccolithovirus;Emiliania huxleyi virus 86- NC_007346.1"	19
+"Phycodnaviridae;Phaeovirus;Feldmannia species virus- NC_011183.1"	1
+"Unclassified;Unclassified;Micromonas pusilla virus 12T- NC_020864.1"	8
+"Phycodnaviridae;Prasinovirus;Micromonas sp. RCC1109 virus MpV1- NC_014767.1"	5
+"Unclassified;Unclassified;Ostreococcus lucimarinus virus OlV5- NC_020852.1"	1
+"Phycodnaviridae;Unclassified;Ostreococcus tauri virus 1- NC_013288.1"	6
+"Phycodnaviridae;Unclassified;Ostreococcus tauri virus 2- NC_014789.1"	1
+"Phycodnaviridae;Unclassified;Ostreococcus virus OsV5- NC_010191.1"	3
+"Phycodnaviridae;Chlorovirus;Paramecium bursaria Chlorella virus 1- NC_000852.5"	37
+"Phycodnaviridae;Chlorovirus;Paramecium bursaria Chlorella virus AR158- NC_009899.1"	21
+"Phycodnaviridae;Chlorovirus;Paramecium bursaria Chlorella virus A1- NC_008603.1"	57
+"Phycodnaviridae;Chlorovirus;Paramecium bursaria Chlorella virus NY2A- NC_009898.1"	2
+"Phycodnaviridae;Prymnesiovirus;Phaeocystis globosa virus- NC_021312.1"	83
+"Unclassified;Unclassified;Tetraselmis viridis virus S20- NC_020840.1"	1
+"Unclassified;Unclassified;Abalone herpesvirus Victoria/AUS/2009- NC_018874.1"	41
+"Poxviridae;Betaentomopoxvirus;Adoxophyes honmai entomopoxvirus 'L'- NC_021247.1"	1
+"Baculoviridae;Alphabaculovirus;Agrotis ipsilon multiple nucleopolyhedrovirus- NC_011345.1"	160
+"Baculoviridae;Alphabaculovirus;Agrotis segetum nucleopolyhedrovirus- NC_007921.1"	11
+"Baculoviridae;Alphabaculovirus;Agrotis segetum nucleopolyhedrovirus B- NC_025960.1"	16
+"Baculoviridae;Alphabaculovirus;Anticarsia gemmatalis nucleopolyhedrovirus- NC_008520.2"	7
+"Baculoviridae;Alphabaculovirus;Apocheima cinerarium nucleopolyhedrovirus- NC_018504.1"	1
+"Iridoviridae;Iridovirus;Invertebrate iridescent virus 31- NC_024451.1"	2
+"Baculoviridae;Alphabaculovirus;Autographa californica multiple nucleopolyhedrovirus- NC_001623.1"	1
+"Baculoviridae;Alphabaculovirus;Bombyx mori nucleopolyhedrovirus- NC_012672.1"	6
+"Baculoviridae;Alphabaculovirus;Bombyx mori nucleopolyhedrovirus- NC_001962.1"	8
+"Baculoviridae;Alphabaculovirus;Buzura suppressaria nucleopolyhedrovirus- NC_023442.1"	2
+"Polydnaviridae;Ichnovirus;Campoletis sonorensis ichnovirus- NC_007993.1"	4
+"Baculoviridae;Alphabaculovirus;Choristoneura fumiferana multiple nucleopolyhedrovirus- NC_004778.3"	107
+"Baculoviridae;Alphabaculovirus;Choristoneura murinana alphabaculovirus- NC_023177.1"	16
+"Baculoviridae;Alphabaculovirus;Choristoneura occidentalis alphabaculovirus- NC_021925.1"	8
+"Baculoviridae;Betabaculovirus;Choristoneura occidentalis granulovirus- NC_008168.1"	32
+"Baculoviridae;Alphabaculovirus;Choristoneura rosaceana alphabaculovirus- NC_021924.1"	27
+"Poxviridae;Betaentomopoxvirus;Choristoneura rosaceana entomopoxvirus 'L'- NC_021249.1"	5
+"Baculoviridae;Alphabaculovirus;Chrysodeixis chalcites nucleopolyhedrovirus- NC_007151.1"	7
+"Baculoviridae;Alphabaculovirus;Clanis bilineata nucleopolyhedrovirus- NC_008293.1"	5
+"Baculoviridae;Betabaculovirus;Clostera anastomosis granulovirus- NC_022646.1"	2
+"Baculoviridae;Alphabaculovirus;Condylorrhiza vestigialis MNPV- NC_026430.1"	1
+"Polydnaviridae;Bracovirus;Cotesia congregata bracovirus- NC_006642.1"	1
+"Polydnaviridae;Bracovirus;Cotesia congregata bracovirus- NC_006645.1"	3
+"Polydnaviridae;Bracovirus;Cotesia congregata bracovirus- NC_006647.1"	12
+"Polydnaviridae;Bracovirus;Cotesia congregata bracovirus- NC_006633.1"	4
+"Polydnaviridae;Bracovirus;Cotesia congregata bracovirus- NC_006656.1"	1
+"Polydnaviridae;Bracovirus;Cotesia congregata bracovirus- NC_006635.1"	3
+"Polydnaviridae;Bracovirus;Cotesia congregata bracovirus- NC_006657.1"	4
+"Polydnaviridae;Bracovirus;Cotesia congregata bracovirus- NC_006658.1"	74
+"Polydnaviridae;Bracovirus;Cotesia congregata bracovirus- NC_006659.1"	74
+"Polydnaviridae;Bracovirus;Cotesia congregata bracovirus- NC_006662.1"	4
+"Polydnaviridae;Bracovirus;Cotesia congregata bracovirus- NC_006649.1"	15
+"Polydnaviridae;Bracovirus;Cotesia congregata bracovirus- NC_006639.1"	27
+"Polydnaviridae;Bracovirus;Cotesia congregata bracovirus- NC_006653.1"	2
+"Polydnaviridae;Bracovirus;Cotesia congregata bracovirus- NC_006641.1"	46
+"Polydnaviridae;Bracovirus;Cotesia congregata bracovirus- NC_006651.1"	5
+"Baculoviridae;Betabaculovirus;Cryptophlebia leucotreta granulovirus- NC_005068.1"	6
+"Baculoviridae;Deltabaculovirus;Culex nigripalpus nucleopolyhedrovirus- NC_003084.1"	7
+"Ascoviridae;Ascovirus;Diadromus pulchellus ascovirus 4a- NC_011335.1"	8
+"Baculoviridae;Betabaculovirus;Epinotia aporema granulovirus- NC_018875.1"	12
+"Baculoviridae;Betabaculovirus;Erinnyis ello granulovirus- NC_025257.1"	5
+"Polydnaviridae;Ichnovirus;Glypta fumiferanae ichnovirus- NC_008898.1"	2
+"Polydnaviridae;Ichnovirus;Glypta fumiferanae ichnovirus- NC_008913.1"	58
+"Polydnaviridae;Ichnovirus;Glypta fumiferanae ichnovirus- NC_008925.1"	35
+"Polydnaviridae;Ichnovirus;Glypta fumiferanae ichnovirus- NC_008907.1"	14
+"Polydnaviridae;Ichnovirus;Glypta fumiferanae ichnovirus- NC_008908.1"	13
+"Polydnaviridae;Ichnovirus;Glypta fumiferanae ichnovirus- NC_008912.1"	225
+"Polydnaviridae;Ichnovirus;Glypta fumiferanae ichnovirus- NC_008930.1"	1
+"Polydnaviridae;Ichnovirus;Glypta fumiferanae ichnovirus- NC_008862.1"	3
+"Nudiviridae;Unclassified;Gryllus bimaculatus nudivirus- NC_009240.1"	16
+"Baculoviridae;Alphabaculovirus;Helicoverpa armigera nucleopolyhedrovirus- NC_011354.1"	1
+"Baculoviridae;Alphabaculovirus;Helicoverpa armigera nucleopolyhedrovirus- NC_003094.2"	3
+"Ascoviridae;Ascovirus;Heliothis virescens ascovirus 3a- NC_009233.1"	1
+"Baculoviridae;Alphabaculovirus;Hemileuca sp. nucleopolyhedrovirus- NC_021923.1"	4
+"Baculoviridae;Alphabaculovirus;Hyphantria cunea nucleopolyhedrovirus- NC_007767.1"	19
+"Polydnaviridae;Ichnovirus;Hyposoter fugitivus ichnovirus- NC_008962.1"	18
+"Polydnaviridae;Ichnovirus;Hyposoter fugitivus ichnovirus- NC_008995.1"	1
+"Polydnaviridae;Ichnovirus;Hyposoter fugitivus ichnovirus- NC_008969.1"	2
+"Polydnaviridae;Ichnovirus;Hyposoter fugitivus ichnovirus- NC_008990.1"	1
+"Iridoviridae;Chloriridovirus;Invertebrate iridescent virus 3- NC_008187.1"	1
+"Iridoviridae;Iridovirus;Invertebrate iridescent virus 30- NC_023611.1"	1
+"Iridoviridae;Iridovirus;Invertebrate iridescent virus 6- NC_003038.1"	6
+"Iridoviridae;Iridovirus;Invertebrate iridovirus 22- NC_021901.1"	3
+"Baculoviridae;Alphabaculovirus;Lambdina fiscellaria nucleopolyhedrovirus- NC_026922.1"	6
+"Baculoviridae;Alphabaculovirus;Leucania separata nucleopolyhedrovirus- NC_008348.1"	9
+"Baculoviridae;Alphabaculovirus;Lymantria dispar multiple nucleopolyhedrovirus- NC_001973.1"	70
+"Baculoviridae;Alphabaculovirus;Lymantria xylina MNPV- NC_013953.1"	25
+"Baculoviridae;Alphabaculovirus;Mamestra brassicae multiple nucleopolyhedrovirus- NC_023681.1"	5
+"Baculoviridae;Alphabaculovirus;Mamestra configurata nucleopolyhedrovirus B- NC_004117.1"	3
+"Baculoviridae;Alphabaculovirus;Maruca vitrata nucleopolyhedrovirus- NC_008725.1"	1
+"Poxviridae;Unclassified;Melanoplus sanguinipes entomopoxvirus- NC_001993.1"	26
+"Baculoviridae;Gammabaculovirus;Neodiprion lecontei nucleopolyhedrovirus- NC_005906.1"	2
+"Baculoviridae;Alphabaculovirus;Orgyia pseudotsugata multiple nucleopolyhedrovirus- NC_001875.2"	87
+"Nudiviridae;Unclassified;Oryctes rhinoceros nudivirus- NC_011588.1"	60
+"Malacoherpesviridae;Ostreavirus;Ostreid herpesvirus 1- NC_005881.2"	1
+"Nudiviridae;Unclassified;Penaeus monodon nudivirus- NC_024692.1"	8
+"Baculoviridae;Alphabaculovirus;Peridroma alphabaculovirus- NC_024625.1"	4
+"Baculoviridae;Betabaculovirus;Phthorimaea operculella granulovirus- NC_004062.1"	2
+"Baculoviridae;Betabaculovirus;Plutella xylostella granulovirus- NC_002593.1"	4
+"Baculoviridae;Alphabaculovirus;Plutella xylostella multiple nucleopolyhedrovirus- NC_008349.1"	3
+"Baculoviridae;Betabaculovirus;Pseudaletia unipuncta granulovirus- NC_013772.1"	1
+"Baculoviridae;Alphabaculovirus;Autographa californica multiple nucleopolyhedrovirus- NC_004323.1"	2
+"Nimaviridae;Whispovirus;White spot syndrome virus- NC_003225.2"	21
+"Baculoviridae;Alphabaculovirus;Spodoptera exigua multiple nucleopolyhedrovirus- NC_002169.1"	7
+"Ascoviridae;Ascovirus;Spodoptera frugiperda ascovirus 1a- NC_008361.1"	8
+"Baculoviridae;Betabaculovirus;Spodoptera frugiperda granulovirus- NC_026511.1"	7
+"Baculoviridae;Betabaculovirus;Spodoptera litura granulovirus- NC_009503.1"	2
+"Baculoviridae;Alphabaculovirus;Spodoptera litura nucleopolyhedrovirus- NC_003102.1"	32
+"Baculoviridae;Alphabaculovirus;Spodoptera litura nucleopolyhedrovirus II- NC_011616.1"	2
+"Baculoviridae;Alphabaculovirus;Thysanoplusia orichalcea nucleopolyhedrovirus- NC_019945.1"	1
+"Ascoviridae;Ascovirus;Trichoplusia ni ascovirus 2c- NC_008518.1"	13
+"Baculoviridae;Betabaculovirus;Xestia c-nigrum granulovirus- NC_002331.1"	1
+"Nudiviridae;Unclassified;Heliothis zea nudivirus- NC_004156.2"	4
+"Mimiviridae;Mimivirus;Acanthamoeba polyphaga mimivirus- NC_014649.1"	2
+"Mimiviridae;Unclassified;Moumouvirus- NC_020104.1"	42
+"Mimiviridae;Cafeteriavirus;Cafeteria roenbergensis virus- NC_014637.1"	24
+"Unclassified;Unclassified;Mavirus- NC_015230.1"	5
+"Mimiviridae;Unclassified;Megavirus chiliensis- NC_016072.1"	29
+"Mimiviridae;Unclassified;Megavirus lba- NC_020232.1"	18
+"Mimiviridae;Unclassified;Megavirus terra1- NC_023640.1"	26
+"Mimiviridae;Unclassified;Mimivirus terra2- NC_023639.1"	3
+"Unclassified;Unclassified;Pandoravirus dulcis- NC_021858.1"	498
+"Unclassified;Unclassified;Pandoravirus inopinatum- NC_026440.1"	109
+"Unclassified;Unclassified;Pandoravirus salinus- NC_022098.1"	488
+"Herpesviridae;Macavirus;Alcelaphine herpesvirus 1- NC_002531.1"	13
+"Herpesviridae;Macavirus;Alcelaphine herpesvirus 2- NC_024382.1"	3
+"Alloherpesviridae;Cyprinivirus;Anguillid herpesvirus 1- NC_013668.3"	27
+"Herpesviridae;Cytomegalovirus;Aotine herpesvirus 1- NC_016447.1"	113
+"Herpesviridae;Rhadinovirus;Ateline herpesvirus 3- NC_001987.1"	10
+"Polyomaviridae;Polyomavirus;Bat polyomavirus 6c- NC_026769.1"	1
+"Polyomaviridae;Polyomavirus;Black sea bass polyomavirus 1- NC_025790.1"	3
+"Herpesviridae;Varicellovirus;Bovine herpesvirus 1- NC_001847.1"	53
+"Herpesviridae;Varicellovirus;Bovine herpesvirus 5- NC_005261.2"	134
+"Herpesviridae;Macavirus;Bovine herpesvirus 6- NC_024303.1"	11
+"Poxviridae;Parapoxvirus;Bovine papular stomatitis virus- NC_005337.1"	2
+"Poxviridae;Orthopoxvirus;Camelpox virus- NC_003391.1"	2
+"Poxviridae;Avipoxvirus;Canarypox virus- NC_005309.1"	1
+"Papillomaviridae;Taupapillomavirus;Taupapillomavirus 1- NC_006564.1"	4
+"Herpesviridae;Unclassified;Caviid herpesvirus 2- NC_020231.1"	83
+"Herpesviridae;Simplexvirus;Cercopithecine herpesvirus 2- NC_006560.1"	65
+"Herpesviridae;Cytomegalovirus;Cercopithecine herpesvirus 5- NC_012783.2"	7
+"Herpesviridae;Unclassified;Chimpanzee alpha-1 herpesvirus- NC_023677.1"	6
+"Poxviridae;Orthopoxvirus;Cowpox virus- NC_003663.2"	21
+"Unclassified;Unclassified;NA- NC_016154.1"	4
+"Alloherpesviridae;Cyprinivirus;Cyprinid herpesvirus 1- NC_019491.1"	176
+"Alloherpesviridae;Cyprinivirus;Cyprinid herpesvirus 2- NC_019495.1"	45
+"Alloherpesviridae;Cyprinivirus;Cyprinid herpesvirus 3- NC_009127.1"	527
+"Poxviridae;Cervidpoxvirus;Deerpox virus W-1170-84- NC_006967.1"	16
+"Poxviridae;Cervidpoxvirus;Deerpox virus W-848-83- NC_006966.1"	4
+"Adenoviridae;Aviadenovirus;Duck adenovirus 2- NC_024486.1"	24
+"Poxviridae;Orthopoxvirus;Ectromelia virus- NC_004105.1"	11
+"Herpesviridae;Proboscivirus;Elephantid herpesvirus 1- NC_020474.2"	19
+"Herpesviridae;Varicellovirus;Equid herpesvirus 1- NC_001491.2"	16
+"Herpesviridae;Percavirus;Equid herpesvirus 2- NC_001650.2"	10
+"Herpesviridae;Varicellovirus;Equid herpesvirus 3- NC_024771.1"	13
+"Herpesviridae;Percavirus;Equid herpesvirus 5- NC_026421.1"	52
+"Herpesviridae;Varicellovirus;Equid herpesvirus 8- NC_017826.1"	25
+"Iridoviridae;Ranavirus;European catfish virus- NC_017940.1"	21
+"Herpesviridae;Mardivirus;Falconid herpesvirus 1- NC_024450.1"	30
+"Adenoviridae;Aviadenovirus;Fowl aviadenovirus B- NC_021221.1"	1
+"Adenoviridae;Aviadenovirus;Fowl aviadenovirus D- NC_000899.1"	4
+"Adenoviridae;Aviadenovirus;Fowl aviadenovirus E- NC_014969.1"	2
+"Iridoviridae;Ranavirus;Frog virus 3- NC_005946.1"	11
+"Herpesviridae;Simplexvirus;Fruit bat alphaherpesvirus 1- NC_024306.1"	2
+"Herpesviridae;Iltovirus;Gallid herpesvirus 1- NC_006623.1"	2
+"Herpesviridae;Mardivirus;Gallid herpesvirus 2- NC_002229.3"	6
+"Herpesviridae;Mardivirus;Gallid herpesvirus 3- NC_002577.1"	8
+"Poxviridae;Capripoxvirus;Goatpox virus- NC_004003.1"	1
+"Herpesviridae;Roseolovirus;Human herpesvirus 6A- NC_001664.2"	6
+"Herpesviridae;Roseolovirus;Human herpesvirus 6B- NC_000898.1"	6
+"Alloherpesviridae;Ictalurivirus;Ictalurid herpesvirus 1- NC_001493.2"	170
+"Iridoviridae;Lymphocystivirus;Lymphocystis disease virus - isolate China- NC_005902.1"	10
+"Herpesviridae;Simplexvirus;Macacine herpesvirus 1- NC_004812.1"	65
+"Herpesviridae;Lymphocryptovirus;Macacine herpesvirus 4- NC_006146.1"	2
+"Herpesviridae;Rhadinovirus;Macacine herpesvirus 5- NC_003401.1"	1
+"Herpesviridae;Mardivirus;Meleagrid herpesvirus 1- NC_002641.1"	2
+"Poxviridae;Molluscipoxvirus;Molluscum contagiosum virus- NC_001731.1"	55
+"Poxviridae;Orthopoxvirus;Monkeypox virus- NC_003310.1"	7
+"Herpesviridae;Muromegalovirus;Murid herpesvirus 1- NC_004065.1"	1
+"Herpesviridae;Muromegalovirus;Murid herpesvirus 2- NC_002512.2"	66
+"Herpesviridae;Muromegalovirus;Murid herpesvirus 8- NC_019559.1"	3
+"Poxviridae;Crocodylidpoxvirus;Nile crocodilepox virus- NC_008030.1"	29
+"Poxviridae;Parapoxvirus;Orf virus- NC_005336.1"	12
+"Herpesviridae;Macavirus;Ovine herpesvirus 2- NC_007646.1"	17
+"Herpesviridae;Cytomegalovirus;Panine herpesvirus 2- NC_003521.1"	5
+"Herpesviridae;Simplexvirus;Papiine herpesvirus 2- NC_007653.1"	23
+"Herpesviridae;Cytomegalovirus;Cercopithecine herpesvirus 5- NC_027016.1"	1
+"Poxviridae;Parapoxvirus;Parapoxvirus red deer/HL953- NC_025963.1"	9
+"Poxviridae;Avipoxvirus;Penguinpox virus- NC_024446.1"	5
+"Adenoviridae;Aviadenovirus;Pigeon aviadenovirus A- NC_024474.1"	10
+"Poxviridae;Avipoxvirus;Pigeonpox virus- NC_024447.1"	16
+"Poxviridae;Parapoxvirus;Pseudocowpox virus- NC_013804.1"	22
+"Poxviridae;Leporipoxvirus;Rabbit fibroma virus- NC_001266.1"	7
+"Alloherpesviridae;Batrachovirus;Ranid herpesvirus 2- NC_008210.1"	1
+"Herpesviridae;Simplexvirus;Saimiriine herpesvirus 1- NC_014567.1"	46
+"Herpesviridae;Cytomegalovirus;Saimiriine herpesvirus 4- NC_016448.1"	7
+"Herpesviridae;Varicellovirus;Suid herpesvirus 1- NC_006151.1"	28
+"Herpesviridae;Unclassified;Suid herpesvirus 2- NC_022233.1"	8
+"Poxviridae;Suipoxvirus;Swinepox virus- NC_003389.1"	2
+"Poxviridae;Orthopoxvirus;Taterapox virus- NC_008291.1"	7
+"Herpesviridae;Unclassified;Tupaiid herpesvirus 1- NC_002794.1"	209
+"Papillomaviridae;Omegapapillomavirus;Omegapapillomavirus 1- NC_010739.1"	1
+"Poxviridae;Yatapoxvirus;Yaba monkey tumor virus- NC_005179.1"	5
+"Poxviridae;Orthopoxvirus;Yoka poxvirus- NC_015960.1"	3
+"Papillomaviridae;Betapapillomavirus;Colobus monkey papillomavirus- NC_015692.1"	1
+"Herpesviridae;Simplexvirus;Human herpesvirus 1- NC_001806.2"	14
+"Herpesviridae;Simplexvirus;Human herpesvirus 2- NC_001798.2"	8
+"Herpesviridae;Varicellovirus;Human herpesvirus 3- NC_001348.1"	2
+"Herpesviridae;Lymphocryptovirus;Human herpesvirus 4- NC_007605.1"	4
+"Herpesviridae;Cytomegalovirus;Human herpesvirus 5- NC_006273.2"	3
+"Herpesviridae;Roseolovirus;Human herpesvirus 7- NC_001716.2"	4
+"Herpesviridae;Rhadinovirus;Human herpesvirus 8- NC_009333.1"	6
+"Papillomaviridae;Betapapillomavirus;Betapapillomavirus 2- NC_001596.1"	10
+"Papillomaviridae;Betapapillomavirus;Betapapillomavirus 6- NC_015691.1"	11
+"Nudiviridae;Unclassified;Tipula oleracea nudivirus- NC_026242.1"	10
+"Unclassified;Unclassified;Alternaria alternata virus 1- NC_010991.1"	2
+"Chrysoviridae;Chrysovirus;Amasya cherry disease associated chrysovirus- NC_009944.1"	1
+"Unclassified;Unclassified;Aspergillus foetidus dsRNA mycovirus- NC_020101.1"	2
+"Unclassified;Unclassified;Aspergillus foetidus dsRNA mycovirus- NC_020100.1"	6
+"Chrysoviridae;Chrysovirus;Helminthosporium victoriae 145S virus- NC_005979.1"	5
+"Chrysoviridae;Chrysovirus;Magnaporthe oryzae chrysovirus 1- NC_014464.1"	4
+"Chrysoviridae;Chrysovirus;Penicillium chrysogenum virus- NC_007542.1"	3
+"Unclassified;Unclassified;Saccharomyces cerevisiae killer virus M1- NC_001782.1"	21
+"Hypoviridae;Hypovirus;Sclerotinia sclerotiorum hypovirus 1- NC_015939.1"	3
+"Reoviridae;Cypovirus;Cypovirus 14- NC_003010.1"	1
+"Partitiviridae;Unclassified;Dill cryptic virus 1- NC_022615.1"	5
+"Partitiviridae;Unclassified;Dill cryptic virus 1- NC_022614.1"	2
+"Partitiviridae;Betapartitivirus;Dill cryptic virus 2- NC_021148.1"	5
+"Partitiviridae;Betapartitivirus;Hop trefoil cryptic virus 2- NC_021099.1"	5
+"Partitiviridae;Betapartitivirus;Pleurotus ostreatus virus 1- NC_006960.1"	8
+"Partitiviridae;Betapartitivirus;Primula malacoides virus 1- NC_013110.1"	19
+"Reoviridae;Unclassified;Raspberry latent virus- NC_014602.1"	4
+"Partitiviridae;Unclassified;Red clover cryptic virus 1- NC_022617.1"	2
+"Partitiviridae;Betapartitivirus;Red clover cryptic virus 2- NC_021097.1"	6
+"Partitiviridae;Unclassified;Rhizoctonia solani dsRNA virus 2- NC_023684.1"	1
+"Partitiviridae;Unclassified;Rhizoctonia solani dsRNA virus 2- NC_023685.1"	2
+"Partitiviridae;Alphapartitivirus;Rosellinia necatrix partitivirus 2- NC_020235.1"	13
+"Partitiviridae;Unclassified;Sclerotinia sclerotiorum partitivirus S- NC_013015.1"	2
+"Partitiviridae;Alphapartitivirus;Vicia cryptic virus- NC_007242.1"	1
+"Partitiviridae;Betapartitivirus;White clover cryptic virus 2- NC_021095.1"	10
+"Unclassified;Unclassified;Marine RNA virus JP-B- NC_009758.1"	2
+"Unclassified;Unclassified;Oyster mushroom spherical virus- NC_004560.1"	3
+"Unclassified;Unclassified;Phytophthora infestans RNA virus 1- NC_013220.1"	1
+"Unclassified;Unclassified;Phytophthora infestans RNA virus 1- NC_013221.1"	6
+"Iflaviridae;Iflavirus;Dinocampus coccinellae paralysis virus- NC_025835.1"	1
+"Dicistroviridae;Unclassified;Formica exsecta virus 1- NC_023021.1"	1
+"Iflaviridae;Unclassified;Graminella nigrifrons virus 1- NC_026733.1"	1
+"Mesoniviridae;Alphamesonivirus;Alphamesonivirus 1- NC_015874.1"	4
+"Bunyaviridae;Tospovirus;Bean necrotic mosaic virus- NC_018072.1"	3
+"Tymoviridae;Tymovirus;Dulcamara mottle virus- NC_007609.1"	6
+"Bunyaviridae;Tospovirus;Groundnut ringspot and Tomato chlorotic spot virus reassortant- NC_015467.1"	5
+"Bunyaviridae;Tospovirus;Impatiens necrotic spot virus- NC_003616.1"	1
+"Bunyaviridae;Tospovirus;Impatiens necrotic spot virus- NC_003624.1"	7
+"Bunyaviridae;Tospovirus;Melon yellow spot virus- NC_008307.1"	1
+"Bunyaviridae;Tospovirus;Melon yellow spot virus- NC_008300.1"	1
+"Tenuivirus;Rice grassy stunt virus- NC_002326.1;"	2
+"Tenuivirus;Rice stripe virus- NC_003776.1;"	5
+"Bunyaviridae;Tospovirus;Tomato spotted wilt virus- NC_002051.1"	3
+"Bunyaviridae;Tospovirus;Tomato zonate spot virus- NC_010490.1"	6
+"Bunyaviridae;Tospovirus;Watermelon silver mottle virus- NC_003843.1"	4
+"Potyviridae;Potyvirus;Asparagus virus 1- NC_025821.1"	6
+"Potyviridae;Bymovirus;Barley yellow mosaic virus- NC_002990.1"	1
+"Potyviridae;Potyvirus;Bidens mottle virus- NC_014325.1"	1
+"Bromoviridae;Bromovirus;Broad bean mottle virus- NC_004006.1"	8
+"Bromoviridae;Bromovirus;Cassia yellow blotch virus- NC_007001.1"	1
+"Bromoviridae;Bromovirus;Cowpea chlorotic mottle virus- NC_003542.1"	1
+"Potyviridae;Potyvirus;Dasheen mosaic virus- NC_003537.1"	2
+"Betaflexiviridae;Carlavirus;Garlic common latent virus- NC_016440.1"	1
+"Bromoviridae;Cucumovirus;Gayfeather mild mottle virus- NC_012136.1"	4
+"Virgaviridae;Tobamovirus;Hibiscus latent Fort Pierce virus- NC_025381.1"	1
+"Virgaviridae;Tobamovirus;Hibiscus latent Singapore virus- NC_008310.2"	6
+"Luteoviridae;Polerovirus;Maize yellow dwarf virus-RMV- NC_021484.1"	1
+"Bunyaviridae;Unclassified;Mulberry vein banding virus- NC_026618.1"	17
+"Alphaflexiviridae;Potexvirus;Pepino mosaic virus- NC_004067.1"	2
+"Secoviridae;Waikavirus;Rice tungro spherical virus- NC_001632.1"	1
+"Emaravirus;Rose rosette virus- NC_015300.1;"	2
+"Unclassified;Unclassified;Sclerotinia sclerotiorum debilitation-associated RNA virus 2- NC_024298.1"	1
+"Bromoviridae;Bromovirus;Spring beauty latent virus- NC_004122.1"	2
+"Bromoviridae;Cucumovirus;Tomato aspermy virus- NC_003836.1"	3
+"Potyviridae;Potyvirus;Zantedeschia mild mosaic virus- NC_011560.1"	11
+"Picornaviridae;Sapelovirus;Avian sapelovirus- NC_006553.1"	1
+"Unclassified;Unclassified;Ball python nidovirus- NC_024709.1"	24
+"Coronaviridae;Betacoronavirus;Bat coronavirus (BtCoV/133/2005)- NC_008315.1"	1
+"Picornaviridae;Dicipivirus;Cadicivirus A- NC_021178.1"	2
+"Unclassified;Unclassified;Carp picornavirus 1- NC_023162.1"	3
+"Picornaviridae;Unclassified;Crohivirus- NC_025474.1"	1
+"Picornaviridae;Unclassified;Eel picornavirus 1- NC_022332.1"	2
+"Picornaviridae;Cardiovirus;Encephalomyocarditis virus- NC_001479.1"	131
+"Picornaviridae;Unclassified;Fathead minnow picornavirus- NC_023437.1"	5
+"Flaviviridae;Pestivirus;Aydin virus- NC_018713.1"	2
+"Flaviviridae;Pestivirus;Pronghorn antelope pestivirus- NC_024018.2"	5
+"Picornaviridae;Cardiovirus;Theilovirus- NC_009448.2"	6
+"Picornaviridae;Unclassified;Sicinivirus 1- NC_023861.1"	2
+"Coronaviridae;Bafinivirus;White bream virus- NC_008516.1"	1
+"Paramyxoviridae;Avulavirus;Avian paramyxovirus 3- NC_025373.1"	3
+"Hepeviridae;Unclassified;Cutthroat trout virus- NC_015521.1"	1
+"Flaviviridae;Hepacivirus;Hepatitis C virus- NC_004102.1"	36
+"Flaviviridae;Hepacivirus;Hepatitis C virus- NC_009823.1"	66
+"Flaviviridae;Hepacivirus;Hepatitis C virus- NC_009827.1"	19
+"Coronaviridae;Alphacoronavirus;Human coronavirus 229E- NC_002645.1"	5
+"Paramyxoviridae;Rubulavirus;Sosuga virus- NC_025343.1"	1
+"Bunyaviridae;Hantavirus;Thottapalayam virus- NC_010708.1"	3
+"Togaviridae;Alphavirus;Bebaru virus- NC_016962.1"	1
+"Unclassified;Unclassified;Jingmen tick virus- NC_024114.1"	3
+"Unclassified;Unclassified;Jingmen tick virus- NC_024112.1"	10
+"Nyamiviridae;Nyavirus;Nyamanini nyavirus- NC_012703.1"	11
+"Togaviridae;Alphavirus;Southern elephant seal virus- NC_016960.1"	1
+"Bunyaviridae;Phlebovirus;Punta Toro virus- NC_027202.1"	9
+"Bunyaviridae;Orthobunyavirus;Shamonda virus- NC_018464.1"	6
+"Flaviviridae;Flavivirus;Tick-borne encephalitis virus- NC_001672.1"	5
+"Caulimoviridae;Badnavirus;Cycad leaf necrosis virus- NC_011097.1"	1
+"Caulimoviridae;Badnavirus;Pagoda yellow mosaic associated virus- NC_024301.1"	1

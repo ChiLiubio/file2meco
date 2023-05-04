@@ -38,8 +38,10 @@ library(file2meco)
 dir_path <- system.file("extdata", "viromescan", package="file2meco")
 d1 <- vs2meco(dir_path)
 d1$cal_abund()
-# d1$taxa_abund$Family is same with the percentage output of viromescan at Family level, i.e. Family_level_results-\%.txt file
+# d1$taxa_abund$Family is same with the percentage output of viromescan at 
+# Family level, i.e. Family_level_results-\%.txt file
 d1$cal_abund(rel = FALSE)
-# d1$taxa_abund$Family is same with the count output of viromescan at Family level, i.e. Family_level_results-Counts.txt file
+# d1$taxa_abund$Family is same with the count output of viromescan at 
+# Family level, i.e. Family_level_results-Counts.txt file
 }
 }
