@@ -2,18 +2,22 @@
 #'
 #' @description
 #' Transform 'QIIME2' qza results to microtable object.
-#' @param feature_table the ASV data, such as the \code{'data2_table.qza'}.
-#' @param sample_table default NULL; the sample metadata table; four types of formats are available: 
-#'   1) q2-type tab seperated file of QIIME2, such as the \code{'sample-metadata.tsv'} in the example;
-#'   2) comma seperated file with the suffix csv or tab seperated file with suffix tsv/txt;
-#'   3) Excel type file with the suffix xlsx or xls; require \code{readxl} package to be installed;
+#' @param feature_table the ASV abundance data with qza format, such as the \code{'data2_table.qza'} in the example.
+#' @param sample_table default NULL; the sample metadata table; four types of formats are available: \cr
+#'   1) q2-type tab seperated file of QIIME2, such as the \code{'sample-metadata.tsv'} in the example;\cr
+#'   2) comma seperated file with the suffix csv or tab seperated file with suffix tsv or txt;\cr
+#'   3) Excel type file with the suffix xlsx or xls; require \code{readxl} package to be installed;\cr
 #'   4) \code{data.frame} object from R.
-#' @param match_table default NULL; a two column table used to replace the sample names in abundance table; Must be two columns without column names;
-#'    The first column must be raw sample names same with those in feature table, 
-#'    the second column must be new sample names same with the rownames in sample_table; Please also see the example files.
-#' @param taxonomy_table default NULL; the taxonomy data, such as the \code{'taxonomy.qza'}.
-#' @param phylo_tree default NULL; the phylogenetic tree, such as the \code{'tree.qza'}.
-#' @param rep_fasta default NULL; the representative sequences, such as the \code{'dada2_rep_set.qza'}.
+#' @param match_table default NULL; a two column table used to replace the sample names in feature table; Must be two columns without column names;
+#'   The first column must be raw sample names same with those in feature table, 
+#'   the second column must be new sample names same with the rownames in sample_table; Please also see the example files.
+#'   If provided, must be one of the several types of formats: \cr
+#'   1) comma seperated file with the suffix csv or tab seperated file with suffix tsv or txt; \cr
+#'   2) Excel type file with the suffix xlsx or xls; require \code{readxl} package to be installed; \cr
+#'   3) \code{data.frame} object from R.
+#' @param taxonomy_table default NULL; the taxonomy assignment data with qza format, such as the \code{'taxonomy.qza'} in the example.
+#' @param phylo_tree default NULL; the phylogenetic tree with qza format, such as the \code{'tree.qza'} in the example.
+#' @param rep_fasta default NULL; the representative sequences with qza format, such as the \code{'dada2_rep_set.qza'} in the example.
 #' @param ... parameter passed to \code{microtable$new} function of \code{microeco} package, such as \code{auto_tidy} parameter.
 #' @return \code{microtable} object.
 #' @examples
