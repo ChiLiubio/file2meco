@@ -1,8 +1,10 @@
-#' Transform 'Ncyc' metagenomic abundance to 'microtable' object.
+#' Transform 'NCycDB' or 'PCycDB' metagenomic abundance to 'microtable' object.
 #'
 #' @description
-#' Transform 'Ncyc' metagenomic abundance to microtable object. Reference: Qichao et al. (2019) <doi: 10.1093/bioinformatics/bty741>.
-#' @param feature_table 'Ncyc' software output abundance table, see the example file.
+#' Transform 'NCycDB' or 'PCycDB' metagenomic abundance to microtable object. 
+#'   The function can identify the mapping database according to the gene names of input feature abundance table.
+#'   Reference: Qichao et al. (2019) <doi: 10.1093/bioinformatics/bty741> and Zeng et al. (2022) <doi: 10.1186/s40168-022-01292-1>.
+#' @param feature_table 'NCycDB' or 'PCycDB' output abundance table, see the example file.
 #' @param sample_table default NULL; sample metadata table; If provided, must be one of the several types of formats: 
 #'   1) comma seperated file with the suffix csv or tab seperated file with suffix tsv/txt; 
 #'   2) Excel type file with the suffix xlsx or xls; require \code{readxl} package to be installed; 
@@ -16,7 +18,7 @@
 #' @return microtable object.
 #' @examples
 #' \donttest{
-#' # use the raw data files stored inside the package
+#' # NCycDB
 #' abund_file_path <- system.file("extdata", "example_Ncyc_table.tsv", package="file2meco")
 #' sample_file_path <- system.file("extdata", "example_metagenome_sample_info.tsv", 
 #'   package="file2meco")
@@ -29,7 +31,7 @@
 #'   match_table = match_file_path)
 #' test$tidy_dataset()
 #' # use split_group = TRUE to calculate the pathway abundance with multipe map correspondance
-#' test$cal_abund(select_cols = 1:2, rel = TRUE, split_group = TRUE, split_column = "Pathway")
+#' test$cal_abund(select_cols = 1, rel = TRUE, split_group = TRUE, split_column = "Pathway")
 #' test$taxa_abund$Pathway %<>% .[!grepl("unclass", rownames(.)), ]
 #' test1 <- trans_abund$new(test, taxrank = "Pathway")
 #' test1$plot_bar(bar_type = "notfull")
@@ -38,12 +40,29 @@
 #' test$taxa_abund$Gene %<>% .[!grepl("unclass", rownames(.)), ]
 #' test1 <- trans_abund$new(test, taxrank = "Gene")
 #' test1$plot_bar(bar_type = "notfull")
+#' 
+#' # PCycDB
+#' abund_file_path <- system.file("extdata", "example_Pcyc_table.tsv", package="file2meco")
+#' test <- ncyc2meco(abund_file_path)
+#' test$tidy_dataset()
+#' # show pathway abundance
+#' test$cal_abund(select_cols = 1, rel = TRUE, split_group = TRUE, split_by = "&&", 
+#'     split_column = "Pathway")
+#' test$taxa_abund$Pathway %<>% .[!grepl("unclass|Others", rownames(.)), ]
+#' test1 <- trans_abund$new(test, taxrank = "Pathway")
+#' test1$plot_bar(bar_type = "notfull")
+#' # show gene abundance
+#' test$cal_abund(select_cols = 2, rel = TRUE, split_group = FALSE)
+#' test$taxa_abund$Gene %<>% .[!grepl("unclass", rownames(.)), ]
+#' test1 <- trans_abund$new(test, taxrank = "Gene")
+#' test1$plot_bar(bar_type = "notfull")
 #' }
 #' @export
 ncyc2meco <- function(feature_table, sample_table = NULL, match_table = NULL, ...){
 	# first check func_data file format.
-	abund_raw <- read.delim(feature_table, row.names = 1, comment.char = "#", stringsAsFactors = FALSE)
-
+	abund_raw <- read.delim(feature_table, row.names = 1, comment.char = "#", stringsAsFactors = FALSE, check.names = FALSE)
+	feature_names <- rownames(abund_raw)
+	
 	seq_num <- readLines(feature_table)[1]
 	seq_num <- as.numeric(gsub(".*\\s(\\d+)$",  "\\1", seq_num))
 	
@@ -60,7 +79,18 @@ ncyc2meco <- function(feature_table, sample_table = NULL, match_table = NULL, ..
 		sample_table <- check_sample_table(sample_table = sample_table)
 	}
 	
-	data("ncyc_map", envir=environment())
-	dataset <- microtable$new(otu_table = abund_new, tax_table = ncyc_map, sample_table = sample_table, ...)
+	data("ncyc_map", envir = environment())
+	if(any(feature_names %in% rownames(ncyc_map))){
+		mapping_file <- ncyc_map
+	}else{
+		data("pcyc_map", envir = environment())
+		if(any(feature_names %in% rownames(pcyc_map))){
+			mapping_file <- pcyc_map
+		}else{
+			stop("Unknow input feature type! Neither NCycDB nor PCycDB!")
+		}
+	}
+	
+	dataset <- microtable$new(otu_table = abund_new, tax_table = mapping_file, sample_table = sample_table, ...)
 	dataset
 }

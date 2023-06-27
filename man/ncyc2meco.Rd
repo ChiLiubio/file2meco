@@ -2,12 +2,12 @@
 % Please edit documentation in R/ncyc2meco.R
 \name{ncyc2meco}
 \alias{ncyc2meco}
-\title{Transform 'Ncyc' metagenomic abundance to 'microtable' object.}
+\title{Transform 'NCycDB' or 'PCycDB' metagenomic abundance to 'microtable' object.}
 \usage{
 ncyc2meco(feature_table, sample_table = NULL, match_table = NULL, ...)
 }
 \arguments{
-\item{feature_table}{'Ncyc' software output abundance table, see the example file.}
+\item{feature_table}{'NCycDB' or 'PCycDB' output abundance table, see the example file.}
 
 \item{sample_table}{default NULL; sample metadata table; If provided, must be one of the several types of formats: 
   1) comma seperated file with the suffix csv or tab seperated file with suffix tsv/txt; 
@@ -26,11 +26,13 @@ A file path must be tab or comma seperated file, e.g. a file with suffix "tsv" o
 microtable object.
 }
 \description{
-Transform 'Ncyc' metagenomic abundance to microtable object. Reference: Qichao et al. (2019) <doi: 10.1093/bioinformatics/bty741>.
+Transform 'NCycDB' or 'PCycDB' metagenomic abundance to microtable object. 
+  The function can identify the mapping database according to the gene names of input feature abundance table.
+  Reference: Qichao et al. (2019) <doi: 10.1093/bioinformatics/bty741> and Zeng et al. (2022) <doi: 10.1186/s40168-022-01292-1>.
 }
 \examples{
 \donttest{
-# use the raw data files stored inside the package
+# NCycDB
 abund_file_path <- system.file("extdata", "example_Ncyc_table.tsv", package="file2meco")
 sample_file_path <- system.file("extdata", "example_metagenome_sample_info.tsv", 
   package="file2meco")
@@ -43,12 +45,28 @@ test <- ncyc2meco(abund_file_path, sample_table = sample_file_path,
   match_table = match_file_path)
 test$tidy_dataset()
 # use split_group = TRUE to calculate the pathway abundance with multipe map correspondance
-test$cal_abund(select_cols = 1:2, rel = TRUE, split_group = TRUE, split_column = "Pathway")
+test$cal_abund(select_cols = 1, rel = TRUE, split_group = TRUE, split_column = "Pathway")
 test$taxa_abund$Pathway \%<>\% .[!grepl("unclass", rownames(.)), ]
 test1 <- trans_abund$new(test, taxrank = "Pathway")
 test1$plot_bar(bar_type = "notfull")
 # for gene abundance, no splitting on the Pathway
 test$cal_abund(select_cols = 1:2, rel = TRUE, split_group = FALSE)
+test$taxa_abund$Gene \%<>\% .[!grepl("unclass", rownames(.)), ]
+test1 <- trans_abund$new(test, taxrank = "Gene")
+test1$plot_bar(bar_type = "notfull")
+
+# PCycDB
+abund_file_path <- system.file("extdata", "example_Pcyc_table.tsv", package="file2meco")
+test <- ncyc2meco(abund_file_path)
+test$tidy_dataset()
+# show pathway abundance
+test$cal_abund(select_cols = 1, rel = TRUE, split_group = TRUE, split_by = "&&", 
+    split_column = "Pathway")
+test$taxa_abund$Pathway \%<>\% .[!grepl("unclass|Others", rownames(.)), ]
+test1 <- trans_abund$new(test, taxrank = "Pathway")
+test1$plot_bar(bar_type = "notfull")
+# show gene abundance
+test$cal_abund(select_cols = 2, rel = TRUE, split_group = FALSE)
 test$taxa_abund$Gene \%<>\% .[!grepl("unclass", rownames(.)), ]
 test1 <- trans_abund$new(test, taxrank = "Gene")
 test1$plot_bar(bar_type = "notfull")
