@@ -6,7 +6,7 @@
 \usage{
 humann2meco(
   feature_table,
-  db = c("MetaCyc", "KEGG")[1],
+  db = c("MetaCyc", "KEGG", "gene")[1],
   sample_table = NULL,
   match_table = NULL,
   ...
@@ -15,7 +15,9 @@ humann2meco(
 \arguments{
 \item{feature_table}{file path of 'HUMAnN' output abundance table; Please see the example.}
 
-\item{db}{default "MetaCyc"; either "MetaCyc" or "KEGG"; the pathway database used in the feature_table file generation.}
+\item{db}{default "MetaCyc"; one of "MetaCyc", "KEGG" or "gene"; "MetaCyc" or "KEGG" means the input feature table is pathway abundance.
+"gene" represents the abundance of genes, such as 'eggNOG', 'KO' and 'EC'. 
+When using "gene", the generated tax_table has only taxonomic lineages and gene name, no higher functional levels.}
 
 \item{sample_table}{default NULL; sample metadata table; If provided, must be one of the several types of formats: \cr
 1) comma seperated file with the suffix csv or tab seperated file with suffix tsv or txt; \cr
