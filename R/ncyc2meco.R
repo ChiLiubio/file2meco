@@ -64,7 +64,7 @@ ncyc2meco <- function(feature_table, sample_table = NULL, match_table = NULL, ..
 	feature_names <- rownames(abund_raw)
 	
 	seq_num <- readLines(feature_table)[1]
-	seq_num <- as.numeric(gsub(".*\\s(\\d+)$",  "\\1", seq_num))
+	seq_num <- as.numeric(gsub(".*\\s(\\d+).*$",  "\\1", seq_num))
 	
 	# recalculate the abundance for unclassified
 	unclassified <- seq_num - apply(abund_raw, 2, sum)
