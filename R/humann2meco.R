@@ -48,10 +48,10 @@
 #' test1$plot_bar(facet = "Group", bar_type = "notfull")
 #' # select both function and taxa
 #' test$cal_abund(select_cols = c("Superclass1", "Phylum", "Genus"), rel = TRUE)
-#' test1 <- trans_abund$new(test, taxrank = "Phylum", ntaxa = 10, delete_part_prefix = TRUE)
+#' test1 <- trans_abund$new(test, taxrank = "Phylum", ntaxa = 10, delete_taxonomy_lineage = TRUE)
 #' test1$plot_bar(facet = "Group")
 #' test$taxa_abund$Phylum %<>% .[!grepl("unclass", rownames(.)), ]
-#' test1 <- trans_abund$new(test, taxrank = "Phylum", ntaxa = 10, delete_part_prefix = TRUE)
+#' test1 <- trans_abund$new(test, taxrank = "Phylum", ntaxa = 10, delete_taxonomy_lineage = FALSE)
 #' test1$plot_bar(facet = "Group")
 #' # functional biomarker
 #' test$cal_abund(select_cols = 1:3, rel = TRUE)
@@ -81,7 +81,7 @@
 #' test1$plot_bar(facet = "Group", bar_type = "notfull")
 #' # select both function and taxa
 #' test$cal_abund(select_cols = c("Level.1", "Phylum", "Genus"), rel = TRUE)
-#' test1 <- trans_abund$new(test, taxrank = "Phylum", ntaxa = 10, delete_part_prefix = TRUE)
+#' test1 <- trans_abund$new(test, taxrank = "Phylum", ntaxa = 10, delete_taxonomy_lineage = FALSE)
 #' test1$plot_bar(facet = "Group")
 #' # functional biomarker
 #' test$cal_abund(select_cols = 1:3, rel = TRUE)
