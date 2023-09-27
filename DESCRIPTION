@@ -8,7 +8,7 @@ Maintainer: Chi Liu <liuchi0426@126.com>
 Description: Transform output files of some tools to the 'microtable' object of 'microtable' class in 'microeco' package. The 'microtable' class is the basic class in 'microeco' package and is necessary for the downstream microbial community data analysis.
 URL: https://github.com/ChiLiubio/file2meco
 Depends: R (>= 3.5.0)
-Imports: microeco (>= 1.1.0), ape, magrittr, dplyr, tidyr, yaml, rhdf5, Matrix
+Imports: microeco (>= 1.2.0), ape, magrittr, dplyr, tidyr, yaml, rhdf5, Matrix
 Suggests: Biostrings, seqinr, phyloseq, readxl
 License: GPL-3
 LazyData: true
