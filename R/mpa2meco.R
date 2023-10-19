@@ -49,7 +49,6 @@
 #' }
 #' @export
 mpa2meco <- function(feature_table, sample_table = NULL, match_table = NULL, use_level = "s__", ...){
-	# read abund data
 	abund_raw <- readLines(feature_table)
 	header_line <- unlist(strsplit(abund_raw[1], "\t"))
 	total_abund <- sapply(abund_raw[-1], function(x){unlist(strsplit(x, "\t"))}) %>% 
@@ -57,7 +56,7 @@ mpa2meco <- function(feature_table, sample_table = NULL, match_table = NULL, use
 		as.data.frame %>%
 		`colnames<-`(header_line) %>%
 		`row.names<-`(.[, 1]) %>%
-		.[, -1] %>%
+		.[, -1, drop = FALSE] %>%
 		microeco::dropallfactors(unfac2num = TRUE)
 
 	if(! use_level %in% c('d__', 'k__', 'p__', 'c__', 'o__', 'f__', 'g__', 's__')){
@@ -78,7 +77,7 @@ mpa2meco <- function(feature_table, sample_table = NULL, match_table = NULL, use
 	}
 	all_taxonomic_levels <- c("Kingdom","Phylum","Class","Order","Family","Genus","Species")
 	# extract species data to create microtable object
-	abund_table_taxa <- total_abund[grepl(paste0(use_level, "(?!.*\\|).*"), rownames(total_abund), perl = TRUE), ]
+	abund_table_taxa <- total_abund[grepl(paste0(use_level, "(?!.*\\|).*"), rownames(total_abund), perl = TRUE), , drop = FALSE]
 	# generate taxonomic table
 	raw_taxonomy <- rownames(abund_table_taxa)
 
@@ -100,7 +99,7 @@ mpa2meco <- function(feature_table, sample_table = NULL, match_table = NULL, use
 	taxa_abund <- list()
 	for(i in 1:col_number){
 		tmp <- replace_level[i]
-		taxa_abund[[all_taxonomic_levels[i]]] <- total_abund[grepl(paste0(tmp, "(?!.*\\|).*"), rownames(total_abund), perl = TRUE), ]
+		taxa_abund[[all_taxonomic_levels[i]]] <- total_abund[grepl(paste0(tmp, "(?!.*\\|).*"), rownames(total_abund), perl = TRUE), , drop = FALSE]
 	}
 	
 	# first check the match_table

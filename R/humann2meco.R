@@ -114,7 +114,8 @@ humann2meco <- function(feature_table, db = c("MetaCyc", "KEGG", "gene")[1], sam
 				# no taxa mapped, all unclassified!
 				abund_new[filter_num[2], ] <- abund_new[filter_num[1], ]
 			}else{
-				abund_new[filter_num[length(filter_num)], ] <- abund_new[filter_num[1], ] - apply(abund_new[filter_num[2:(length(filter_num) - 1)], ], 2, sum)
+				abund_new[filter_num[length(filter_num)], ] <- abund_new[filter_num[1], ] - 
+					apply(abund_new[filter_num[2:(length(filter_num) - 1)], , drop = FALSE], 2, sum)
 			}
 			remove_number <- c(remove_number, filter_num[1])
 		}
@@ -122,7 +123,7 @@ humann2meco <- function(feature_table, db = c("MetaCyc", "KEGG", "gene")[1], sam
 	
 	# a new abund table with clear name
 	rownames(abund_new) <- abund_rawname
-	abund_new %<>% .[-remove_number, ]
+	abund_new %<>% .[-remove_number, , drop = FALSE]
 	abund_newname <- rownames(abund_new)
 
 	data("CHOCOPhlAn_taxonomy", envir=environment())
