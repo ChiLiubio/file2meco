@@ -9,6 +9,7 @@ mpa2meco(
   sample_table = NULL,
   match_table = NULL,
   use_level = "s__",
+  rel = FALSE,
   ...
 )
 }
@@ -25,6 +26,9 @@ The first column must be raw sample names same with those in feature table,
 the second column must be new sample names same with the rownames in sample_table; Please also see the example files.}
 
 \item{use_level}{default "s__"; the prefix parsed for the otu_table and tax_table; must be one of 'd__', 'k__', 'p__', 'c__', 'o__', 'f__', 'g__' and 's__'.}
+
+\item{rel}{default FALSE; Whether convert the original abundance to relative abundance in generated taxa_abund list. 
+If TRUE, all the data.frame objects in taxa_abund list have relative abundance (0-1).}
 
 \item{...}{parameter passed to microtable$new function of microeco package, such as auto_tidy parameter.}
 }
@@ -56,15 +60,13 @@ sample_file_path <- system.file("extdata", "example_metagenome_sample_info.tsv",
 # use a matching table to adjust them
 match_file_path <- system.file("extdata", "example_metagenome_match_table.tsv", package="file2meco")
 test <- mpa2meco(abund_file_path, sample_table = sample_file_path, 
-  match_table = match_file_path, use_level = "s__")
+  match_table = match_file_path, use_level = "s__", rel = TRUE)
 # make the taxonomy standard for the following analysis
 test$tax_table \%<>\% tidy_taxonomy
 test$tidy_dataset()
-# convert the data of default taxa_abund to relative abundance
-test$taxa_abund \%<>\% lapply(function(x){apply(x, 2, function(y){y/sum(y)})})
 # calculate taxa_abund with specified level instead of raw kraken results
 test1 <- clone(test)
-test1$cal_abund()
+test1$cal_abund(rel = TRUE)
 identical(test$taxa_abund$Kingdom, test1$taxa_abund$Kingdom)
 }
 }

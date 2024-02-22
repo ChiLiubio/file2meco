@@ -14,4 +14,4 @@
 NULL
 
 # define globalVariables
-utils::globalVariables(c(".", "CHOCOPhlAn_taxonomy", "MetaCyc_pathway_map", "Tax4Fun2_KEGG", "ncyc_map", "Taxon", "unzip", "as.dist"))
+utils::globalVariables(c(".", "CHOCOPhlAn_taxonomy", "MetaCyc_pathway_map", "Tax4Fun2_KEGG", "ncyc_map", "pcyc_map", "Taxon", "unzip", "as.dist"))
