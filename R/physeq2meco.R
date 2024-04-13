@@ -1,6 +1,6 @@
 #' Transform 'microtable' object of 'microeco' package to the 'phyloseq' object of 'phyloseq' package.
 #'
-#' @param dataset a microtable object.
+#' @param meco a microtable object.
 #' @return phyloseq object.
 #' @examples
 #' \dontrun{
@@ -9,12 +9,12 @@
 #' meco2phyloseq(dataset)
 #' }
 #' @export
-meco2phyloseq <- function(dataset){
-	otu_table_trans <- dataset$otu_table
-	sample_table_trans <- dataset$sample_table
-	tax_table_trans <- dataset$tax_table
-	phylo_tree_trans <- dataset$phylo_tree
-	seq_trans <- dataset$rep_fasta
+meco2phyloseq <- function(meco){
+	otu_table_trans <- meco$otu_table
+	sample_table_trans <- meco$sample_table
+	tax_table_trans <- meco$tax_table
+	phylo_tree_trans <- meco$phylo_tree
+	seq_trans <- meco$rep_fasta
 	if(!is.null(seq_trans)){
 		if(!inherits(seq_trans, "DNAStringSet")){
 			message("Skip rep_fasta conversion as it is not DNAStringSet class!")
@@ -58,7 +58,7 @@ phyloseq2meco <- function(physeq, ...){
 	phylo_tree_trans <- physeq@phy_tree
 	seq_trans <- physeq@refseq
 
-	dataset <- microtable$new(sample_table = sample_table_trans, otu_table = otu_table_trans, 
+	meco <- microtable$new(sample_table = sample_table_trans, otu_table = otu_table_trans, 
 		tax_table = tax_table_trans, phylo_tree = phylo_tree_trans, rep_fasta = seq_trans, ...)
-	dataset
+	meco
 }

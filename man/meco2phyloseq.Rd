@@ -4,10 +4,10 @@
 \alias{meco2phyloseq}
 \title{Transform 'microtable' object of 'microeco' package to the 'phyloseq' object of 'phyloseq' package.}
 \usage{
-meco2phyloseq(dataset)
+meco2phyloseq(meco)
 }
 \arguments{
-\item{dataset}{a microtable object.}
+\item{meco}{a microtable object.}
 }
 \value{
 phyloseq object.
