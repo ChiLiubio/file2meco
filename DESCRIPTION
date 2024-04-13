@@ -9,7 +9,7 @@ Description: Transform output files of some tools to the 'microtable' object of 
 URL: https://github.com/ChiLiubio/file2meco
 Depends: R (>= 3.5.0)
 Imports: microeco (>= 1.2.0), ape, magrittr, dplyr, tidyr, yaml, rhdf5, Matrix
-Suggests: Biostrings, seqinr, phyloseq, readxl
+Suggests: Biostrings, seqinr, phyloseq, readxl, TreeSummarizedExperiment
 License: GPL-3
 LazyData: true
 Encoding: UTF-8

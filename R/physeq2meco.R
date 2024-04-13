@@ -1,3 +1,33 @@
+#' Transform the 'phyloseq' object of 'phyloseq' package to 'microtable' object of 'microeco' package.
+#'
+#' @param physeq a phyloseq object.
+#' @param ... parameter passed to microtable$new function of microeco package, such as auto_tidy parameter.
+#' @return microtable object.
+#' @examples
+#' \dontrun{
+#' library(phyloseq)
+#' data("GlobalPatterns")
+#' phyloseq2meco(GlobalPatterns)
+#' }
+#' @export
+phyloseq2meco <- function(physeq, ...){
+	if(physeq@otu_table@taxa_are_rows){
+		otu_table_trans <- as.data.frame(physeq@otu_table@.Data, check.names = FALSE, stringsAsFactors = FALSE)
+	}else{
+		otu_table_trans <- as.data.frame(t(physeq@otu_table@.Data), check.names = FALSE, stringsAsFactors = FALSE)
+	}
+	sample_table_trans <- data.frame(phyloseq::sample_data(physeq), check.names = FALSE, stringsAsFactors = FALSE)
+	tax_table_trans <- as.data.frame(physeq@tax_table@.Data, check.names = FALSE, stringsAsFactors = FALSE)
+	tax_table_trans %<>% tidy_taxonomy
+	phylo_tree_trans <- physeq@phy_tree
+	seq_trans <- physeq@refseq
+
+	meco <- microtable$new(sample_table = sample_table_trans, otu_table = otu_table_trans, 
+		tax_table = tax_table_trans, phylo_tree = phylo_tree_trans, rep_fasta = seq_trans, ...)
+	meco
+}
+
+
 #' Transform 'microtable' object of 'microeco' package to the 'phyloseq' object of 'phyloseq' package.
 #'
 #' @param meco a microtable object.
@@ -33,32 +63,3 @@ meco2phyloseq <- function(meco){
 	physeq
 }
 
-
-#' Transform the 'phyloseq' object of 'phyloseq' package to 'microtable' object of 'microeco' package.
-#'
-#' @param physeq a phyloseq object.
-#' @param ... parameter passed to microtable$new function of microeco package, such as auto_tidy parameter.
-#' @return microtable object.
-#' @examples
-#' \dontrun{
-#' library(phyloseq)
-#' data("GlobalPatterns")
-#' phyloseq2meco(GlobalPatterns)
-#' }
-#' @export
-phyloseq2meco <- function(physeq, ...){
-	if(physeq@otu_table@taxa_are_rows){
-		otu_table_trans <- as.data.frame(physeq@otu_table@.Data, check.names = FALSE, stringsAsFactors = FALSE)
-	}else{
-		otu_table_trans <- as.data.frame(t(physeq@otu_table@.Data), check.names = FALSE, stringsAsFactors = FALSE)
-	}
-	sample_table_trans <- data.frame(phyloseq::sample_data(physeq), check.names = FALSE, stringsAsFactors = FALSE)
-	tax_table_trans <- as.data.frame(physeq@tax_table@.Data, check.names = FALSE, stringsAsFactors = FALSE)
-	tax_table_trans %<>% tidy_taxonomy
-	phylo_tree_trans <- physeq@phy_tree
-	seq_trans <- physeq@refseq
-
-	meco <- microtable$new(sample_table = sample_table_trans, otu_table = otu_table_trans, 
-		tax_table = tax_table_trans, phylo_tree = phylo_tree_trans, rep_fasta = seq_trans, ...)
-	meco
-}
