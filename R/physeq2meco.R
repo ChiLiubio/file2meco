@@ -1,6 +1,6 @@
 #' Transform the 'phyloseq' object of 'phyloseq' package to 'microtable' object of 'microeco' package.
 #'
-#' @param physeq a phyloseq object.
+#' @param physeq a phyloseq object <doi:10.1371/journal.pone.0061217>.
 #' @param ... parameter passed to microtable$new function of microeco package, such as auto_tidy parameter.
 #' @return microtable object.
 #' @examples
@@ -28,7 +28,7 @@ phyloseq2meco <- function(physeq, ...){
 }
 
 
-#' Transform 'microtable' object of 'microeco' package to the 'phyloseq' object of 'phyloseq' package.
+#' Transform 'microtable' object of 'microeco' package to the 'phyloseq' object of 'phyloseq' package <doi:10.1371/journal.pone.0061217>.
 #'
 #' @param meco a microtable object.
 #' @return phyloseq object.

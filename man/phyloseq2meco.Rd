@@ -7,7 +7,7 @@
 phyloseq2meco(physeq, ...)
 }
 \arguments{
-\item{physeq}{a phyloseq object.}
+\item{physeq}{a phyloseq object <doi:10.1371/journal.pone.0061217>.}
 
 \item{...}{parameter passed to microtable$new function of microeco package, such as auto_tidy parameter.}
 }

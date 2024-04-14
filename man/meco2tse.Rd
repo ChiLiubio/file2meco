@@ -2,7 +2,7 @@
 % Please edit documentation in R/tse2meco.R
 \name{meco2tse}
 \alias{meco2tse}
-\title{Transform 'microtable' object of 'microeco' package to the 'TreeSummarizedExperiment' object of 'TreeSummarizedExperiment' package.}
+\title{Transform 'microtable' object of 'microeco' package to the 'TreeSummarizedExperiment' object of 'TreeSummarizedExperiment' package <doi:10.12688/f1000research.26669.2>.}
 \usage{
 meco2tse(meco, ...)
 }
@@ -15,7 +15,7 @@ meco2tse(meco, ...)
 TreeSummarizedExperiment object.
 }
 \description{
-Transform 'microtable' object of 'microeco' package to the 'TreeSummarizedExperiment' object of 'TreeSummarizedExperiment' package.
+Transform 'microtable' object of 'microeco' package to the 'TreeSummarizedExperiment' object of 'TreeSummarizedExperiment' package <doi:10.12688/f1000research.26669.2>.
 }
 \examples{
 \dontrun{

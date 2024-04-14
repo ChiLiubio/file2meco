@@ -32,7 +32,7 @@ https://chiliubio.github.io/microeco_tutorial/file2meco-package.html
 ## Supported tools
 
 Currently supported tools for data conversion include:  
-QIIME, QIIME2, HUMAnN, MetaPhlAn, Kraken2/Bracken, Ncyc, R phyloseq package, PICRUSt2, Tax4Fun/Tax4Fun2, ViromeScan.
+QIIME, QIIME2, HUMAnN, MetaPhlAn, Kraken2/Bracken, Ncyc, PICRUSt2, Tax4Fun/Tax4Fun2, ViromeScan, R package phyloseq and TreeSummarizedExperiment.
 
 ## Contributing
 

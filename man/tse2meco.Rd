@@ -7,7 +7,7 @@
 tse2meco(tse, ...)
 }
 \arguments{
-\item{tse}{a TreeSummarizedExperiment object.}
+\item{tse}{a TreeSummarizedExperiment object <doi:10.12688/f1000research.26669.2>.}
 
 \item{...}{parameter passed to microtable$new function of microeco package, such as auto_tidy parameter.}
 }

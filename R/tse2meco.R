@@ -1,6 +1,6 @@
 #' Transform the 'TreeSummarizedExperiment' object to 'microtable' object of 'microeco' package.
 #'
-#' @param tse a TreeSummarizedExperiment object.
+#' @param tse a TreeSummarizedExperiment object <doi:10.12688/f1000research.26669.2>.
 #' @param ... parameter passed to microtable$new function of microeco package, such as auto_tidy parameter.
 #' @return microtable object.
 #' @export
@@ -35,7 +35,7 @@ tse2meco <- function(tse, ...){
 }
 
 
-#' Transform 'microtable' object of 'microeco' package to the 'TreeSummarizedExperiment' object of 'TreeSummarizedExperiment' package.
+#' Transform 'microtable' object of 'microeco' package to the 'TreeSummarizedExperiment' object of 'TreeSummarizedExperiment' package <doi:10.12688/f1000research.26669.2>.
 #'
 #' @param meco a microtable object.
 #' @param ... parameter passed to \code{TreeSummarizedExperiment} function of TreeSummarizedExperiment package, e.g. \code{colTree}, \code{rowNodeLab} and \code{colNodeLab}.
