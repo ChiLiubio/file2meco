@@ -16,6 +16,7 @@ Please open the help document by using \code{help} function or by clicking the f
 \code{\link{phyloseq2meco}}\cr
 \code{\link{meco2phyloseq}}\cr
 \code{\link{vs2meco}}\cr
+\code{\link{tse2meco}}\cr
 
 To report bugs or discuss questions, please use Github Issues (\href{https://github.com/ChiLiubio/file2meco/issues}{https://github.com/ChiLiubio/file2meco/issues}).
 Before creating a new issue, 
