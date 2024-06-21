@@ -44,8 +44,8 @@
 #' test1 <- trans_abund$new(test, taxrank = "Superclass1", ntaxa = 10, use_percentage = FALSE)
 #' # reassign ylab title instead of default 'Relative Abundance'
 #' test1$ylabname <- "Abundance (RPK)"
-#' # bar_type = "notfull" show original abundance instead of normalized 0-1
-#' test1$plot_bar(facet = "Group", bar_type = "notfull")
+#' # bar_full = FALSE show original abundance instead of normalized 0-1
+#' test1$plot_bar(facet = "Group", bar_full = FALSE)
 #' # select both function and taxa
 #' test$cal_abund(select_cols = c("Superclass1", "Phylum", "Genus"), rel = TRUE)
 #' test1 <- trans_abund$new(test, taxrank = "Phylum", ntaxa = 10, delete_taxonomy_lineage = TRUE)
@@ -78,7 +78,7 @@
 #' test1 <- trans_abund$new(test, taxrank = "Level.2", ntaxa = 10, use_percentage = FALSE)
 #' # or use ggplot2::ylab to change ylab title
 #' test1$ylabname <- "Abundance (RPK)"
-#' test1$plot_bar(facet = "Group", bar_type = "notfull")
+#' test1$plot_bar(facet = "Group", bar_full = FALSE)
 #' # select both function and taxa
 #' test$cal_abund(select_cols = c("Level.1", "Phylum", "Genus"), rel = TRUE)
 #' test1 <- trans_abund$new(test, taxrank = "Phylum", ntaxa = 10, delete_taxonomy_lineage = FALSE)

@@ -34,12 +34,12 @@
 #' test$cal_abund(select_cols = 1, rel = TRUE, split_group = TRUE, split_column = "Pathway")
 #' test$taxa_abund$Pathway %<>% .[!grepl("unclass", rownames(.)), ]
 #' test1 <- trans_abund$new(test, taxrank = "Pathway")
-#' test1$plot_bar(bar_type = "notfull")
+#' test1$plot_bar(bar_full = FALSE)
 #' # for gene abundance, no splitting on the Pathway
 #' test$cal_abund(select_cols = 1:2, rel = TRUE, split_group = FALSE)
 #' test$taxa_abund$Gene %<>% .[!grepl("unclass", rownames(.)), ]
 #' test1 <- trans_abund$new(test, taxrank = "Gene")
-#' test1$plot_bar(bar_type = "notfull")
+#' test1$plot_bar(bar_full = FALSE)
 #' 
 #' # PCycDB
 #' abund_file_path <- system.file("extdata", "example_Pcyc_table.tsv", package="file2meco")
@@ -50,12 +50,12 @@
 #'     split_column = "Pathway")
 #' test$taxa_abund$Pathway %<>% .[!grepl("unclass|Others", rownames(.)), ]
 #' test1 <- trans_abund$new(test, taxrank = "Pathway")
-#' test1$plot_bar(bar_type = "notfull")
+#' test1$plot_bar(bar_full = FALSE)
 #' # show gene abundance
 #' test$cal_abund(select_cols = 2, rel = TRUE, split_group = FALSE)
 #' test$taxa_abund$Gene %<>% .[!grepl("unclass", rownames(.)), ]
 #' test1 <- trans_abund$new(test, taxrank = "Gene")
-#' test1$plot_bar(bar_type = "notfull")
+#' test1$plot_bar(bar_full = FALSE)
 #' }
 #' @export
 ncyc2meco <- function(feature_table, sample_table = NULL, match_table = NULL, ...){
