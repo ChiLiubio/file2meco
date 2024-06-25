@@ -10,6 +10,7 @@ mpa2meco(
   match_table = NULL,
   use_level = "s__",
   rel = FALSE,
+  sel_same = 1,
   ...
 )
 }
@@ -30,6 +31,10 @@ the second column must be new sample names same with the rownames in sample_tabl
 \item{rel}{default FALSE; Whether convert the original abundance to relative abundance in generated taxa_abund list. 
 If TRUE, all the data.frame objects in taxa_abund list have relative abundance (0-1).}
 
+\item{sel_same}{default 1; How to select the taxonomic information in \code{tax_table} when multiple taxonomic information have same prefix (e.g., "k__Eukaryota|k__Fungi|"). 
+1 represents the first one. 2 denotes the second one. 3 means selecting both.
+For the taxa_abund list, both names will be remained, and the "|" will be replaced with ":".}
+
 \item{...}{parameter passed to microtable$new function of microeco package, such as auto_tidy parameter.}
 }
 \value{
@@ -37,7 +42,7 @@ microtable object.
 }
 \description{
 Transform the classification results of mpa (MetaPhlAn) format to microtable object,
-such as MetaPhlAn and Kraken2 results. Kraken2 results can be obtained by merge_metaphlan_tables.py from MetaPhlAn or 
+such as MetaPhlAn and Kraken2/Bracken results. Kraken2/Bracken results can be obtained by merge_metaphlan_tables.py from MetaPhlAn or 
 combine_mpa.py from KrakenTools (https://ccb.jhu.edu/software/krakentools/).
 The algorithm of Kraken2 determines that the abundance of a taxon is not equal to the sum of abundances of taxa in its subordinate lineage.
 So the default tables in taxa_abund of return microtable object are extracted from the abundances of raw file. 

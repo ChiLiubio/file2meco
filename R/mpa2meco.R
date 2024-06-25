@@ -2,7 +2,7 @@
 #'
 #' @description
 #' Transform the classification results of mpa (MetaPhlAn) format to microtable object,
-#' such as MetaPhlAn and Kraken2 results. Kraken2 results can be obtained by merge_metaphlan_tables.py from MetaPhlAn or 
+#' such as MetaPhlAn and Kraken2/Bracken results. Kraken2/Bracken results can be obtained by merge_metaphlan_tables.py from MetaPhlAn or 
 #' combine_mpa.py from KrakenTools (https://ccb.jhu.edu/software/krakentools/).
 #' The algorithm of Kraken2 determines that the abundance of a taxon is not equal to the sum of abundances of taxa in its subordinate lineage.
 #' So the default tables in taxa_abund of return microtable object are extracted from the abundances of raw file. 
@@ -21,6 +21,9 @@
 #' @param use_level default "s__"; the prefix parsed for the otu_table and tax_table; must be one of 'd__', 'k__', 'p__', 'c__', 'o__', 'f__', 'g__' and 's__'.
 #' @param rel default FALSE; Whether convert the original abundance to relative abundance in generated taxa_abund list. 
 #'    If TRUE, all the data.frame objects in taxa_abund list have relative abundance (0-1).
+#' @param sel_same default 1; How to select the taxonomic information in \code{tax_table} when multiple taxonomic information have same prefix (e.g., "k__Eukaryota|k__Fungi|"). 
+#'    1 represents the first one. 2 denotes the second one. 3 means selecting both.
+#'    For the taxa_abund list, both names will be remained, and the "|" will be replaced with ":".
 #' @param ... parameter passed to microtable$new function of microeco package, such as auto_tidy parameter.
 #' @return microtable object.
 #' @examples
@@ -48,7 +51,7 @@
 #' identical(test$taxa_abund$Kingdom, test1$taxa_abund$Kingdom)
 #' }
 #' @export
-mpa2meco <- function(feature_table, sample_table = NULL, match_table = NULL, use_level = "s__", rel = FALSE, ...){
+mpa2meco <- function(feature_table, sample_table = NULL, match_table = NULL, use_level = "s__", rel = FALSE, sel_same = 1, ...){
 	abund_raw <- readLines(feature_table)
 	header_line <- unlist(strsplit(abund_raw[1], "\t"))
 	total_abund <- sapply(abund_raw[-1], function(x){unlist(strsplit(x, "\t"))}) %>% 
@@ -62,21 +65,20 @@ mpa2meco <- function(feature_table, sample_table = NULL, match_table = NULL, use
 	if(! use_level %in% c('d__', 'k__', 'p__', 'c__', 'o__', 'f__', 'g__', 's__')){
 		stop("use_level must be one of 'd__', 'k__', 'p__', 'c__', 'o__', 'f__', 'g__' and 's__'!")
 	}
-	# Because parts of taxonomy are missing, we extract for each taxonomy
-	# determine the prefix of Bacteria, Archaea or Fungi
-	if(any(grepl("d__Bacteria|d__Archaea|d__Fungi", rownames(total_abund)))){
-		replace_level <- c('d__', 'p__', 'c__', 'o__', 'f__', 'g__', 's__')
-		if(use_level == "k__"){
-			use_level = "d__"
-		}
-	}else{
-		replace_level <- c('k__', 'p__', 'c__', 'o__', 'f__', 'g__', 's__')
-		if(use_level == "d__"){
-			use_level = "k__"
-		}
+	
+	replace_level <- c('k__', 'p__', 'c__', 'o__', 'f__', 'g__', 's__')
+	
+	# Because parts of taxonomy are missing, we extract taxonomy for each one
+	# determine the prefix of Kingdom or Domain, e.g., Bacteria, Archaea or Fungi
+	if(use_level == "d__"){
+		use_level = "k__"
 	}
-	all_taxonomic_levels <- c("Kingdom","Phylum","Class","Order","Family","Genus","Species")
-	# extract species data to create microtable object
+	if(any(grepl("d__", rownames(total_abund)))){
+		message("Replace the prefix d__ with k__ to unify the taxonomic information ...")
+		rownames(total_abund) %<>% gsub("d__", "k__", .)
+	}
+	all_taxonomic_levels <- c("Kingdom", "Phylum", "Class", "Order", "Family", "Genus", "Species")
+	# extract data to create microtable object
 	abund_table_taxa <- total_abund[grepl(paste0(use_level, "(?!.*\\|).*"), rownames(total_abund), perl = TRUE), , drop = FALSE]
 	# generate taxonomic table
 	raw_taxonomy <- rownames(abund_table_taxa)
@@ -89,17 +91,41 @@ mpa2meco <- function(feature_table, sample_table = NULL, match_table = NULL, use
 	rownames(taxonomy) <- raw_taxonomy
 	for(i in 1:col_number){
 		tmp <- replace_level[i]
-		taxonomy[, i] <- gsub(paste0(".*(", tmp, ".*?)(\\|.*|$)"), "\\1", raw_taxonomy, ignore.case = TRUE)
+		if(tmp == "k__"){
+			if(sel_same == 1){
+				taxonomy[, i] <- gsub("^(k__.*?)\\|.*", "\\1", raw_taxonomy, ignore.case = TRUE)
+			}else{
+				tmp_replace <- gsub(paste0(paste0(replace_level[-1], ".*"), collapse = "|"), "", raw_taxonomy, ignore.case = TRUE) %>%
+					gsub("\\|$", "", .)
+				if(sel_same == 2){
+					taxonomy[, i] <- gsub(".*\\|", "", tmp_replace, ignore.case = TRUE)
+				}else{
+					if(sel_same == 3){
+						taxonomy[, i] <- tmp_replace
+						taxonomy[, i] %<>% gsub("\\|", ":", .)
+					}else{
+						stop("Parameter sel_same should be 1, 2 or 3!")
+					}
+				}
+			}
+		}else{
+			taxonomy[, i] <- gsub(paste0(".*(", tmp, ".*?)(\\|.*|$)"), "\\1", raw_taxonomy, ignore.case = TRUE)
+		}
 		taxonomy[, i][!grepl(tmp, taxonomy[, i])] <- ""
 	}
-	taxonomy %<>% as.data.frame(stringsAsFactors = FALSE) %>% microeco::tidy_taxonomy()
+	taxonomy %<>% as.data.frame(stringsAsFactors = FALSE)
+	taxonomy %<>% microeco::tidy_taxonomy()
 	tax_table <- taxonomy
 	message("Generate tax_table ...")
 	# generate taxa_abund from raw data
 	taxa_abund <- list()
 	for(i in 1:col_number){
 		tmp <- replace_level[i]
-		taxa_abund[[all_taxonomic_levels[i]]] <- total_abund[grepl(paste0(tmp, "(?!.*\\|).*"), rownames(total_abund), perl = TRUE), , drop = FALSE]
+		tmp_table <- total_abund[grepl(paste0(tmp, "(?!.*\\|).*"), rownames(total_abund), perl = TRUE), , drop = FALSE]
+		if(tmp == "k__"){
+			rownames(tmp_table) %<>% gsub("\\|", ":", .)
+		}
+		taxa_abund[[all_taxonomic_levels[i]]] <- tmp_table
 	}
 	
 	# first check the match_table
