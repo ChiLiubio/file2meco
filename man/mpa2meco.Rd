@@ -33,7 +33,8 @@ If TRUE, all the data.frame objects in taxa_abund list have relative abundance (
 
 \item{sel_same}{default 1; How to select the taxonomic information in \code{tax_table} when multiple taxonomic information have same prefix (e.g., "k__Eukaryota|k__Fungi|"). 
 1 represents the first one. 2 denotes the second one. 3 means selecting both.
-For the taxa_abund list, both names will be remained, and the "|" will be replaced with ":".}
+If \code{sel_same = 3}, the "|" in the taxonomic information will be replaced with ":".
+For the \code{taxa_abund} list, both names are remained to facilitate subsequent filtering, and the "|" will be also replaced with ":".}
 
 \item{...}{parameter passed to microtable$new function of microeco package, such as auto_tidy parameter.}
 }
