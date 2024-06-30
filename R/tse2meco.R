@@ -11,16 +11,16 @@ tse2meco <- function(tse, ...){
 	
 	feature_table_trans <- as.data.frame(tse@assays@data[[1]])
 
-	if(!is.null(colData(tse))){
-		sample_table_trans <- as.data.frame(colData(tse))
-	}else{
-		sample_table_trans <- NULL
+	sample_table_trans <- SummarizedExperiment::colData(tse)
+	if(!is.null(sample_table_trans)){
+		sample_table_trans <- as.data.frame(sample_table_trans)
 	}
-	if(!is.null(rowData(tse))){
-		tax_table_trans <- as.data.frame(rowData(tse))
-	}else{
-		tax_table_trans <- NULL
+	
+	tax_table_trans <- SummarizedExperiment::rowData(tse)
+	if(!is.null(tax_table_trans)){
+		tax_table_trans <- as.data.frame(tax_table_trans)
 	}
+
 	if(inherits(tse, "TreeSummarizedExperiment")){
 		phylo_tree_trans <- tse@rowTree$phylo
 		seq_trans <- tse@referenceSeq
