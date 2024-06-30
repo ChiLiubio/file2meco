@@ -9,12 +9,12 @@ Description: Transform output files of some tools to the 'microtable' object of 
 URL: https://github.com/ChiLiubio/file2meco
 Depends: R (>= 3.5.0)
 Imports: microeco (>= 1.8.0), ape, magrittr, dplyr, tidyr, yaml, rhdf5, Matrix
-Suggests: Biostrings, seqinr, phyloseq, readxl, TreeSummarizedExperiment
+Suggests: Biostrings, seqinr, phyloseq, readxl, SummarizedExperiment, TreeSummarizedExperiment
 License: GPL-3
 LazyData: true
 Encoding: UTF-8
 NeedsCompilation: no
-Packaged: 2024-03-07
+Packaged: 2024-06-30
 Repository: CRAN
-Date/Publication: 2024-03-07
+Date/Publication: 2024-06-30
 RoxygenNote: 7.3.1
