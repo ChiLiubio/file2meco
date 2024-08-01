@@ -25,6 +25,7 @@
 #'    1 represents the first one. 2 denotes the second one. 3 means selecting both.
 #'    If \code{sel_same = 3}, the "|" in the taxonomic information will be replaced with ":".
 #'    For the \code{taxa_abund} list, both names are remained to facilitate subsequent filtering, and the "|" will be also replaced with ":".
+#' @param sep default "\\t"; The separator in provided \code{feature_table}.
 #' @param ... parameter passed to microtable$new function of microeco package, such as auto_tidy parameter.
 #' @return microtable object.
 #' @examples
@@ -52,10 +53,13 @@
 #' identical(test$taxa_abund$Kingdom, test1$taxa_abund$Kingdom)
 #' }
 #' @export
-mpa2meco <- function(feature_table, sample_table = NULL, match_table = NULL, use_level = "s__", rel = FALSE, sel_same = 1, ...){
+mpa2meco <- function(feature_table, sample_table = NULL, match_table = NULL, use_level = "s__", rel = FALSE, sel_same = 1, sep = "\t", ...){
 	abund_raw <- readLines(feature_table)
-	header_line <- unlist(strsplit(abund_raw[1], "\t"))
-	total_abund <- sapply(abund_raw[-1], function(x){unlist(strsplit(x, "\t"))}) %>% 
+	header_line <- unlist(strsplit(abund_raw[1], sep))
+	if(length(header_line) == 1){
+		stop("Please check the separator of input feature_table! Try to reset the parameter sep!")
+	}
+	total_abund <- sapply(abund_raw[-1], function(x){unlist(strsplit(x, sep))}) %>% 
 		t %>% 
 		as.data.frame %>%
 		`colnames<-`(header_line) %>%
