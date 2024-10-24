@@ -1,7 +1,7 @@
 Package: file2meco
 Type: Package
 Title: Transform Files to 'microtable' Object with 'microeco' Package
-Version: 0.8.1
+Version: 0.9.0
 Authors@R: c(person("Chi", "Liu", role = c("aut", "cre"), email = "liuchi0426@126.com"))
 Author: Chi Liu [aut, cre]
 Maintainer: Chi Liu <liuchi0426@126.com>
@@ -14,7 +14,7 @@ License: GPL-3
 LazyData: true
 Encoding: UTF-8
 NeedsCompilation: no
-Packaged: 2024-06-30
+Packaged: 2024-10-24
 Repository: CRAN
-Date/Publication: 2024-06-30
-RoxygenNote: 7.3.1
+Date/Publication: 2024-10-24
+RoxygenNote: 7.3.2
