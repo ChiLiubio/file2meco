@@ -10,6 +10,7 @@ qiime1meco(
   match_table = NULL,
   phylo_tree = NULL,
   rep_fasta = NULL,
+  split = "; ",
   ...
 )
 }
@@ -32,6 +33,8 @@ If provided, must be one of the several types of formats: \cr
 \item{phylo_tree}{default NULL; the phylogenetic tree; generally, a file with suffix "tre".}
 
 \item{rep_fasta}{default NULL; the representative sequences; a fasta file, generally with suffix "fasta" or "fna" or "fa".}
+
+\item{split}{default "; "; character pattern for splitting the taxonomic information.}
 
 \item{...}{parameter passed to microtable$new function of microeco package, such as \code{auto_tidy} parameter.}
 }

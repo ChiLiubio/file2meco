@@ -18,6 +18,7 @@
 #'   3) \code{data.frame} object from R.
 #' @param phylo_tree default NULL; the phylogenetic tree; generally, a file with suffix "tre".
 #' @param rep_fasta default NULL; the representative sequences; a fasta file, generally with suffix "fasta" or "fna" or "fa".
+#' @param split default "; "; character pattern for splitting the taxonomic information.
 #' @param ... parameter passed to microtable$new function of microeco package, such as \code{auto_tidy} parameter.
 #' @return \code{microtable} object.
 #' @examples
@@ -34,7 +35,7 @@
 #'   phylo_tree = phylo_file_path, rep_fasta = rep_fasta_path)
 #' }
 #' @export
-qiime1meco <- function(feature_table, sample_table = NULL, match_table = NULL, phylo_tree = NULL, rep_fasta = NULL, ...){
+qiime1meco <- function(feature_table, sample_table = NULL, match_table = NULL, phylo_tree = NULL, rep_fasta = NULL, split = "; ", ...){
 	# check whether there is a commented line
 	tryread <- readLines(feature_table)
 	comlines <- sum(grepl("^#", tryread))
@@ -46,7 +47,7 @@ qiime1meco <- function(feature_table, sample_table = NULL, match_table = NULL, p
 	feature_table <- as.data.frame(otu_raw_table[[3]])
 	colnames(feature_table) <- unlist(otu_raw_table[[1]])
 	# obtain the taxonomic table  data.frame
-	taxonomy_table_1 <- as.data.frame(split_assignments(unlist(otu_raw_table[[4]])))
+	taxonomy_table_1 <- as.data.frame(split_assignments(unlist(otu_raw_table[[4]]), split = split))
 	# make the taxonomic table clean, this is very important
 	taxonomy_table_1 %<>% tidy_taxonomy
 	# first check the match_table
@@ -92,7 +93,7 @@ qiime1meco <- function(feature_table, sample_table = NULL, match_table = NULL, p
 #   function `qiime.parse.parse_otu_table`.  The sample_ids, otu_ids, and
 #   metadata attributes are character vectors.  The counts attribute is a
 #   matrix with one column per sample_id and one row per otu_id.
-read_qiime_otu_table <- function(filepath, commented=TRUE, metadata=TRUE) {
+read_qiime_otu_table <- function(filepath, commented, metadata=TRUE) {
   f <- file(filepath, "rt")
   header_line <- readLines(f, n=1)
   if (commented) {
@@ -147,7 +148,7 @@ taxonomic_ranks <- c("Kingdom", "Phylum", "Class", "Order", "Family", "Genus", "
 # param ... Additional parameters are passed to the \code{strsplit} function.
 # return A data frame of taxonomic assignments.
 split_assignments <- function(assignments, ranks=taxonomic_ranks, 
-  split="; ", ...) {
+  split, ...) {
   a <- strsplit(as.character(assignments), split, ...)
   max_ranks <- max(sapply(a, length))
   a <- lapply(a, function (x) {
