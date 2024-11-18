@@ -46,11 +46,16 @@ qiime2meco <- function(feature_table, sample_table = NULL, match_table = NULL, t
 	}
 	#  Read metadata
 	if(!is.null(sample_table)){
-		if(is_q2metadata(sample_table)){
-			sample_table <- read_q2metadata(sample_table)
-			rownames(sample_table) <- as.character(sample_table[, 1])
-		}else{
-			sample_table <- check_sample_table(sample_table = sample_table)
+		if(!inherits(sample_table, "data.frame")){
+			if(!inherits(sample_table, "character")){
+				stop("The input sample_table has unknown format! Must be character for file path or data.frame object!")
+			}
+			if(is_q2metadata(sample_table)){
+				sample_table <- read_q2metadata(sample_table)
+				rownames(sample_table) <- as.character(sample_table[, 1])
+			}else{
+				sample_table <- check_sample_table(sample_table = sample_table)
+			}
 		}
 	}
 	# Read taxonomy table
