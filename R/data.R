@@ -30,9 +30,12 @@ NULL
 
 #' The MetaCyc_pathway_map data
 #'
-#' The MetaCyc_pathway_map data is a manually curated 'MetaCyc' pathway hierarchical structure data. 
-#' It is used for the parsing the 'HUMAaN' metagenomic abundance table associated with 'MetaCyc' database.
+#' The MetaCyc_pathway_map data is a manually curated hierarchical structure data of 'MetaCyc' pathways. 
+#' It is used for parsing the 'HUMAaN' metagenomic abundance table associated with 'MetaCyc' database.
 #' Currently, only superclass 1, 2 and the pathway are used in this data.
+#' Some metabolic pathways may have multiple classification informations at specific levels, 
+#' which are connected here with the symbol "&&". 
+#' Therefore, when filtering in this table with the name of a pathway, please use regular expressions instead of direct filtering operations.
 #'
 #' @docType data
 #' @keywords data.frame
