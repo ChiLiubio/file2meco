@@ -12,6 +12,7 @@ mpa2meco(
   rel = FALSE,
   sel_same = 1,
   sep = "\\t",
+  skip_comments = TRUE,
   ...
 )
 }
@@ -38,6 +39,8 @@ If \code{sel_same = 3}, the "|" in the taxonomic information will be replaced wi
 For the \code{taxa_abund} list, both names are remained to facilitate subsequent filtering, and the "|" will be also replaced with ":".}
 
 \item{sep}{default "\\t"; The separator in provided \code{feature_table}.}
+
+\item{skip_comments}{default TRUE. Whether skip the comment lines starting with "#".}
 
 \item{...}{parameter passed to microtable$new function of microeco package, such as auto_tidy parameter.}
 }
