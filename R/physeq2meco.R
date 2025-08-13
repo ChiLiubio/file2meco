@@ -16,9 +16,17 @@ phyloseq2meco <- function(physeq, ...){
 	}else{
 		otu_table_trans <- as.data.frame(t(physeq@otu_table@.Data), check.names = FALSE, stringsAsFactors = FALSE)
 	}
-	sample_table_trans <- data.frame(phyloseq::sample_data(physeq), check.names = FALSE, stringsAsFactors = FALSE)
-	tax_table_trans <- as.data.frame(physeq@tax_table@.Data, check.names = FALSE, stringsAsFactors = FALSE)
-	tax_table_trans %<>% tidy_taxonomy
+	if(!is.null(physeq@sam_data)){
+		sample_table_trans <- data.frame(phyloseq::sample_data(physeq), check.names = FALSE, stringsAsFactors = FALSE)
+	}else{
+		sample_table_trans <- NULL
+	}
+	if(!is.null(physeq@tax_table)){
+		tax_table_trans <- as.data.frame(physeq@tax_table@.Data, check.names = FALSE, stringsAsFactors = FALSE)
+		tax_table_trans %<>% tidy_taxonomy
+	}else{
+		tax_table_trans <- NULL
+	}
 	phylo_tree_trans <- physeq@phy_tree
 	seq_trans <- physeq@refseq
 
