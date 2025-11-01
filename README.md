@@ -19,9 +19,10 @@ install.packages("file2meco", repos = BiocManager::repositories())
 ```
 
 ## Citation
-Liu, C., Li, X., Mansoldo, F.R.P., An, J., Kou, Y., Zhang, X., Wang, J., Zeng, J., Vermelho, A.B., Yao, M., 2022. 
+
+Chi Liu, Xiangzhen Li, Felipe R.P. Mansoldo, Jiaxing An, Yongping Kou, Xiao Zhang, Junming Wang, Jianxiong Zeng, Alane B. Vermelho & Minjie Yao.
 Microbial habitat specificity largely affects microbial co-occurrence patterns and functional profiles in wetland soils. 
-Geoderma 418, 115866. https://doi.org/10.1016/j.geoderma.2022.115866
+Geoderma, 418: 115866 (2022). https://doi.org/10.1016/j.geoderma.2022.115866
 
 
 ## Tutorial
