@@ -6,7 +6,7 @@ Convert files of some tools to microtable object of microeco package
 
 [![CRAN](https://www.r-pkg.org/badges/version/file2meco)](https://cran.r-project.org/web/packages/file2meco/index.html)
 [![CRAN](https://cranlogs.r-pkg.org/badges/grand-total/file2meco)](https://cran.r-project.org/web/packages/file2meco/index.html)
-![](https://img.shields.io/badge/Release-v0.9.1-blue.svg) ![](https://img.shields.io/badge/Test-v0.9.2-red.svg)
+![](https://img.shields.io/badge/Release-v0.9.1-blue.svg) ![](https://img.shields.io/badge/Test-v1.0.0-red.svg)
 
 
 ## Install file2meco
@@ -20,9 +20,13 @@ install.packages("file2meco", repos = BiocManager::repositories())
 
 ## Citation
 
-Chi Liu, Xiangzhen Li, Felipe R.P. Mansoldo, Jiaxing An, Yongping Kou, Xiao Zhang, Junming Wang, Jianxiong Zeng, Alane B. Vermelho & Minjie Yao.
-Microbial habitat specificity largely affects microbial co-occurrence patterns and functional profiles in wetland soils. 
-Geoderma, 418: 115866 (2022). https://doi.org/10.1016/j.geoderma.2022.115866
+Chi Liu, Xiangzhen Li, Felipe R. P. Mansoldo, Tong Chen, Fanzheng Meng, Ruixiang Tang, Siyu Zhou, Qinghua Yang, Ruixin Shao & Minjie Yao. 
+microeco 2: A comprehensive R package for downstream analysis of microbiome omics data. 
+**iMeta**, 2026, 5: e70132. https://doi.org/10.1002/imt2.70132
+
+Chi Liu, Felipe R. P. Mansoldo, Hankang Li, Alane Beatriz Vermelho, Raymond Jianxiong Zeng, Xiangzhen Li & Minjie Yao. 
+A workflow for statistical analysis and visualization of microbiome omics data using the R microeco package. 
+**Nature Protocols**, 2026, 21: 1300–1324. https://doi.org/10.1038/s41596-025-01239-4
 
 
 ## Tutorial
