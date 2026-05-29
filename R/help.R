@@ -15,6 +15,7 @@
 #' \code{\link{meco2phyloseq}}\cr
 #' \code{\link{vs2meco}}\cr
 #' \code{\link{tse2meco}}\cr
+#' \code{\link{merge_microtable}}\cr
 #' 
 #' To report bugs or discuss questions, please use Github Issues (\href{https://github.com/ChiLiubio/file2meco/issues}{https://github.com/ChiLiubio/file2meco/issues}).
 #' Before creating a new issue, 
@@ -23,8 +24,13 @@
 #' To cite file2meco package in publications, please run the following command to get the reference: \code{citation("file2meco")}\cr
 #' 
 #' Reference:\cr
-#' Liu, C., Li, X., Mansoldo, F.R.P., An, J., Kou, Y., Zhang, X., Wang, J., Zeng, J., Vermelho, A.B., Yao, M., 2022. 
-#' Microbial habitat specificity largely affects microbial co-occurrence patterns and functional profiles in wetland soils. Geoderma 418, 115866.
+#' Chi Liu, Xiangzhen Li, Felipe R. P. Mansoldo, Tong Chen, Fanzheng Meng, Ruixiang Tang, Siyu Zhou, Qinghua Yang, Ruixin Shao & Minjie Yao. 
+#' microeco 2: A comprehensive R package for downstream analysis of microbiome omics data. 
+#' iMeta, 2026, 5: e70132. DOI:10.1002/imt2.70132
+#' 
+#' Chi Liu, Felipe R. P. Mansoldo, Hankang Li, Alane Beatriz Vermelho, Raymond Jianxiong Zeng, Xiangzhen Li & Minjie Yao. 
+#' A workflow for statistical analysis and visualization of microbiome omics data using the R microeco package. 
+#' Nature Protocols, 2026, 21: 1300–1324. DOI:10.1038/s41596-025-01239-4
 #' 
 #' @keywords Description
 #' @name file2meco

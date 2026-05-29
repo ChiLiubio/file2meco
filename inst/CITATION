@@ -1,13 +1,25 @@
 
 bibentry(bibtype = "Article",
-         textVersion = "Liu, C., Li, X., Mansoldo, F.R.P., An, J., Kou, Y., Zhang, X., Wang, J., Zeng, J., Vermelho, A.B., Yao, M., 2022. Microbial habitat specificity largely affects microbial co-occurrence patterns and functional profiles in wetland soils. Geoderma 418, 115866.", 
-         header = "To cite file2meco in publications use:",
-         title = "Microbial habitat specificity largely affects microbial co-occurrence patterns and functional profiles in wetland soils",
-         author = c("Chi Liu", "Xiangzhen Li", "Felipe R. P. Mansoldo", "Jiaxing An", "Yongping Kou", "Xiao Zhang", "Jianxiong Zeng", "Alane B. Vermelho", "Minjie Yao"),
-         year = "2022",
-         journal = "Geoderma",
-         volume = "418",
-         pages = "115866",
-         doi = "10.1016/j.geoderma.2022.115866",
-         url = "https://doi.org/10.1016/j.geoderma.2022.115866"
+         textVersion = "Chi Liu, Xiangzhen Li, Felipe R. P. Mansoldo, Tong Chen, Fanzheng Meng, Ruixiang Tang, Siyu Zhou, Qinghua Yang, Ruixin Shao, Minjie Yao. microeco 2: A comprehensive R package for downstream analysis of microbiome omics data. iMeta, 2026, 5: e70132. https://doi.org/10.1002/imt2.70132",
+         title = "microeco 2: A comprehensive R package for downstream analysis of microbiome omics data",
+         author = c("Chi Liu", "Xiangzhen Li", "Felipe R. P. Mansoldo", "Tong Chen", "Fanzheng Meng", "Ruixiang Tang", "Siyu Zhou", "Qinghua Yang", "Ruixin Shao", "Minjie Yao"),
+         year = "2026",
+         journal = "iMeta",
+         volume = "5",
+         pages = "e70132",
+         doi = "10.1002/imt2.70132",
+         url = "https://doi.org/10.1002/imt2.70132"
+)
+
+bibentry(bibtype = "Article",
+         textVersion = "Chi Liu, Felipe R. P. Mansoldo, Hankang Li, Alane Beatriz Vermelho, Raymond Jianxiong Zeng, Xiangzhen Li, Minjie Yao. A workflow for statistical analysis and visualization of microbiome omics data using the R microeco package. Nature Protocols, 2026, 21: 1300–1324. https://doi.org/10.1038/s41596-025-01239-4",
+         title = "A workflow for statistical analysis and visualization of microbiome omics data using the R microeco package",
+         author = c("Chi Liu", "Felipe R. P. Mansoldo", "Hankang Li", "Alane Beatriz Vermelho", "Raymond Jianxiong Zeng", "Xiangzhen Li", "Minjie Yao"),
+         year = "2026",
+         journal = "Nature Protocols",
+         volume = "21",
+		 number = "4",
+         pages = "1300-1324",
+         doi = "10.1038/s41596-025-01239-4",
+         url = "https://doi.org/10.1038/s41596-025-01239-4"
 )
